@@ -13,8 +13,17 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+    <html lang="pt-br" className={`${GeistSans.variable}`}>
+      <body className="bg-cinza-fundo">
+        <div
+          className="mx-auto"
+          style={{
+            width: "min(1400px,100%)",
+          }}
+        >
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
