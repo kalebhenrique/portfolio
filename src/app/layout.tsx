@@ -22,14 +22,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className={`${poppins.variable}`}>
       <body className="font-poppins bg-cinza-fundo text-[13px] font-semibold text-violeta-base">
-        <div
-          className="mx-auto"
-          style={{
-            width: "min(1400px,100%)",
-          }}
-        >
-          {children}
-        </div>
+        <div className="mx-auto">{children}</div>
       </body>
     </html>
   );
