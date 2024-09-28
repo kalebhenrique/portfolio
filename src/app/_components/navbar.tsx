@@ -29,17 +29,25 @@ export default function Navbar() {
       className={`${navbarColor} sticky top-0 z-10 backdrop-blur-sm transition-colors duration-300`}
     >
       <ProgressBar />
-      <div className="flex items-center justify-center gap-4 pb-3 pt-4">
-        <Link href="#sobre">Sobre mim</Link>
-        <Link href="/">Habilidades</Link>
-        <Link href="/">Projetos</Link>
-        <Button
-          className="rounded-full bg-violeta-base text-[13px] font-semibold text-cinza-fundo"
-          onClick={() => redirect("/")}
-        >
-          Contato
-        </Button>
-      </div>
+      <ul className="flex flex-row items-center justify-center gap-4 pb-3 pt-4">
+        <li>
+          <Link href="#sobre">Sobre mim</Link>
+        </li>
+        <li>
+          <Link href="/">Habilidades</Link>
+        </li>
+        <li>
+          <Link href="/">Projetos</Link>
+        </li>
+        <li>
+          <Button
+            className="rounded-full bg-violeta-base text-[13px] font-semibold text-cinza-fundo"
+            onClick={() => redirect("/")}
+          >
+            Contato
+          </Button>
+        </li>
+      </ul>
     </nav>
   );
 }
