@@ -2,9 +2,12 @@ import CldImage from "./cldImage";
 
 export default function AboutMe() {
   return (
-    <div className="flex flex-col items-center justify-center bg-roxo-fundo px-6">
+    <div
+      id="sobre"
+      className="flex flex-col items-center justify-center bg-roxo-fundo px-6"
+    >
       <h1 className="pb-10 pt-16 text-center text-4xl text-violeta-titulo">
-        Eu sou um dev web atuando como front-end e bla bla.
+        Eu sou um dev web front-end e bla bla.
       </h1>
       <CldImage
         width="242"
