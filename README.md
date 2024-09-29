@@ -8,5 +8,5 @@ Utilizei o [T3 Stack](https://create.t3.gg/) para desenvolver o portfólio, uma 
 
 ## Onde pode me encontrar
 
-- [LinkedIn](https://create.t3.gg/)
+- [LinkedIn](https://www.linkedin.com/in/kalebhenrique/)
 - [CV](https://read.cv/kalebhenrique)
