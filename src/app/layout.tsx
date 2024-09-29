@@ -4,7 +4,7 @@ import { Poppins } from "next/font/google";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kaleb Henrique • Dev Web",
+  title: "Kaleb H • Dev Web",
   description: "Kaleb Henrique, dev web fullstack react",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
