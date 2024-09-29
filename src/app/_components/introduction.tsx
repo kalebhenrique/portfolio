@@ -12,17 +12,18 @@ export default function Introduction() {
   return (
     <>
       <div className="mx-6 flex flex-col items-center justify-center pb-20 pt-28">
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-end">
           <CldImage
             width="360"
             height="360"
             src="celeste"
             alt="Montanha Celeste"
+            className="z-0"
           />
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                <MdInfoOutline />
+                <MdInfoOutline size="20" className="mb-4" />
               </TooltipTrigger>
               <TooltipContent className="mr-2 w-32 bg-violeta-base bg-opacity-90 text-[11px] text-cinza-fundo backdrop-blur-sm">
                 <p>

@@ -23,7 +23,7 @@ export default function Footer() {
             </a>
           </li>
           <li>
-            <a target="_blank" href="/">
+            <a target="_blank" href="https://read.cv/kalebhenrique">
               CV
             </a>
           </li>
