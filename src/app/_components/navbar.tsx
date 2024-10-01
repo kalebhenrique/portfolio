@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`${navbarColor} sticky top-0 z-10 backdrop-blur-sm transition-colors duration-300`}
+      className={`${navbarColor} fixed left-0 right-0 top-0 z-10 backdrop-blur-md transition-colors duration-300`}
     >
       <ProgressBar />
       <ul className="flex flex-row items-center justify-center gap-4 pb-3 pt-4">
