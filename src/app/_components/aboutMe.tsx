@@ -4,9 +4,9 @@ export default function AboutMe() {
   return (
     <div
       id="sobre"
-      className="flex flex-col items-center justify-center bg-roxo-fundo px-6"
+      className="flex flex-col items-center justify-center bg-roxo-fundo px-6 py-16"
     >
-      <h1 className="pb-10 pt-16 text-center text-4xl text-violeta-titulo">
+      <h1 className="pb-10 text-center text-4xl text-violeta-titulo">
         Eu sou um dev web front-end e bla bla.
       </h1>
       <CldImage

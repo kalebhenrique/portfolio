@@ -2,6 +2,10 @@ import "~/styles/globals.css";
 
 import { Poppins } from "next/font/google";
 import { type Metadata } from "next";
+import { Suspense } from "react";
+import Navbar from "./_components/navbar";
+import Footer from "./_components/footer";
+import Loading from "./_components/loading";
 
 export const metadata: Metadata = {
   title: "Kaleb H • Dev Web",
@@ -21,8 +25,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-br" className={`${poppins.variable}`}>
-      <body className="font-poppins bg-cinza-fundo text-[13px] font-semibold text-violeta-base">
-        <div className="mx-auto">{children}</div>
+      <body className="bg-cinza-fundo font-poppins text-[13px] font-semibold text-violeta-base">
+        <Suspense fallback={<Loading />}>
+          <Navbar />
+          <div className="mx-auto">{children}</div>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );
