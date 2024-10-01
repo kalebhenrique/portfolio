@@ -50,16 +50,15 @@ export default function Introduction() {
 
       <div className="z-0 flex flex-col items-center">
         <div className="flex flex-row items-end">
-          <CldImage
-            width="360"
-            height="360"
-            src="celeste"
-            alt="Montanha Celeste"
-            className="z-0"
-          />
           <Popover>
             <PopoverTrigger>
-              <MdInfoOutline size="20" className="mb-4" />
+              <CldImage
+                width="360"
+                height="360"
+                src="celeste"
+                alt="Montanha Celeste"
+                className="z-0"
+              />
             </PopoverTrigger>
             <PopoverContent className="mr-2 w-32 bg-violeta-base bg-opacity-90 text-[11px] text-cinza-fundo backdrop-blur-sm">
               <p>
