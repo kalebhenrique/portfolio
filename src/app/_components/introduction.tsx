@@ -1,12 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import CldImage from "./cldImage";
-import { MdInfoOutline } from "react-icons/md";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
+import ArrowDownAnimate from "./arrowDownAnimate";
 
 const Snowflake = () => {
   return (
@@ -48,7 +48,15 @@ export default function Introduction() {
         ))}
       </div>
 
-      <div className="z-0 flex flex-col items-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.3,
+        }}
+        className="z-0 flex flex-col items-center"
+      >
         <div className="flex flex-row items-end">
           <Popover>
             <PopoverTrigger>
@@ -68,12 +76,16 @@ export default function Introduction() {
             </PopoverContent>
           </Popover>
         </div>
+
         <div className="py-3 text-center">
           <span className="text-lg">
             Sou apaixonado por criar experiências envolventes, acessíveis e
             centradas no usuário.
           </span>
         </div>
+      </motion.div>
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+        <ArrowDownAnimate />
       </div>
     </motion.div>
   );
