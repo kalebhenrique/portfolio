@@ -5,7 +5,7 @@ export default function Projects() {
     {
       tipo: "Freelancer",
       nome: "Sistema de Clínica",
-      src: "ib",
+      src: "ibd",
       alt: "Página do Sistema",
       bgColor: "bg-azul-kaleb",
     },
