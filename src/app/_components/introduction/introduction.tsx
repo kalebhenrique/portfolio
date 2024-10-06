@@ -1,12 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
-import CldImage from "./cldImage";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
 import ArrowDownAnimate from "./arrowDownAnimate";
+import CldImage from "../cldImage";
 
 const Snowflake = () => {
   return (

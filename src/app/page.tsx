@@ -1,8 +1,6 @@
-import AboutMe from "./_components/aboutMe";
-import Footer from "./_components/footer";
-import Introduction from "./_components/introduction";
-import Navbar from "./_components/navbar";
-import Projects from "./_components/projects";
+import AboutMe from "./_components/about/aboutMe";
+import Introduction from "./_components/introduction/introduction";
+import Projects from "./_components/projects/projects";
 
 export default function HomePage() {
   return (
