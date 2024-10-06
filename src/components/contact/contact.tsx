@@ -1,25 +1,10 @@
 "use client";
 
+import "~/styles/globals.css";
 import { IoClose } from "react-icons/io5";
 import MessageWrapper from "./messageWrapper";
 import { motion } from "framer-motion";
 import MessageOption from "./messageOption";
-
-const CustomScrollbarStyles = `
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(255,255,255,0.2);
-    border-radius: 3px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255,255,255,0.3);
-  }
-`;
 
 export default function Contact({ isOpen, onClose }) {
   const introductionMessages = [
@@ -49,14 +34,13 @@ export default function Contact({ isOpen, onClose }) {
 
   return (
     <>
-      <style>{CustomScrollbarStyles}</style>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.1,
         }}
-        className="fixed inset-0 z-20 flex h-[770px] w-full bg-black bg-opacity-50 backdrop-blur-3xl"
+        className="root-scrollbar fixed inset-0 z-20 flex h-[770px] w-full bg-black bg-opacity-50 backdrop-blur-3xl"
       >
         <div className="flex w-full flex-col bg-violeta-base bg-opacity-30">
           <div className="flex items-center justify-between bg-violeta-base p-5">
