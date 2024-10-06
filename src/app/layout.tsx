@@ -3,9 +3,9 @@ import "~/styles/globals.css";
 import { Poppins } from "next/font/google";
 import { type Metadata } from "next";
 import { Suspense } from "react";
-import Navbar from "./_components/navbar";
-import Footer from "./_components/footer";
-import Loading from "./_components/loading";
+import Navbar from "~/components/navbar";
+import Footer from "~/components/footer";
+import Loading from "~/components/loading";
 
 export const metadata: Metadata = {
   title: "Kaleb H • Dev Web",
@@ -24,8 +24,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-br" className={`${poppins.variable}`}>
-      <body className="bg-cinza-fundo font-poppins text-[14px] font-semibold text-violeta-base">
+    <html lang="pt-br" className={`${poppins.variable} root-scrollbar`}>
+      <body className="custom-scrollbar font-poppins text-[14px] font-semibold text-violeta-base">
         <Suspense fallback={<Loading />}>
           <Navbar />
           <div className="mx-auto">{children}</div>
