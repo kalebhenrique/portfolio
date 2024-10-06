@@ -21,7 +21,7 @@ export default function Projects() {
   return (
     <div
       id="projetos"
-      className="flex flex-col items-center justify-center px-6"
+      className="flex flex-col items-center justify-center bg-cinza-fundo px-6"
     >
       <h1 className="pb-10 pt-16 text-center text-4xl text-violeta-titulo">
         Projetos

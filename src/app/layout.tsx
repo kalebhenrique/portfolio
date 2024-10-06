@@ -13,22 +13,6 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const CustomScrollbarStyles = `
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(255,255,255,0.2);
-    border-radius: 3px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255,255,255,0.3);
-  }
-`;
-
 const poppins = Poppins({
   weight: ["400", "600", "700"],
   subsets: ["latin"],
@@ -40,9 +24,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-br" className={`${poppins.variable}`}>
-      <body className="custom-scrollbar bg-cinza-fundo font-poppins text-[14px] font-semibold text-violeta-base">
-        <style>{CustomScrollbarStyles}</style>
+    <html lang="pt-br" className={`${poppins.variable} root-scrollbar`}>
+      <body className="custom-scrollbar font-poppins text-[14px] font-semibold text-violeta-base">
         <Suspense fallback={<Loading />}>
           <Navbar />
           <div className="mx-auto">{children}</div>

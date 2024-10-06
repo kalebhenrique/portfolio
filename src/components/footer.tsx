@@ -7,8 +7,8 @@ export default function Footer() {
 
   return (
     <>
-      <footer>
-        <div className="mx-6 my-7 flex justify-between">
+      <footer className="bg-cinza-fundo">
+        <div className="mx-6 flex justify-between py-7">
           <ul className="flex flex-col space-y-6">
             <li>
               <h2 className="text-violeta-titulo">Onde estou</h2>
@@ -41,7 +41,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className="my-7 flex justify-center">
+        <div className="flex justify-center py-7">
           <span>Kaleb Henrique@2024</span>
         </div>
       </footer>
