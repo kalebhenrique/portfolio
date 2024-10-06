@@ -14,6 +14,7 @@ export default {
         "cinza-overlay-navbar": "#171C25",
         "roxo-fundo": "#181129",
         "violeta-base": "#B9BDEF",
+        "violeta-base-hover": "#D9DBF2",
         "violeta-titulo": "#877CC4",
         "azul-kaleb": "#7FC8E3",
         "roxo-kaleb-borda": "#3B234B",
