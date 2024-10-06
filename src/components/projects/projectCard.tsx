@@ -17,13 +17,13 @@ export default function ProjectCard(props: projectCardProps) {
         <h1 className="text-lg">{props.tipo}</h1>
         <h2>{props.nome}</h2>
       </div>
-      <div className="mt-auto flex items-end justify-end">
+      <div className="mt-4 flex items-end justify-end">
         <CldImage
           width="200"
           height="200"
           src={props.src}
           alt={props.alt}
-          className="rounded-l-3xl"
+          className="rounded-3xl"
         />
       </div>
     </div>
