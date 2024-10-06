@@ -38,7 +38,7 @@ export default function Footer() {
         </ul>
       </div>
       <div className="my-7 flex justify-center">
-        <span>2024@Kaleb Henrique</span>
+        <span>Kaleb Henrique@2024</span>
       </div>
     </footer>
   );
