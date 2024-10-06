@@ -25,7 +25,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-br" className={`${poppins.variable}`}>
-      <body className="bg-cinza-fundo font-poppins text-[13px] font-semibold text-violeta-base">
+      <body className="bg-cinza-fundo font-poppins text-[14px] font-semibold text-violeta-base">
         <Suspense fallback={<Loading />}>
           <Navbar />
           <div className="mx-auto">{children}</div>

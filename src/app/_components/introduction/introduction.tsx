@@ -1,12 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
-import CldImage from "./cldImage";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
 import ArrowDownAnimate from "./arrowDownAnimate";
+import CldImage from "../cldImage";
 
 const Snowflake = () => {
   return (
@@ -40,7 +40,7 @@ export default function Introduction() {
         repeat: Infinity,
         repeatType: "reverse",
       }}
-      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433]"
+      className="n relative flex h-[710px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433]"
     >
       <div className="pointer-events-none absolute inset-0">
         {snowflakes.map((_, index) => (
@@ -84,7 +84,7 @@ export default function Introduction() {
           </span>
         </div>
       </motion.div>
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+      <div className="absolute bottom-5 left-0 right-0 flex justify-center">
         <ArrowDownAnimate />
       </div>
     </motion.div>
