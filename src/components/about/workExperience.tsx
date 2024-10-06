@@ -1,13 +1,13 @@
 import { RiExternalLinkLine } from "react-icons/ri";
 
-type workExperienceProps = {
+interface workExperienceProps {
   startDate: string;
   endDate: string;
   position: string;
   enterprise: string;
   summary: string;
   enterpriseUrl: string;
-};
+}
 
 export default function WorkExperience(props: workExperienceProps) {
   return (

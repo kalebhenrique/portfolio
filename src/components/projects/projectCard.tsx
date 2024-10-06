@@ -1,12 +1,12 @@
 import CldImage from "../cldImage";
 
-type projectCardProps = {
+interface projectCardProps {
   tipo: string;
   nome: string;
   src: string;
   alt: string;
   bgColor: string;
-};
+}
 
 export default function ProjectCard(props: projectCardProps) {
   return (

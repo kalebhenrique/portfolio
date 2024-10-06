@@ -1,7 +1,7 @@
-type MessageWrapperProps = {
+interface MessageWrapperProps {
   message: string;
   isUser: boolean;
-};
+}
 
 export default function MessageWrapper(props: MessageWrapperProps) {
   let bg = "bg-cinza-overlay-navbar";

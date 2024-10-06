@@ -1,6 +1,6 @@
-type MessageOptionProps = {
+interface MessageOptionProps {
   message: string;
-};
+}
 
 export default function MessageOption(props: MessageOptionProps) {
   return (

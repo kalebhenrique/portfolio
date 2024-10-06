@@ -6,7 +6,12 @@ import MessageWrapper from "./messageWrapper";
 import { motion, AnimatePresence } from "framer-motion";
 import MessageOption from "./messageOption";
 
-export default function Contact({ isOpen, onClose }) {
+interface ContactProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function Contact({ isOpen, onClose }: ContactProps) {
   const introductionMessages = [
     {
       message: "Olá, aqui é o Kaleb",
