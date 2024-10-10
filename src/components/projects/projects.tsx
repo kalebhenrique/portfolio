@@ -11,7 +11,7 @@ export default function Projects() {
     },
     {
       tipo: "Pessoal",
-      nome: "E-commerce",
+      nome: "ToDo App",
       src: "eu",
       alt: "eu, kaleb",
       bgColor: "bg-orange-300",
