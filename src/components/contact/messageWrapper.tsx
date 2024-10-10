@@ -4,14 +4,16 @@ interface MessageWrapperProps {
 }
 
 export default function MessageWrapper(props: MessageWrapperProps) {
-  let bg = "bg-cinza-overlay-navbar";
+  let bg = "bg-violeta-titulo";
 
   if (props.isUser) {
-    bg = "bg-cinza";
+    bg = "bg-violeta-base";
   }
 
   return (
-    <div className={`inline-block max-w-max rounded-2xl ${bg} p-4`}>
+    <div
+      className={`inline-block max-w-max rounded-2xl text-cinza-fundo ${bg} p-4`}
+    >
       <p>{props.message}</p>
     </div>
   );
