@@ -27,7 +27,10 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://read.cv/kalebhenrique">
+              <a
+                target="_blank"
+                href="https://drive.google.com/drive/folders/1r4_Hosk6TaU2fzFxwKn5AJSYdhE2Npe9?usp=sharing"
+              >
                 CV
               </a>
             </li>
