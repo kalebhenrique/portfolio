@@ -45,14 +45,14 @@ export default function Contact({ isOpen, onClose }: ContactProps) {
           transition={{
             duration: 0.2,
           }}
-          className="root-scrollbar fixed inset-0 z-20 flex h-[770px] w-full bg-black bg-opacity-50 backdrop-blur-3xl"
+          className="root-scrollbar fixed inset-0 z-20 flex h-screen w-full bg-cinza-fundo bg-opacity-80 backdrop-blur-3xl"
         >
-          <div className="flex w-full flex-col bg-violeta-base bg-opacity-30">
+          <div className="flex h-[680px] w-full flex-col">
             <div className="flex items-center justify-between bg-violeta-base p-5">
               <h2 className="text-cinza-fundo">Kaleb</h2>
               <button
                 onClick={onClose}
-                className="text-cinza-fundo hover:text-gray-700"
+                className="rounded-full text-cinza-fundo hover:bg-slate-400 hover:text-gray-700"
               >
                 <IoClose size={20} />
               </button>

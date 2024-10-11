@@ -11,15 +11,20 @@ export default function Footer() {
         <div className="mx-6 flex justify-between py-7">
           <ul className="flex flex-col space-y-6">
             <li>
-              <h2 className="text-violeta-titulo">Onde estou</h2>
+              <h2 className="text-lg text-violeta-titulo">Onde estou</h2>
             </li>
             <li>
-              <a target="_blank" href="https://github.com/kalebhenrique">
+              <a
+                className="hover:text-violeta-base-hover"
+                target="_blank"
+                href="https://github.com/kalebhenrique"
+              >
                 GitHub
               </a>
             </li>
             <li>
               <a
+                className="hover:text-violeta-base-hover"
                 target="_blank"
                 href="https://www.linkedin.com/in/kalebhenrique/"
               >
@@ -27,17 +32,26 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://read.cv/kalebhenrique">
-                CV
+              <a
+                className="hover:text-violeta-base-hover"
+                target="_blank"
+                href="https://drive.google.com/drive/folders/1r4_Hosk6TaU2fzFxwKn5AJSYdhE2Npe9?usp=sharing"
+              >
+                Baixar CV
               </a>
             </li>
           </ul>
           <ul className="flex flex-col space-y-6">
             <li>
-              <h2 className="text-violeta-titulo">Contato</h2>
+              <h2 className="text-lg text-violeta-titulo">Contato</h2>
             </li>
             <li>
-              <button onClick={() => setIsModalOpen(true)}>Mensagem</button>
+              <button
+                className="hover:text-violeta-base-hover"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Mensagem
+              </button>
             </li>
           </ul>
         </div>
