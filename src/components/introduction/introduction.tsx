@@ -1,8 +1,8 @@
 "use client";
+
 import { motion } from "framer-motion";
-import { useMediaQuery } from "react-responsive";
-import React from "react";
 import BackgroundContent from "./backgroundContent";
+import React from "react";
 
 const Snowflake = () => {
   return (
@@ -15,22 +15,13 @@ const Snowflake = () => {
         repeat: Infinity,
       }}
     >
-      <div className={`h-1.5 w-1.5 rounded-full bg-white opacity-70`}></div>
+      <div className="h-1.5 w-1.5 rounded-full bg-white opacity-70"></div>
     </motion.div>
   );
 };
 
 export default function Introduction() {
-  const isDesktop = useMediaQuery({ minWidth: 768 });
   const snowflakes = React.useMemo(() => Array.from({ length: 100 }), []);
-
-  if (!isDesktop) {
-    return (
-      <div className="relative flex h-[770px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433]">
-        <BackgroundContent />
-      </div>
-    );
-  }
 
   return (
     <motion.div
@@ -47,7 +38,7 @@ export default function Introduction() {
       }}
       className="relative flex h-[770px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433]"
     >
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
         {snowflakes.map((_, index) => (
           <Snowflake key={index} />
         ))}
