@@ -5,50 +5,11 @@ import { FaReact } from "react-icons/fa";
 import { SiTypescript } from "react-icons/si";
 import { SiCplusplus } from "react-icons/si";
 import { FaPython } from "react-icons/fa";
-import { RiExternalLinkLine } from "react-icons/ri";
+import { experiences } from "./experiencesList";
 
 export default function AboutMe() {
-  const experiences = [
-    {
-      startDate: "2024",
-      endDate: "Presente",
-      position: "Diretor Comercial",
-      enterprise: "Empresa Júnior Struct",
-      summary:
-        "Promovido a diretor, liderando a estratégia comercial e alcançando crescimento de 233% nas vendas.",
-      enterpriseUrl: "https://www.struct.unb.br/",
-    },
-    {
-      startDate: "2023",
-      endDate: "2024",
-      position: "Desenvolvedor Web",
-      enterprise: "Empresa Júnior Struct",
-      summary:
-        "Desenvolvi diversos projetos, melhorando a funcionalidade e a experiência do usuário.",
-      enterpriseUrl: "https://www.struct.unb.br/",
-    },
-    {
-      startDate: "2022",
-      endDate: "2023",
-      position: "Trainee",
-      enterprise: "Empresa Júnior Struct",
-      summary:
-        "Participei de aulas e realizei um projeto final fullstack, adquirindo experiência fundamental em desenvolvimento web.",
-      enterpriseUrl: "https://www.struct.unb.br/",
-    },
-    {
-      startDate: "2023",
-      endDate: "2023",
-      position: "Suporte Técnico de TI",
-      enterprise: "Escola Técnica de Brasília",
-      summary:
-        "Estágio obrigatório do curso Técnico de informática, onde aprendi suporte técnico em computadores e servidores.",
-      enterpriseUrl: "http://etb.com.br/",
-    },
-  ];
-
   return (
-    <div id="sobre" className="space-y-14 bg-roxo-fundo px-6 py-16">
+    <div id="sobre" className="space-y-16 bg-roxo-fundo px-6 py-16">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-center text-4xl text-violeta-titulo">
           Eu sou um dev web front-end e bla bla.
@@ -102,9 +63,11 @@ export default function AboutMe() {
         <h2 className="text-lg text-violeta-titulo">
           Experiência Profissional
         </h2>
-        {experiences.map((item, key) => (
-          <WorkExperience key={key} {...item} />
-        ))}
+        <div className="space-y-11">
+          {experiences.map((item, key) => (
+            <WorkExperience key={key} {...item} />
+          ))}
+        </div>
       </div>
 
       <div>

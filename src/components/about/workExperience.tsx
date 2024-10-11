@@ -1,11 +1,11 @@
-import { RiExternalLinkLine } from "react-icons/ri";
+import { GoArrowUpRight } from "react-icons/go";
 
 interface workExperienceProps {
   startDate: string;
   endDate: string;
   position: string;
   enterprise: string;
-  summary: string;
+  summary: (string | JSX.Element)[];
   enterpriseUrl: string;
 }
 
@@ -17,16 +17,23 @@ export default function WorkExperience(props: workExperienceProps) {
       </div>
       <div className="">
         <h1 className="text-violeta-titulo">
-          {props.position} em{" "}
+          {props.position} na{" "}
           <a
             target="_blank"
             href={props.enterpriseUrl}
-            className="inline-flex items-center"
+            className="inline-flex items-center hover:text-violeta-base-hover"
           >
-            {props.enterprise} <RiExternalLinkLine size={12} className="ml-1" />
+            {props.enterprise}{" "}
+            <span className="flex items-start">
+              <GoArrowUpRight size={15} />{" "}
+            </span>
           </a>
         </h1>
-        <p className="mt-2 text-violeta-base">{props.summary}</p>
+        <ul className="ml-5 mt-2 list-disc text-violeta-base">
+          {props.summary.map((item, key) => (
+            <li key={key}>{item}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
