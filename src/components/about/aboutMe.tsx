@@ -6,13 +6,14 @@ import { SiTypescript } from "react-icons/si";
 import { SiCplusplus } from "react-icons/si";
 import { FaPython } from "react-icons/fa";
 import { experiences } from "./experiencesList";
+import { GoArrowUpRight } from "react-icons/go";
 
 export default function AboutMe() {
   return (
     <div id="sobre" className="space-y-16 bg-roxo-fundo px-6 py-16">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-center text-4xl text-violeta-titulo">
-          Eu sou um dev web front-end e bla bla.
+          Eu sou um dev web e mobile front-end.
         </h1>
         <CldImage
           width="242"
@@ -24,27 +25,8 @@ export default function AboutMe() {
         <div className="space-y-3">
           <p>
             Estudante de graduação no quinto semestre de Engenharia de
-            Computação na{" "}
-            {
-              <a
-                target="_blank"
-                href="https://www.unb.br/"
-                className="underline decoration-violeta-titulo underline-offset-2"
-              >
-                Universidade de Brasília
-              </a>
-            }{" "}
-            e técnico de informática pela{" "}
-            {
-              <a
-                target="_blank"
-                href="http://etb.com.br/"
-                className="underline decoration-violeta-titulo underline-offset-2"
-              >
-                Escola Técnica de Brasília
-              </a>
-            }
-            .
+            Computação na Universidade de Brasília e técnico de informática pela
+            Escola Técnica de Brasília.
           </p>
           <p>
             Tenho experiência em desenvolvimento de software e análise de
