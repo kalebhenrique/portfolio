@@ -5,8 +5,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
-import ArrowDownAnimate from "./arrowDownAnimate";
 import CldImage from "../cldImage";
+import ArrowDownAnimate from "./arrowDownAnimate";
 
 export default function BackgroundContent() {
   return (
@@ -47,9 +47,17 @@ export default function BackgroundContent() {
           </span>
         </div>
       </motion.div>
-      <div className="absolute bottom-5 left-0 right-0 flex justify-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1,
+          delay: 0.3,
+        }}
+        className="absolute bottom-4 left-0 right-0 flex justify-center"
+      >
         <ArrowDownAnimate />
-      </div>
+      </motion.div>
     </>
   );
 }
