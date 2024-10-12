@@ -3,7 +3,7 @@ import FadeInWhenVisible from "../fadeInWhenVisible";
 
 export default function AboutMe() {
   return (
-    <div id="sobre" className="space-y-16 bg-roxo-fundo px-6 py-16">
+    <section id="sobre" className="space-y-16 bg-roxo-fundo px-6 py-16">
       <div className="flex flex-col items-center justify-center">
         <FadeInWhenVisible>
           <h1 className="text-center text-4xl text-violeta-titulo">
@@ -42,6 +42,6 @@ export default function AboutMe() {
           </div>
         </FadeInWhenVisible>
       </div>
-    </div>
+    </section>
   );
 }

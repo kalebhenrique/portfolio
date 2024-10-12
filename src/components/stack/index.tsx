@@ -9,7 +9,10 @@ import FadeInWhenVisible from "../fadeInWhenVisible";
 
 export default function Stack() {
   return (
-    <div id="habilidades" className="flex flex-col bg-cinza-fundo px-6 py-16">
+    <section
+      id="habilidades"
+      className="flex flex-col bg-cinza-fundo px-6 py-16"
+    >
       <FadeInWhenVisible>
         <h1 className="text-center text-4xl text-violeta-titulo-contraste">
           Stack & Trajetória
@@ -34,6 +37,6 @@ export default function Stack() {
           </div>
         </div>
       </FadeInWhenVisible>
-    </div>
+    </section>
   );
 }

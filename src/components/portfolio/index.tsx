@@ -20,7 +20,7 @@ export default function Projects() {
   ];
 
   return (
-    <div
+    <section
       id="projetos"
       className="flex flex-col items-center justify-center space-y-16 bg-cinza-fundo px-6 pb-16"
     >
@@ -34,6 +34,6 @@ export default function Projects() {
           <ProjectCard key={key} {...item} />
         ))}
       </FadeInWhenVisible>
-    </div>
+    </section>
   );
 }
