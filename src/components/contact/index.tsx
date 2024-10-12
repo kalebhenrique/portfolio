@@ -1,5 +1,4 @@
 "use client";
-
 import "~/styles/globals.css";
 import { IoClose } from "react-icons/io5";
 import MessageWrapper from "./messageWrapper";

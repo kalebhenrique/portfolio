@@ -1,5 +1,4 @@
 import CldImage from "../cldImage";
-import { motion } from "framer-motion";
 import FadeInWhenVisible from "../fadeInWhenVisible";
 
 export default function AboutMe() {
