@@ -21,10 +21,10 @@ export default function Projects() {
   return (
     <div
       id="projetos"
-      className="flex flex-col items-center justify-center bg-cinza-fundo px-6"
+      className="flex flex-col items-center justify-center space-y-16 bg-cinza-fundo px-6 pb-16"
     >
-      <h1 className="pb-10 pt-16 text-center text-4xl text-violeta-titulo">
-        Projetos
+      <h1 className="text-center text-4xl text-violeta-titulo-contraste">
+        Portfólio
       </h1>
       {projects.map((item, key) => (
         <ProjectCard key={key} {...item} />

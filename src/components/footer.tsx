@@ -1,5 +1,5 @@
 "use client";
-import Contact from "./contact/contact";
+import Contact from "./contact/";
 import { useState } from "react";
 
 export default function Footer() {
@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="mx-6 flex justify-between py-7">
           <ul className="flex flex-col space-y-6">
             <li>
-              <h2 className="text-lg text-violeta-titulo">Onde estou</h2>
+              <h2 className="text-violeta-titulo-contraste">Onde estou</h2>
             </li>
             <li>
               <a
@@ -43,7 +43,7 @@ export default function Footer() {
           </ul>
           <ul className="flex flex-col space-y-6">
             <li>
-              <h2 className="text-lg text-violeta-titulo">Contato</h2>
+              <h2 className="text-violeta-titulo-contraste">Contato</h2>
             </li>
             <li>
               <button
