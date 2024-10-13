@@ -1,5 +1,5 @@
 "use client";
-import Contact from "./contact/";
+import Chat from "./chat";
 import { useState } from "react";
 
 export default function Footer() {
@@ -50,7 +50,7 @@ export default function Footer() {
                 className="hover:text-violeta-base-hover"
                 onClick={() => setIsModalOpen(true)}
               >
-                Mensagem
+                Chat
               </button>
             </li>
           </ul>
@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
       </footer>
 
-      <Contact isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Chat isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }

@@ -5,12 +5,12 @@ import MessageWrapper from "./messageWrapper";
 import { motion, AnimatePresence } from "framer-motion";
 import MessageOption from "./messageOption";
 
-interface ContactProps {
+interface ChatProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function Contact({ isOpen, onClose }: ContactProps) {
+export default function Chat({ isOpen, onClose }: ChatProps) {
   const introductionMessages = [
     {
       message: "Olá, aqui é o Kaleb",

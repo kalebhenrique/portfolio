@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { useEffect, useState } from "react";
-import Contact from "./contact/";
+import Chat from "./chat";
 
 export default function Navbar() {
   const [navbarColor, setNavbarColor] = useState("bg-transparent");
@@ -44,13 +44,13 @@ export default function Navbar() {
               className="rounded-full bg-violeta-base font-semibold text-cinza-fundo hover:bg-violeta-base-hover"
               onClick={() => setIsModalOpen(true)}
             >
-              Contato
+              Chat
             </Button>
           </li>
         </ul>
       </nav>
 
-      <Contact isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Chat isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }
