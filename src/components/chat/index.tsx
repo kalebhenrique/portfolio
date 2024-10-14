@@ -5,6 +5,7 @@ import MessageWrapper from "./messageWrapper";
 import { motion, AnimatePresence } from "framer-motion";
 import MessageOption from "./messageOption";
 import { useChat } from "~/context/chatContext";
+import { useEffect, useRef } from "react";
 
 export default function Chat() {
   const {
@@ -15,6 +16,20 @@ export default function Chat() {
     handleOptionClick,
     states,
   } = useChat();
+
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (isOpen && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, currentState]);
 
   return (
     <AnimatePresence>
@@ -47,6 +62,7 @@ export default function Chat() {
                     isUser={msg.isUser}
                   />
                 ))}
+                <div ref={messagesEndRef} />
               </div>
               <div className="flex flex-col items-start space-y-2 p-4">
                 {states[currentState]?.options[0]?.text !== "" &&
@@ -55,6 +71,7 @@ export default function Chat() {
                       <MessageOption message={option.text} />
                     </button>
                   ))}
+                <div ref={messagesEndRef} />
               </div>
             </div>
           </div>
