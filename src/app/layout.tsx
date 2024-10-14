@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import Navbar from "~/components/navbar";
 import Footer from "~/components/footer";
 import Loading from "~/components/loading";
+import { ChatProvider } from "~/context/chatContext";
 
 export const metadata: Metadata = {
   title: "Kaleb H • Dev Web",
@@ -26,11 +27,13 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className={`${poppins.variable} root-scrollbar`}>
       <body className="custom-scrollbar font-poppins text-[14px] font-semibold text-violeta-base">
-        <Suspense fallback={<Loading />}>
-          <Navbar />
-          <div className="mx-auto">{children}</div>
-          <Footer />
-        </Suspense>
+        <ChatProvider>
+          <Suspense fallback={<Loading />}>
+            <Navbar />
+            {children}
+            <Footer />
+          </Suspense>
+        </ChatProvider>
       </body>
     </html>
   );

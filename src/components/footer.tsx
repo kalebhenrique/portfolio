@@ -1,9 +1,9 @@
 "use client";
-import Chat from "./chat";
-import { useState } from "react";
+
+import { useChat } from "~/context/chatContext";
 
 export default function Footer() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { openChat } = useChat();
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function Footer() {
             <li>
               <button
                 className="hover:text-violeta-base-hover"
-                onClick={() => setIsModalOpen(true)}
+                onClick={openChat}
               >
                 Chat
               </button>
@@ -59,8 +59,6 @@ export default function Footer() {
           <span>Kaleb Henrique@2024</span>
         </div>
       </footer>
-
-      <Chat isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }

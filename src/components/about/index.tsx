@@ -1,12 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useChat } from "~/context/chatContext";
 import CldImage from "../cldImage";
 import FadeInWhenVisible from "../fadeInWhenVisible";
 import { Button } from "../ui/button";
-import Chat from "../chat";
 
 export default function AboutMe() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { openChat } = useChat();
 
   return (
     <>
@@ -41,7 +40,7 @@ export default function AboutMe() {
                 <div className="flex items-center justify-center py-5">
                   <Button
                     className="rounded-full bg-violeta-base font-semibold text-roxo-fundo hover:bg-violeta-base-hover"
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={openChat}
                   >
                     Chat
                   </Button>
@@ -61,8 +60,6 @@ export default function AboutMe() {
           </FadeInWhenVisible>
         </div>
       </section>
-
-      <Chat isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }

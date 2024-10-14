@@ -2,11 +2,11 @@
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { useEffect, useState } from "react";
-import Chat from "./chat";
+import { useChat } from "~/context/chatContext";
 
 export default function Navbar() {
   const [navbarColor, setNavbarColor] = useState("bg-transparent");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { openChat } = useChat();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,15 +42,13 @@ export default function Navbar() {
           <li>
             <Button
               className="rounded-full bg-violeta-base font-semibold text-cinza-fundo hover:bg-violeta-base-hover"
-              onClick={() => setIsModalOpen(true)}
+              onClick={openChat}
             >
               Chat
             </Button>
           </li>
         </ul>
       </nav>
-
-      <Chat isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }
