@@ -16,7 +16,7 @@ export default function WorkExperience(props: workExperienceProps) {
         <p className="text-[#8E91B6]">{`${props.startDate} — ${props.endDate}`}</p>
       </div>
       <div className="">
-        <h1 className="text-violeta-titulo">
+        <h1 className="text-violeta-titulo-contraste">
           {props.position} na{" "}
           <a
             target="_blank"
