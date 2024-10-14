@@ -16,6 +16,7 @@ export default {
         "violeta-base": "#B9BDEF",
         "violeta-base-hover": "#D9DBF2",
         "violeta-titulo": "#877CC4",
+        "violeta-titulo-contraste": "#746BA9",
         "azul-kaleb": "#7FC8E3",
         "roxo-kaleb-borda": "#3B234B",
         background: "hsl(var(--background))",

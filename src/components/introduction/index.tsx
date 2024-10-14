@@ -38,7 +38,7 @@ export default function Introduction() {
       }}
       className="relative flex h-[770px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433]"
     >
-      <div className="pointer-events-none absolute inset-0 hidden md:block">
+      <div className="pointer-events-none absolute inset-0 hidden md:inline">
         {snowflakes.map((_, index) => (
           <Snowflake key={index} />
         ))}
