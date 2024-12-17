@@ -18,20 +18,19 @@ export default function BackgroundContent() {
           duration: 0.8,
           delay: 0.3,
         }}
-        className="z-0 flex flex-col items-center"
+        className="z-0 flex flex-col items-center lg:space-y-6"
       >
         <div className="flex flex-row items-end">
           <Popover>
-            <PopoverTrigger>
+            <PopoverTrigger className="relative h-[274px] w-[360px] lg:h-[457px] lg:w-[600px]">
               <CldImage
-                width="360"
-                height="360"
-                src="celeste"
+                fill
+                src="celeste2"
                 alt="Montanha Celeste"
                 className="z-0"
               />
             </PopoverTrigger>
-            <PopoverContent className="mr-2 w-32 bg-violeta-base bg-opacity-90 text-[11px] text-cinza-fundo backdrop-blur-sm">
+            <PopoverContent className="mr-2 w-32 bg-violeta-base bg-opacity-90 text-base text-cinza-fundo backdrop-blur-sm">
               <p>
                 Montanha do jogo Celeste, que aborda temas de superação e
                 perseverança — qualidades essenciais para programadores!
@@ -40,8 +39,8 @@ export default function BackgroundContent() {
           </Popover>
         </div>
 
-        <div className="py-3 text-center">
-          <span className="text-lg">
+        <div className="py-3 text-center lg:w-[600px]">
+          <span className="text-2xl leading-relaxed">
             Sou apaixonado por criar experiências envolventes, acessíveis e
             centradas no usuário.
           </span>

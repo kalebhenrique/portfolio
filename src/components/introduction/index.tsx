@@ -11,21 +11,26 @@ interface SnowflakeProps {
 }
 
 const Snowflake: React.FC<SnowflakeProps> = ({ size, startX, speed }) => {
+  const zPrior = size > 12 ? "z-10" : "z-0";
+  const opacity = size > 12 ? "0.4" : "1";
+
   return (
     <motion.div
       initial={{ x: startX, y: -100, opacity: 0 }}
-      animate={{ x: [0, 950, 1900], y: [0, 300, 600], opacity: 1 }}
+      animate={{ x: [0, 950, 1900], y: [0, 200, 400], opacity: 1 }}
       transition={{
         duration: speed,
         ease: "linear",
         repeat: Infinity,
       }}
+      className={`relative ${zPrior}`}
     >
       <div
-        className="rounded-full bg-white opacity-70"
+        className={`rounded-full bg-white opacity-70 ${zPrior}`}
         style={{
           width: `${size}px`,
           height: `${size}px`,
+          opacity: opacity,
         }}
       />
     </motion.div>
@@ -35,10 +40,10 @@ const Snowflake: React.FC<SnowflakeProps> = ({ size, startX, speed }) => {
 export default function Introduction() {
   const snowflakes = React.useMemo(
     () =>
-      Array.from({ length: 100 }).map(() => ({
-        size: Math.random() * (8 - 3) + 3, // Tamanhos entre 3px e 8px
+      Array.from({ length: 80 }).map(() => ({
+        size: Math.random() * 12 + 6,
         startX: Math.random() * 100 - 50,
-        speed: Math.random() * 10 + 2, // Velocidades entre 2s e 12s
+        speed: Math.random() * 10 + 2,
       })),
     [],
   );
