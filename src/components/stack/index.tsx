@@ -2,7 +2,7 @@ import { RiNextjsFill } from "react-icons/ri";
 import { FaReact } from "react-icons/fa";
 import { SiTypescript } from "react-icons/si";
 import { SiCplusplus } from "react-icons/si";
-import { FaPython } from "react-icons/fa";
+import { SiRubyonrails } from "react-icons/si";
 import { experiences } from "./experiencesList";
 import WorkExperience from "./workExperience";
 import FadeInWhenVisible from "../fadeInWhenVisible";
@@ -24,7 +24,7 @@ export default function Stack() {
           <FaReact size={40} />
           <SiTypescript size={40} />
           <SiCplusplus size={40} />
-          <FaPython size={40} />
+          <SiRubyonrails size={45} />
         </div>
         <div className="flex flex-col justify-start">
           <h2 className="text-lg text-violeta-titulo-contraste">
