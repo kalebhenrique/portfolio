@@ -1,5 +1,5 @@
 "use client";
-import { useChat } from "~/context/chatContext";
+import { useChat } from "~/contexts/chatContext";
 import CldImage from "../cldImage";
 import FadeInWhenVisible from "../fadeInWhenVisible";
 import { Button } from "../ui/button";

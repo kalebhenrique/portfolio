@@ -1,6 +1,6 @@
 "use client";
 
-import { useChat } from "~/context/chatContext";
+import { useChat } from "~/contexts/chatContext";
 import { GoArrowUpRight } from "react-icons/go";
 
 export default function Footer() {

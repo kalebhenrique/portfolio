@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import Navbar from "~/components/navbar";
 import Footer from "~/components/footer";
 import Loading from "~/components/loading";
-import { ChatProvider } from "~/context/chatContext";
+import { ChatProvider } from "~/contexts/chatContext";
 
 export const metadata: Metadata = {
   title: "Kaleb H • Dev Web",

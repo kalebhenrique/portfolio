@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { useEffect, useState } from "react";
-import { useChat } from "~/context/chatContext";
+import { useChat } from "~/contexts/chatContext";
 
 export default function Navbar() {
   const [navbarColor, setNavbarColor] = useState("bg-transparent");
