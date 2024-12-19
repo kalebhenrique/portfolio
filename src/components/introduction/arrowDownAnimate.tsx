@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function ArrowDownAnimate() {
   return (
     <motion.div
-      className="z-0 flex w-10 justify-center rounded-full bg-[#2C1431] bg-opacity-30"
+      className="z-0 flex justify-center rounded-full bg-[#2C1431] bg-opacity-30 p-1"
       animate={{
         y: [0, 10, 0],
       }}
@@ -16,7 +16,7 @@ export default function ArrowDownAnimate() {
         ease: "easeInOut",
       }}
     >
-      <IoChevronDown size="30" />
+      <IoChevronDown className="text-3xl md:text-4xl" />
     </motion.div>
   );
 }
