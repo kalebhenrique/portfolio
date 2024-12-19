@@ -4,11 +4,11 @@ import ProjectCard from "./projectCard";
 export default function Projects() {
   const projects = [
     {
-      tipo: "Freelancer",
-      nome: "Sistema de Clínica",
-      src: "ibd",
-      alt: "Página do Sistema",
-      bgColor: "bg-azul-kaleb",
+      tipo: "Trainee Struct",
+      nome: "API Ruby on Rails",
+      src: "api-ruby",
+      alt: "Tela de Controllers Ruby On Rails",
+      bgColor: "bg-red-300 ",
     },
     {
       tipo: "Freelancer",
