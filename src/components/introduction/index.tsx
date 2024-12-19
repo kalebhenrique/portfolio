@@ -4,24 +4,49 @@ import { motion } from "framer-motion";
 import BackgroundContent from "./backgroundContent";
 import React from "react";
 
-const Snowflake = () => {
+interface SnowflakeProps {
+  size: number;
+  startX: number;
+  speed: number;
+}
+
+const Snowflake: React.FC<SnowflakeProps> = ({ size, startX, speed }) => {
+  const zPrior = size > 12 ? "z-10" : "z-0";
+  const opacity = size > 12 ? "0.4" : "1";
+
   return (
     <motion.div
-      initial={{ x: Math.random() * 100 - 50, y: -100, opacity: 0 }}
-      animate={{ x: [0, 400, 600], y: [0, 300, 600], opacity: 1 }}
+      initial={{ x: startX, y: -100, opacity: 0 }}
+      animate={{ x: [0, 950, 1900], y: [0, 200, 400], opacity: 1 }}
       transition={{
-        duration: Math.random() * 3 + 2,
+        duration: speed,
         ease: "linear",
         repeat: Infinity,
       }}
+      className={`relative ${zPrior}`}
     >
-      <div className="h-1.5 w-1.5 rounded-full bg-white opacity-70"></div>
+      <div
+        className={`rounded-full bg-white opacity-70 ${zPrior}`}
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+          opacity: opacity,
+        }}
+      />
     </motion.div>
   );
 };
 
 export default function Introduction() {
-  const snowflakes = React.useMemo(() => Array.from({ length: 100 }), []);
+  const snowflakes = React.useMemo(
+    () =>
+      Array.from({ length: 80 }).map(() => ({
+        size: Math.random() * 12 + 6,
+        startX: Math.random() * 100 - 50,
+        speed: Math.random() * 10 + 2,
+      })),
+    [],
+  );
 
   return (
     <motion.div
@@ -36,11 +61,16 @@ export default function Introduction() {
         repeat: Infinity,
         repeatType: "reverse",
       }}
-      className="relative flex h-[770px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433]"
+      className="relative flex h-[770px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433] lg:h-screen"
     >
       <div className="pointer-events-none absolute inset-0 hidden md:inline">
-        {snowflakes.map((_, index) => (
-          <Snowflake key={index} />
+        {snowflakes.map((flake, index) => (
+          <Snowflake
+            key={index}
+            size={flake.size}
+            startX={flake.startX}
+            speed={flake.speed}
+          />
         ))}
       </div>
       <BackgroundContent />

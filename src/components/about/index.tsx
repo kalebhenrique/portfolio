@@ -1,5 +1,5 @@
 "use client";
-import { useChat } from "~/context/chatContext";
+import { useChat } from "~/contexts/chatContext";
 import CldImage from "../cldImage";
 import FadeInWhenVisible from "../fadeInWhenVisible";
 import { Button } from "../ui/button";
@@ -36,10 +36,11 @@ export default function AboutMe() {
                   requisitos, com um forte interesse em gerência de projetos e
                   engenharia de software.
                 </p>
-                <p>Se te interessou, entre em contato comigo:</p>
-                <div className="flex items-center justify-center py-5">
+
+                <div className="flex items-center justify-between py-5">
+                  <p>Se te interessou, entre em contato:</p>
                   <Button
-                    className="rounded-full bg-violeta-base font-semibold text-roxo-fundo hover:bg-violeta-base-hover"
+                    className="rounded-full bg-[#7FC8E3] font-semibold text-roxo-fundo hover:bg-[#A4E3FA]"
                     onClick={openChat}
                   >
                     Chat

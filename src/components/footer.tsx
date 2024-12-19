@@ -1,6 +1,7 @@
 "use client";
 
-import { useChat } from "~/context/chatContext";
+import { useChat } from "~/contexts/chatContext";
+import { GoArrowUpRight } from "react-icons/go";
 
 export default function Footer() {
   const { openChat } = useChat();
@@ -15,29 +16,38 @@ export default function Footer() {
             </li>
             <li>
               <a
-                className="hover:text-violeta-base-hover"
+                className="inline-flex items-center hover:text-violeta-base-hover"
                 target="_blank"
                 href="https://github.com/kalebhenrique"
               >
-                GitHub
+                GitHub{" "}
+                <span className="flex items-start">
+                  <GoArrowUpRight size={15} />{" "}
+                </span>
               </a>
             </li>
             <li>
               <a
-                className="hover:text-violeta-base-hover"
+                className="inline-flex items-center hover:text-violeta-base-hover"
                 target="_blank"
                 href="https://www.linkedin.com/in/kalebhenrique/"
               >
                 LinkedIn
+                <span className="flex items-start">
+                  <GoArrowUpRight size={15} />{" "}
+                </span>
               </a>
             </li>
             <li>
               <a
-                className="hover:text-violeta-base-hover"
+                className="inline-flex items-center hover:text-violeta-base-hover"
                 target="_blank"
                 href="https://drive.google.com/drive/folders/1r4_Hosk6TaU2fzFxwKn5AJSYdhE2Npe9?usp=sharing"
               >
                 Baixar CV
+                <span className="flex items-start">
+                  <GoArrowUpRight size={15} />{" "}
+                </span>
               </a>
             </li>
           </ul>

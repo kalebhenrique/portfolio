@@ -10,13 +10,6 @@ export default function Projects() {
       alt: "Página do Sistema",
       bgColor: "bg-azul-kaleb",
     },
-    {
-      tipo: "Pessoal",
-      nome: "ToDo App",
-      src: "eu",
-      alt: "eu, kaleb",
-      bgColor: "bg-orange-300",
-    },
   ];
 
   return (

@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 import MessageWrapper from "./messageWrapper";
 import { motion, AnimatePresence } from "framer-motion";
 import MessageOption from "./messageOption";
-import { useChat } from "~/context/chatContext";
+import { useChat } from "~/contexts/chatContext";
 import { useEffect, useRef } from "react";
 
 export default function Chat() {
