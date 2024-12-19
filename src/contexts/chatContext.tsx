@@ -86,19 +86,29 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
       message: "Como posso ajudar?",
       options: [
         {
-          text: "Onde está o repositório deste portfólio?",
+          text: "Cadê o repositório deste portfólio?",
           nextState: "repository",
         },
         { text: "Quero uma foto surpresa de gato! 🐱", nextState: "catPhoto" },
         {
-          text: "Gostaria de entrar em contato com você.",
+          text: "Gostaria de entrar em contato.",
           nextState: "contact",
         },
       ],
     },
     repository: {
-      message:
-        "Aqui está o link do repositório: https://github.com/kalebhenrique/portfolio",
+      message: (
+        <>
+          O link do repositório está{" "}
+          <a
+            className="font-bold underline hover:text-violeta-base-hover"
+            href="https://github.com/kalebhenrique/portfolio"
+            target="_blank"
+          >
+            aqui.
+          </a>
+        </>
+      ),
       options: [{ text: "Voltar ao menu", nextState: "initial" }],
     },
     catPhoto: {

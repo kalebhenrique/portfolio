@@ -26,7 +26,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-br" className={`${poppins.variable} root-scrollbar`}>
-      <body className="custom-scrollbar font-poppins text-sm font-semibold text-violeta-base lg:text-lg">
+      <body className="custom-scrollbar font-poppins text-sm font-semibold text-violeta-base md:text-xl">
         <ChatProvider>
           <Suspense fallback={<Loading />}>
             <Navbar />

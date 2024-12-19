@@ -30,17 +30,18 @@ export default function BackgroundContent() {
                 className="z-0"
               />
             </PopoverTrigger>
-            <PopoverContent className="mr-2 w-32 bg-violeta-base bg-opacity-90 text-base text-cinza-fundo backdrop-blur-sm">
+            <PopoverContent className="mr-2 w-52 bg-violeta-base bg-opacity-90 text-sm text-cinza-fundo backdrop-blur-sm md:w-80 md:text-base">
               <p>
-                Montanha do jogo Celeste, que aborda temas de superação e
-                perseverança — qualidades essenciais para programadores!
+                Montanha do jogo eletrônico Celeste, obra que aborda temas de
+                superação e perseverança — qualidades essenciais para
+                programadores!
               </p>
             </PopoverContent>
           </Popover>
         </div>
 
         <div className="py-3 text-center lg:w-[600px]">
-          <span className="text-2xl leading-relaxed">
+          <span className="text-lg lg:text-2xl lg:leading-relaxed">
             Sou apaixonado por criar experiências envolventes, acessíveis e
             centradas no usuário.
           </span>

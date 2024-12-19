@@ -11,9 +11,9 @@ interface workExperienceProps {
 
 export default function WorkExperience(props: workExperienceProps) {
   return (
-    <div className="ml-3 mt-4 flex flex-col">
+    <div className="ml-3 mt-4 flex flex-col md:flex-row md:space-x-20">
       <div>
-        <p className="text-[#8E91B6]">{`${props.startDate} — ${props.endDate}`}</p>
+        <p className="w-44 text-[#8E91B6]">{`${props.startDate} — ${props.endDate}`}</p>
       </div>
       <div>
         <h1 className="text-violeta-titulo-contraste">
