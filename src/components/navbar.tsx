@@ -29,7 +29,7 @@ export default function Navbar() {
       <nav
         className={`${navbarColor} fixed left-0 right-0 top-0 z-20 backdrop-blur-md transition-colors duration-300`}
       >
-        <ul className="flex flex-row items-center justify-center gap-4 pb-3 pt-4 lg:gap-12">
+        <ul className="flex flex-row items-center justify-center gap-4 pb-3 pt-4 lg:gap-12 lg:pb-4 lg:pt-5">
           <li className="hover:text-violeta-base-hover">
             <Link href="#sobre">Sobre</Link>
           </li>
@@ -41,7 +41,7 @@ export default function Navbar() {
           </li>
           <li>
             <Button
-              className="rounded-full bg-violeta-base font-semibold text-cinza-fundo hover:bg-violeta-base-hover lg:text-[18px]"
+              className="rounded-full bg-violeta-base font-semibold text-cinza-fundo hover:bg-violeta-base-hover lg:text-xl"
               onClick={openChat}
             >
               Chat
