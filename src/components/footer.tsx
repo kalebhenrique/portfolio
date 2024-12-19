@@ -9,11 +9,11 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-cinza-fundo md:px-40 md:py-12 xl:px-60 xl:py-28">
-        <div className="flex flex-row items-center md:space-x-72 xl:space-x-[600px]">
+        <div className="flex flex-row items-start md:space-x-72 xl:space-x-[600px]">
           <div className="hidden md:inline">
             <span>Kaleb Henrique@2024</span>
           </div>
-          <div className="mx-6 flex grow justify-between py-7">
+          <div className="mx-6 flex grow items-start justify-between py-7 md:py-0">
             <ul className="flex flex-col space-y-6">
               <li>
                 <h2 className="text-violeta-titulo-contraste">Onde estou</h2>
