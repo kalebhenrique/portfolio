@@ -61,7 +61,7 @@ export default function Introduction() {
         repeat: Infinity,
         repeatType: "reverse",
       }}
-      className="relative flex h-[770px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433] md:h-[1200px] md:h-screen"
+      className="relative flex h-[770px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433] md:h-screen"
     >
       <div className="pointer-events-none absolute inset-0 hidden md:inline">
         {snowflakes.map((flake, index) => (

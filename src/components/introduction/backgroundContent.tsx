@@ -30,7 +30,7 @@ export default function BackgroundContent() {
                 className="z-0"
               />
             </PopoverTrigger>
-            <PopoverContent className="mr-2 w-52 w-80 bg-violeta-base bg-opacity-90 text-sm text-cinza-fundo backdrop-blur-sm md:text-lg">
+            <PopoverContent className="mr-2 w-52 bg-violeta-base bg-opacity-90 text-sm text-cinza-fundo backdrop-blur-sm md:w-80 md:text-base">
               <p>
                 Montanha do jogo eletrônico Celeste, obra que aborda temas de
                 superação e perseverança — qualidades essenciais para

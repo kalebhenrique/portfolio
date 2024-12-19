@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import MessageOption from "./messageOption";
 import { useChat } from "~/contexts/chatContext";
 import { useEffect, useRef } from "react";
+import CldImage from "../cldImage";
 
 export default function Chat() {
   const {
@@ -41,11 +42,20 @@ export default function Chat() {
           transition={{
             duration: 0.2,
           }}
-          className="root-scrollbar fixed inset-0 z-20 flex h-screen w-full bg-cinza-fundo bg-opacity-80 backdrop-blur-3xl"
+          className="root-scrollbar fixed top-0 z-20 flex h-screen w-full bg-cinza-fundo bg-opacity-80 backdrop-blur-3xl md:bottom-0 md:right-0 md:top-auto md:m-10 md:h-[700px] md:w-[380px] md:rounded-3xl md:text-base md:shadow-2xl"
         >
           <div className="flex h-[680px] w-full flex-col">
-            <div className="flex items-center justify-between bg-violeta-base p-5">
-              <h2 className="text-cinza-fundo">Kaleb Bot</h2>
+            <div className="flex items-center justify-between bg-violeta-base p-5 md:rounded-t-3xl">
+              <div className="flex flex-row items-center space-x-4">
+                <CldImage
+                  width="40"
+                  height="40"
+                  src="eu"
+                  alt="Montanha Celeste"
+                  className="rounded-full border"
+                />
+                <h2 className="text-cinza-fundo">Kaleb Bot</h2>
+              </div>
               <button
                 onClick={closeChat}
                 className="rounded-md p-1 text-cinza-fundo hover:bg-slate-400 hover:text-gray-700"
