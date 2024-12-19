@@ -11,16 +11,16 @@ interface projectCardProps {
 export default function ProjectCard(props: projectCardProps) {
   return (
     <div
-      className={`mb-10 flex h-80 w-80 flex-col rounded-3xl ${props.bgColor} overflow-hidden`}
+      className={`flex h-80 w-full flex-col rounded-3xl ${props.bgColor} overflow-hidden`}
     >
-      <div className="flex flex-col items-end justify-end space-y-2 pr-4 pt-4 text-cinza-fundo">
-        <h1 className="text-lg">{props.tipo}</h1>
+      <div className="flex flex-1 flex-col items-end justify-end space-y-2 pr-4 pt-4 text-cinza-fundo">
+        <h1 className="text-lg md:text-2xl">{props.tipo}</h1>
         <h2>{props.nome}</h2>
       </div>
-      <div className="mt-4 flex items-end justify-end">
+      <div className="mt-auto flex w-full items-end justify-end">
         <CldImage
-          width="300"
-          height="300"
+          width="600"
+          height="400"
           src={props.src}
           alt={props.alt}
           className="rounded-l-3xl"
