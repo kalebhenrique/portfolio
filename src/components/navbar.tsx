@@ -6,7 +6,7 @@ import { useChat } from "~/contexts/chatContext";
 
 export default function Navbar() {
   const [navbarColor, setNavbarColor] = useState("bg-transparent");
-  const { openChat } = useChat();
+  const { openChat, closeChat, isOpen } = useChat();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,8 +41,8 @@ export default function Navbar() {
           </li>
           <li>
             <Button
-              className="rounded-full bg-violeta-base font-semibold text-cinza-fundo hover:bg-violeta-base-hover lg:text-xl"
-              onClick={openChat}
+              className="rounded-full bg-violeta-base font-semibold text-cinza-fundo hover:bg-violeta-base-hover md:text-xl"
+              onClick={isOpen ? closeChat : openChat}
             >
               Chat
             </Button>

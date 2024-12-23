@@ -5,7 +5,7 @@ import FadeInWhenVisible from "../fadeInWhenVisible";
 import { Button } from "../ui/button";
 
 export default function AboutMe() {
-  const { openChat } = useChat();
+  const { openChat, closeChat, isOpen } = useChat();
 
   return (
     <>
@@ -17,11 +17,11 @@ export default function AboutMe() {
           <div className="space-y-6 md:space-y-20">
             <FadeInWhenVisible>
               <div className="flex flex-col items-center justify-center">
-                <h1 className="md:w-[80 0px] text-center text-4xl text-violeta-titulo md:text-start md:text-7xl">
+                <h1 className="text-center text-4xl text-violeta-titulo md:text-5xl lg:text-start lg:text-7xl">
                   Eu sou um dev web e mobile front-end.
                 </h1>
-                <div className="md:hidden">
-                  <div className="w-full max-w-[242px] md:max-w-[600px]">
+                <div className="lg:hidden">
+                  <div className="w-full max-w-[242px] md:max-w-[400px]">
                     <CldImage
                       width="600"
                       height="600"
@@ -49,7 +49,7 @@ export default function AboutMe() {
                   <p>Se te interessou, entre em contato:</p>
                   <Button
                     className="rounded-full bg-[#7FC8E3] font-semibold text-roxo-fundo hover:bg-[#A4E3FA] md:text-xl"
-                    onClick={openChat}
+                    onClick={isOpen ? closeChat : openChat}
                   >
                     Chat
                   </Button>
@@ -69,15 +69,15 @@ export default function AboutMe() {
               </div>
             </FadeInWhenVisible>
           </div>
-          <div className="hidden md:inline">
+          <div className="hidden lg:inline">
             <FadeInWhenVisible>
-              <div className="w-full">
+              <div>
                 <CldImage
                   width="800"
                   height="800"
                   src="eu"
                   alt="Eu, Kaleb"
-                  className="mx-auto my-10 w-full rounded-3xl object-cover"
+                  className="mx-auto my-10 rounded-3xl object-cover"
                 />
               </div>
             </FadeInWhenVisible>

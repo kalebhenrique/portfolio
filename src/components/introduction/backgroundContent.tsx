@@ -40,8 +40,8 @@ export default function BackgroundContent() {
           </Popover>
         </div>
 
-        <div className="py-3 text-center lg:w-[600px]">
-          <span className="text-lg lg:text-2xl lg:leading-relaxed">
+        <div className="py-3 text-center md:w-[500px] lg:w-[600px]">
+          <span className="text-lg md:text-2xl md:leading-relaxed">
             Sou apaixonado por criar experiências envolventes, acessíveis e
             centradas no usuário.
           </span>
