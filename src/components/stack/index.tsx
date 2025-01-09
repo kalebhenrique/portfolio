@@ -15,7 +15,7 @@ export default function Stack() {
       className="flex flex-col space-y-16 bg-cinza-fundo px-6 py-16 md:space-y-20 md:px-40 md:py-24 xl:px-60 xl:py-28"
     >
       <FadeInWhenVisible>
-        <h1 className="text-center text-4xl text-violeta-titulo-contraste lg:text-start lg:text-7xl">
+        <h1 className="text-center text-4xl text-violeta-titulo-contraste md:text-5xl lg:text-start lg:text-7xl">
           Stack & Trajetória
         </h1>
       </FadeInWhenVisible>

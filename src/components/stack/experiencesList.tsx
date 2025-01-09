@@ -2,7 +2,7 @@ export const experiences = [
   {
     startDate: "2024",
     endDate: "Presente",
-    position: "Diretor Comercial",
+    position: "Diretor Comercial e Gerente de Projetos",
     enterprise: "Empresa Júnior Struct",
     summary: [
       <>

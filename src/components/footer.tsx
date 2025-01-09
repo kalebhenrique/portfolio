@@ -4,7 +4,7 @@ import { useChat } from "~/contexts/chatContext";
 import { GoArrowUpRight } from "react-icons/go";
 
 export default function Footer() {
-  const { openChat } = useChat();
+  const { openChat, closeChat, isOpen } = useChat();
 
   return (
     <>
@@ -62,7 +62,7 @@ export default function Footer() {
               <li>
                 <button
                   className="hover:text-violeta-base-hover"
-                  onClick={openChat}
+                  onClick={isOpen ? closeChat : openChat}
                 >
                   Chat
                 </button>
