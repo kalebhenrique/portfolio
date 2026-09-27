@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import FadeInWhenVisible from "../fadeInWhenVisible";
+import ProjectCard from "./projectCard";
+
+const projects = await getCollection("projects", ({ data }) => !data.draft);
+projects.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+---
+
+<section
+  id="projetos"
+  class="flex flex-col items-center justify-center space-y-16 bg-cinza-fundo px-6 pb-16 md:items-start md:justify-start md:px-40 md:py-24 xl:px-60 xl:py-28"
+>
+  <FadeInWhenVisible client:visible>
+    <h1 class="text-4xl text-violeta-titulo-contraste md:text-7xl">
+      Portfólio
+    </h1>
+  </FadeInWhenVisible>
+  <FadeInWhenVisible client:visible delay={0.2}>
+    <div class="grid-col-1 grid gap-8 md:grid-cols-3 xl:gap-14 w-full">
+      {projects.map((project) => {
+        const isWide =
+          project.data.colSpan === "2" ||
+          project.data.bgColor.includes("col-span-2");
+        return (
+          <a
+            href={`/projetos/${project.id}`}
+            class={`block ${isWide ? "md:col-span-2" : ""} focus:outline-none focus:ring-2 focus:ring-[#7FC8E3] rounded-3xl group cursor-pointer transition-transform duration-300 hover:scale-[1.02]`}
+            title={`Abrir post sobre ${project.data.nome}`}
+          >
+            <ProjectCard
+              tipo={project.data.tipo}
+              nome={project.data.nome}
+              src={project.data.src}
+              alt={project.data.alt}
+              bgColor={project.data.bgColor}
+              colSpan={project.data.colSpan}
+            />
+          </a>
+        );
+      })}
+    </div>
+  </FadeInWhenVisible>
+</section>

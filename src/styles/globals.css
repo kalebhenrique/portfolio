@@ -1,8 +1,16 @@
+@import "@fontsource/google-sans/400.css";
+@import "@fontsource/google-sans/500.css";
+@import "@fontsource/google-sans/600.css";
+@import "@fontsource/google-sans/700.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @layer base {
   :root {
+    --font-google-sans: "Google Sans", sans-serif;
+    --font-sans: "Google Sans", sans-serif;
+    --font-poppins: "Google Sans", sans-serif;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -78,6 +86,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-family: 'Poppins', var(--font-poppins), sans-serif;
   }
 }

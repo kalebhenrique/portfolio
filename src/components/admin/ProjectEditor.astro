@@ -1,0 +1,649 @@
+---
+import type { ProjectPayload } from "../../utils/cms";
+import { PROJECT_TYPES } from "../../content.config";
+import {
+  ArrowLeft,
+  Eye,
+  Save,
+  Upload,
+  FolderGit2,
+  Palette,
+  ExternalLink,
+  Code2,
+  Star,
+  FileText,
+} from "@lucide/astro";
+
+interface Props {
+  project?: ProjectPayload;
+  isNew?: boolean;
+}
+
+const { project, isNew = false } = Astro.props;
+
+const initialNome = project?.nome || "";
+const initialSlug = project?.slug || "";
+const initialTipo = project?.tipo || "Projeto Pessoal";
+const initialSrc = project?.src || "celeste2";
+const initialAlt = project?.alt || "";
+const initialBgColor = project?.bgColor || "bg-azul-kaleb";
+const initialColSpan = project?.colSpan || "1";
+const initialOrder = project?.order ?? 0;
+const initialLink = project?.link || "";
+const initialGithub = project?.github || "";
+const initialTags = project?.tags ? project.tags.join(", ") : "";
+const initialFeatured = project?.featured ?? false;
+const initialDraft = project?.draft ?? false;
+const initialContent = project?.content || "";
+
+const COLOR_PRESETS = [
+  { name: "Azul Kaleb", class: "bg-azul-kaleb" },
+  { name: "Vermelho Suave", class: "bg-red-300" },
+  { name: "Verde Esmeralda", class: "bg-emerald-300" },
+  { name: "Roxo Pastel", class: "bg-purple-300" },
+  { name: "Âmbar Suave", class: "bg-amber-300" },
+  { name: "Ciano Suave", class: "bg-cyan-300" },
+];
+---
+
+<div class="space-y-6">
+  <!-- Top Navigation & Actions -->
+  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[#3B234B]">
+    <div>
+      <a href="/admin" class="inline-flex items-center space-x-1.5 text-xs text-[#877CC4] hover:text-[#B9BDEF] mb-2 transition-colors">
+        <ArrowLeft size={14} />
+        <span>Voltar para lista de projetos</span>
+      </a>
+      <h1 class="text-2xl font-bold text-white">
+        {isNew ? "Novo Projeto" : `Editar: ${initialNome}`}
+      </h1>
+    </div>
+
+    <div class="flex items-center space-x-3 w-full sm:w-auto">
+      <button
+        type="button"
+        id="preview-toggle-btn"
+        class="inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl border border-[#3B234B] bg-[#242C3B] hover:bg-[#343D4F] text-sm text-gray-200 font-medium transition-colors"
+      >
+        <Eye size={16} />
+        <span>Alternar Prévia</span>
+      </button>
+
+      <button
+        type="button"
+        id="save-project-btn"
+        class="inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl bg-[#7FC8E3] hover:bg-[#A4E3FA] text-[#181129] text-sm font-bold transition-all shadow-lg shadow-[#7FC8E3]/15"
+      >
+        <Save size={16} />
+        <span id="save-btn-text">Salvar Projeto</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="status-toast" class="hidden p-4 rounded-xl text-sm transition-all" role="alert"></div>
+
+  <!-- Card Preview (Conditionally Visible or Toggled) -->
+  <div id="live-preview-box" class="p-6 bg-[#242C3B]/60 border border-[#3B234B] rounded-3xl space-y-3">
+    <div class="flex items-center justify-between text-xs text-gray-400 uppercase tracking-wider font-semibold">
+      <span>Pré-visualização do Card no Portfólio</span>
+      <span class="text-[#7FC8E3]">Ao Vivo</span>
+    </div>
+
+    <div class="max-w-md mx-auto">
+      <div
+        id="preview-card"
+        class={`flex h-80 w-full flex-col rounded-3xl ${initialBgColor} transform overflow-hidden transition-transform duration-300 ease-in-out`}
+      >
+        <div class="flex flex-1 flex-col items-end justify-end space-y-2 pr-4 pt-4 text-cinza-fundo">
+          <h1 id="preview-tipo" class="text-lg md:text-2xl font-bold">{initialTipo}</h1>
+          <h2 id="preview-nome" class="font-semibold">{initialNome || "Nome do Projeto"}</h2>
+        </div>
+        <div class="ml-4 mt-auto flex w-full transform items-end justify-end">
+          <img
+            id="preview-img"
+            src={initialSrc.startsWith("http") || initialSrc.startsWith("/") ? initialSrc : `https://res.cloudinary.com/djh6kz6nb/image/upload/f_auto,q_auto/${initialSrc}`}
+            alt={initialAlt || initialNome}
+            class="rounded-l-3xl max-h-48 w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editor Form Grid -->
+  <form id="project-form" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Coluna Principal (2 Cols) -->
+    <div class="lg:col-span-2 space-y-6">
+      <div class="bg-[#242C3B] border border-[#3B234B] rounded-3xl p-6 sm:p-8 space-y-5">
+        <h2 class="text-base font-bold text-[#7FC8E3] uppercase tracking-wider flex items-center space-x-2">
+          <FolderGit2 size={18} />
+          <span>Informações Principais</span>
+        </h2>
+
+        <!-- Nome do Projeto -->
+        <div>
+          <label for="project-nome" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Nome do Projeto *
+          </label>
+          <input
+            type="text"
+            id="project-nome"
+            name="nome"
+            required
+            value={initialNome}
+            placeholder="Ex: API Ruby on Rails"
+            class="w-full px-4 py-3 bg-[#181129] border border-[#3B234B] rounded-xl text-white placeholder-gray-500 text-base focus:outline-none focus:border-[#7FC8E3] focus:ring-1 focus:ring-[#7FC8E3] transition-all"
+          />
+        </div>
+
+        <!-- Slug -->
+        <div>
+          <label for="project-slug" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">
+            Identificador URL (Slug) *
+          </label>
+          <p class="text-xs text-gray-400 mb-2">
+            URL amigável: <code class="text-[#7FC8E3]" id="slug-preview">/projetos/{initialSlug || "novo-projeto"}</code>
+          </p>
+          <input
+            type="text"
+            id="project-slug"
+            name="slug"
+            required
+            value={initialSlug}
+            readonly={!isNew}
+            placeholder="ex: api-ruby-on-rails"
+            class={`w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3] ${
+              !isNew ? "opacity-70 cursor-not-allowed" : ""
+            }`}
+          />
+          {!isNew && (
+            <p class="text-[11px] text-gray-500 mt-1">O slug não pode ser alterado após criado para manter links intactos.</p>
+          )}
+        </div>
+
+        <!-- Tipo -->
+        <div>
+          <label for="project-tipo" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Tipo / Categoria do Projeto *
+          </label>
+          <div class="flex gap-2">
+            <select
+              id="project-tipo-select"
+              class="w-full sm:w-1/2 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-none focus:border-[#7FC8E3]"
+            >
+              {PROJECT_TYPES.map((t) => (
+                <option value={t} selected={t === initialTipo}>{t}</option>
+              ))}
+              <option value="__custom__">Outro (digitar livremente)...</option>
+            </select>
+            <input
+              type="text"
+              id="project-tipo"
+              name="tipo"
+              value={initialTipo}
+              required
+              class="w-full sm:w-1/2 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+            />
+          </div>
+        </div>
+
+        <!-- Imagem & Upload -->
+        <div>
+          <label for="project-src" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Imagem do Projeto *
+          </label>
+          <p class="text-xs text-gray-400 mb-2">
+            Digite o caminho da imagem no public (ex: <code class="text-[#7FC8E3]">/api-ruby.png</code>, <code class="text-[#7FC8E3]">/ib.png</code>), uma URL completa ou faça upload de um novo arquivo.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+            <input
+              type="text"
+              id="project-src"
+              name="src"
+              required
+              value={initialSrc}
+              placeholder="ex: /api-ruby.png ou /images/uploads/minha-imagem.png"
+              class="flex-1 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+            />
+
+            <!-- Hidden File Input -->
+            <input type="file" id="file-upload-input" accept="image/*" class="hidden" />
+
+            <button
+              type="button"
+              id="upload-btn"
+              class="inline-flex items-center justify-center space-x-2 px-4 py-2.5 bg-[#3B234B] hover:bg-[#4d2f62] text-white text-xs font-semibold rounded-xl transition-colors whitespace-nowrap"
+            >
+              <Upload size={16} />
+              <span id="upload-btn-text">Fazer Upload</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Alt Text -->
+        <div>
+          <label for="project-alt" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Texto Alternativo da Imagem (Acessibilidade) *
+          </label>
+          <input
+            type="text"
+            id="project-alt"
+            name="alt"
+            required
+            value={initialAlt}
+            placeholder="Ex: Tela de Controllers Ruby on Rails"
+            class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+          />
+        </div>
+
+        <!-- Descrição / Markdown -->
+        <div>
+          <label for="project-content" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Descrição Detalhada (Markdown)
+          </label>
+          <textarea
+            id="project-content"
+            name="content"
+            rows="6"
+            placeholder="Descreva as responsabilidades, arquitetura e aprendizados deste projeto..."
+            class="w-full px-4 py-3 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3] resize-y"
+          >{initialContent}</textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coluna Lateral (Configurações do Card) -->
+    <div class="space-y-6">
+      <div class="bg-[#242C3B] border border-[#3B234B] rounded-3xl p-6 space-y-6">
+        <h2 class="text-base font-bold text-[#7FC8E3] uppercase tracking-wider flex items-center space-x-2">
+          <Palette size={18} />
+          <span>Aparência e Grid</span>
+        </h2>
+
+        <!-- Cor de Fundo -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Cor de Fundo do Card
+          </label>
+          <div class="grid grid-cols-2 gap-2 mb-3">
+            {COLOR_PRESETS.map((color) => (
+              <button
+                type="button"
+                data-color-class={color.class}
+                class={`preset-color-btn text-xs font-medium py-2 px-2.5 rounded-xl border border-transparent transition-all flex items-center space-x-2 ${
+                  color.class === initialBgColor ? "ring-2 ring-[#7FC8E3] border-white" : ""
+                }`}
+              >
+                <span class={`w-3.5 h-3.5 rounded-full ${color.class} inline-block border border-black/20`}></span>
+                <span class="truncate text-gray-200">{color.name}</span>
+              </button>
+            ))}
+          </div>
+          <input
+            type="text"
+            id="project-bgcolor"
+            name="bgColor"
+            value={initialBgColor}
+            placeholder="ex: bg-azul-kaleb ou bg-[#123456]"
+            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+          />
+        </div>
+
+        <!-- Largura no Grid -->
+        <div>
+          <label for="project-colspan" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Tamanho no Grid do Portfólio
+          </label>
+          <select
+            id="project-colspan"
+            name="colSpan"
+            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-none focus:border-[#7FC8E3]"
+          >
+            <option value="1" selected={initialColSpan === "1"}>1 Coluna (Padrão)</option>
+            <option value="2" selected={initialColSpan === "2"}>2 Colunas (Destaque Largo)</option>
+          </select>
+        </div>
+
+        <!-- Ordem -->
+        <div>
+          <label for="project-order" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Ordem de Exibição (Número)
+          </label>
+          <input
+            type="number"
+            id="project-order"
+            name="order"
+            value={initialOrder}
+            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-none focus:border-[#7FC8E3]"
+          />
+        </div>
+
+        <!-- Links -->
+        <div class="space-y-4 pt-2 border-t border-[#3B234B]">
+          <div>
+            <label for="project-link" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1 flex items-center space-x-1">
+              <ExternalLink size={13} />
+              <span>Link do Projeto / Demo</span>
+            </label>
+            <input
+              type="url"
+              id="project-link"
+              name="link"
+              value={initialLink}
+              placeholder="https://..."
+              class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+            />
+          </div>
+
+          <div>
+            <label for="project-github" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1 flex items-center space-x-1">
+              <Code2 size={13} />
+              <span>Repositório GitHub</span>
+            </label>
+            <input
+              type="url"
+              id="project-github"
+              name="github"
+              value={initialGithub}
+              placeholder="https://github.com/..."
+              class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+            />
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div>
+          <label for="project-tags" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Tags / Tecnologias (separadas por vírgula)
+          </label>
+          <input
+            type="text"
+            id="project-tags"
+            name="tags"
+            value={initialTags}
+            placeholder="React, TypeScript, Tailwind"
+            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+          />
+        </div>
+
+        <!-- Status Checkboxes -->
+        <div class="space-y-3 pt-2 border-t border-[#3B234B]">
+          <label class="flex items-center space-x-3 cursor-pointer">
+            <input
+              type="checkbox"
+              id="project-featured"
+              name="featured"
+              checked={initialFeatured}
+              class="w-4 h-4 rounded text-[#7FC8E3] bg-[#181129] border-[#3B234B] focus:ring-0"
+            />
+            <span class="text-xs text-gray-300 font-medium flex items-center space-x-1.5">
+              <Star size={14} class="text-[#7FC8E3]" />
+              <span>Destacar no Portfólio</span>
+            </span>
+          </label>
+
+          <label class="flex items-center space-x-3 cursor-pointer">
+            <input
+              type="checkbox"
+              id="project-draft"
+              name="draft"
+              checked={initialDraft}
+              class="w-4 h-4 rounded text-[#7FC8E3] bg-[#181129] border-[#3B234B] focus:ring-0"
+            />
+            <span class="text-xs text-gray-300 font-medium flex items-center space-x-1.5">
+              <FileText size={14} class="text-gray-400" />
+              <span>Salvar como Rascunho (não exibe no site)</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  // DOM Elements
+  const nomeInput = document.getElementById("project-nome") as HTMLInputElement;
+  const slugInput = document.getElementById("project-slug") as HTMLInputElement;
+  const slugPreview = document.getElementById("slug-preview") as HTMLElement;
+  const tipoInput = document.getElementById("project-tipo") as HTMLInputElement;
+  const tipoSelect = document.getElementById("project-tipo-select") as HTMLSelectElement;
+  const srcInput = document.getElementById("project-src") as HTMLInputElement;
+  const altInput = document.getElementById("project-alt") as HTMLInputElement;
+  const bgInput = document.getElementById("project-bgcolor") as HTMLInputElement;
+  const colSpanSelect = document.getElementById("project-colspan") as HTMLSelectElement;
+  const orderInput = document.getElementById("project-order") as HTMLInputElement;
+  const linkInput = document.getElementById("project-link") as HTMLInputElement;
+  const githubInput = document.getElementById("project-github") as HTMLInputElement;
+  const tagsInput = document.getElementById("project-tags") as HTMLInputElement;
+  const featuredInput = document.getElementById("project-featured") as HTMLInputElement;
+  const draftInput = document.getElementById("project-draft") as HTMLInputElement;
+  const contentInput = document.getElementById("project-content") as HTMLTextAreaElement;
+
+  const saveBtn = document.getElementById("save-project-btn") as HTMLButtonElement;
+  const saveBtnText = document.getElementById("save-btn-text") as HTMLElement;
+  const statusToast = document.getElementById("status-toast") as HTMLDivElement;
+  const previewToggleBtn = document.getElementById("preview-toggle-btn") as HTMLButtonElement;
+  const livePreviewBox = document.getElementById("live-preview-box") as HTMLDivElement;
+
+  // Preview elements
+  const previewCard = document.getElementById("preview-card") as HTMLDivElement;
+  const previewTipo = document.getElementById("preview-tipo") as HTMLElement;
+  const previewNome = document.getElementById("preview-nome") as HTMLElement;
+  const previewImg = document.getElementById("preview-img") as HTMLImageElement;
+
+  // Upload elements
+  const uploadBtn = document.getElementById("upload-btn") as HTMLButtonElement;
+  const uploadBtnText = document.getElementById("upload-btn-text") as HTMLElement;
+  const fileUploadInput = document.getElementById("file-upload-input") as HTMLInputElement;
+
+  // Preset color buttons
+  const colorBtns = document.querySelectorAll(".preset-color-btn");
+
+  // Slug generator
+  function generateSlug(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9_-]/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "");
+  }
+
+  // Update slug preview on name input if isNew
+  nomeInput?.addEventListener("input", () => {
+    if (!slugInput.readOnly) {
+      const slug = generateSlug(nomeInput.value);
+      slugInput.value = slug;
+      slugPreview.textContent = `/projetos/${slug || "novo-projeto"}`;
+    }
+    updatePreview();
+  });
+
+  slugInput?.addEventListener("input", () => {
+    slugPreview.textContent = `/projetos/${slugInput.value || "novo-projeto"}`;
+  });
+
+  // Tipo select sync
+  tipoSelect?.addEventListener("change", () => {
+    if (tipoSelect.value !== "__custom__") {
+      tipoInput.value = tipoSelect.value;
+      updatePreview();
+    }
+  });
+
+  tipoInput?.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  srcInput?.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  bgInput?.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  // Preset color selection
+  colorBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const colorClass = btn.getAttribute("data-color-class") || "";
+      bgInput.value = colorClass;
+      colorBtns.forEach((b) => b.classList.remove("ring-2", "ring-[#7FC8E3]", "border-white"));
+      btn.classList.add("ring-2", "ring-[#7FC8E3]", "border-white");
+      updatePreview();
+    });
+  });
+
+  // Update Preview function
+  function updatePreview() {
+    if (previewNome) previewNome.textContent = nomeInput.value || "Nome do Projeto";
+    if (previewTipo) previewTipo.textContent = tipoInput.value || "Projeto Pessoal";
+
+    if (previewCard) {
+      previewCard.className = `flex h-80 w-full flex-col rounded-3xl ${bgInput.value || "bg-azul-kaleb"} transform overflow-hidden transition-transform duration-300 ease-in-out`;
+    }
+
+    if (previewImg) {
+      const src = srcInput.value.trim();
+      if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("/")) {
+        previewImg.src = src;
+      } else if (src) {
+        if (src === "celeste2") previewImg.src = "/celeste2.png";
+        else if (src === "api-ruby") previewImg.src = "/api-ruby.png";
+        else if (src === "ibd" || src === "ib") previewImg.src = "/ib.png";
+        else if (src === "eu") previewImg.src = "/eu.jpg";
+        else previewImg.src = `/${src}`;
+      } else {
+        previewImg.src = "/celeste2.png";
+      }
+      previewImg.alt = altInput.value || nomeInput.value;
+    }
+  }
+
+  // Toggle Preview Box
+  previewToggleBtn?.addEventListener("click", () => {
+    livePreviewBox.classList.toggle("hidden");
+  });
+
+  // Upload handler
+  uploadBtn?.addEventListener("click", () => {
+    fileUploadInput.click();
+  });
+
+  fileUploadInput?.addEventListener("change", async () => {
+    const file = fileUploadInput.files?.[0];
+    if (!file) return;
+
+    uploadBtn.disabled = true;
+    uploadBtnText.textContent = "Enviando...";
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        showToast(data.error || "Erro no upload da imagem.", "error");
+        uploadBtn.disabled = false;
+        uploadBtnText.textContent = "Fazer Upload";
+        return;
+      }
+
+      srcInput.value = data.url;
+      updatePreview();
+      showToast("Imagem enviada com sucesso!", "success");
+    } catch {
+      showToast("Falha de rede ao enviar imagem.", "error");
+    } finally {
+      uploadBtn.disabled = false;
+      uploadBtnText.textContent = "Fazer Upload";
+      fileUploadInput.value = "";
+    }
+  });
+
+  // Save Project
+  saveBtn?.addEventListener("click", async () => {
+    const nome = nomeInput.value.trim();
+    const slug = slugInput.value.trim();
+    const tipo = tipoInput.value.trim();
+    const src = srcInput.value.trim();
+    const alt = altInput.value.trim();
+    const bgColor = bgInput.value.trim() || "bg-azul-kaleb";
+    const colSpan = colSpanSelect.value;
+    const order = Number(orderInput.value) || 0;
+    const link = linkInput.value.trim();
+    const github = githubInput.value.trim();
+    const tags = tagsInput.value.split(",").map((t) => t.trim()).filter(Boolean);
+    const featured = featuredInput.checked;
+    const draft = draftInput.checked;
+    const content = contentInput.value.trim();
+
+    if (!nome || !slug || !src) {
+      showToast("Preencha todos os campos obrigatórios (Nome, Slug e Imagem).", "error");
+      return;
+    }
+
+    saveBtn.disabled = true;
+    saveBtnText.textContent = "Salvando...";
+
+    try {
+      const res = await fetch("/api/admin/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome,
+          slug,
+          tipo,
+          src,
+          alt: alt || nome,
+          bgColor,
+          colSpan,
+          order,
+          link,
+          github,
+          tags,
+          featured,
+          draft,
+          content,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        showToast(data.error || "Erro ao salvar projeto.", "error");
+        saveBtn.disabled = false;
+        saveBtnText.textContent = "Salvar Projeto";
+        return;
+      }
+
+      showToast("Projeto salvo com sucesso! Redirecionando...", "success");
+      setTimeout(() => {
+        window.location.href = "/admin";
+      }, 1000);
+    } catch {
+      showToast("Erro de rede ao salvar projeto.", "error");
+      saveBtn.disabled = false;
+      saveBtnText.textContent = "Salvar Projeto";
+    }
+  });
+
+  function showToast(message: string, type: "success" | "error") {
+    statusToast.textContent = message;
+    statusToast.className = `p-4 rounded-xl text-sm font-medium transition-all ${
+      type === "success"
+        ? "bg-emerald-900/60 border border-emerald-500/50 text-emerald-200"
+        : "bg-red-900/60 border border-red-500/50 text-red-200"
+    }`;
+    statusToast.classList.remove("hidden");
+    statusToast.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+</script>

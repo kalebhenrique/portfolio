@@ -1,4 +1,4 @@
-"use client";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   Popover,
@@ -25,7 +25,8 @@ export default function BackgroundContent() {
             <PopoverTrigger className="relative h-[274px] w-[360px] lg:h-[457px] lg:w-[600px]">
               <CldImage
                 fill
-                src="celeste2"
+                priority
+                src="/celeste2.png"
                 alt="Montanha Celeste"
                 className="z-0"
               />

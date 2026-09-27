@@ -1,0 +1,16 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Introduction from "~/components/introduction";
+import AboutMe from "~/components/about";
+import Stack from "~/components/stack";
+import Projects from "~/components/portfolio/index.astro";
+---
+
+<BaseLayout>
+  <main class="relative mx-auto">
+    <Introduction client:load />
+    <AboutMe client:visible />
+    <Stack client:visible />
+    <Projects />
+  </main>
+</BaseLayout>

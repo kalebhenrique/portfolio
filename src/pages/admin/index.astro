@@ -1,0 +1,344 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { getAllProjects } from "../../utils/cms";
+import { PROJECT_TYPES } from "../../content.config";
+import {
+  BookOpen,
+  Plus,
+  Search,
+  Pencil,
+  Trash2,
+  Star,
+  FileText,
+  CircleCheck,
+  Eye,
+} from "@lucide/astro";
+
+export const prerender = false;
+
+const projects = await getAllProjects();
+
+const totalCount = projects.length;
+const draftCount = projects.filter((p) => p.draft).length;
+const publishedCount = totalCount - draftCount;
+const featuredCount = projects.filter((p) => p.featured).length;
+---
+
+<AdminLayout title="Painel de Projetos" activeNav="projects">
+  <div class="space-y-8">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-[#3B234B]">
+      <div>
+        <h1 class="text-3xl font-extrabold text-white">Projetos do Portfólio</h1>
+        <p class="text-sm text-[#B9BDEF]/80 mt-1">
+          Gerencie os projetos, categorias, mídias e ordens exibidas na página principal.
+        </p>
+      </div>
+
+      <a
+        href="/admin/projects/new"
+        class="inline-flex items-center space-x-2 px-5 py-3 rounded-2xl bg-[#7FC8E3] hover:bg-[#A4E3FA] text-[#181129] text-sm font-bold transition-all shadow-lg shadow-[#7FC8E3]/15 whitespace-nowrap"
+      >
+        <Plus size={18} />
+        <span>Criar Novo Projeto</span>
+      </a>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-[#242C3B] border border-[#3B234B] rounded-2xl p-5 flex items-center justify-between">
+        <div>
+          <span class="block text-2xl font-bold text-white">{totalCount}</span>
+          <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Total de Projetos</span>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-[#3B234B] text-[#7FC8E3] flex items-center justify-center">
+          <BookOpen size={20} />
+        </div>
+      </div>
+
+      <div class="bg-[#242C3B] border border-[#3B234B] rounded-2xl p-5 flex items-center justify-between">
+        <div>
+          <span class="block text-2xl font-bold text-emerald-400">{publishedCount}</span>
+          <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Publicados</span>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-emerald-950/60 text-emerald-400 flex items-center justify-center">
+          <CircleCheck size={20} />
+        </div>
+      </div>
+
+      <div class="bg-[#242C3B] border border-[#3B234B] rounded-2xl p-5 flex items-center justify-between">
+        <div>
+          <span class="block text-2xl font-bold text-amber-400">{draftCount}</span>
+          <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Rascunhos</span>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-amber-950/60 text-amber-400 flex items-center justify-center">
+          <FileText size={20} />
+        </div>
+      </div>
+
+      <div class="bg-[#242C3B] border border-[#3B234B] rounded-2xl p-5 flex items-center justify-between">
+        <div>
+          <span class="block text-2xl font-bold text-purple-400">{featuredCount}</span>
+          <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Destaques</span>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-purple-950/60 text-purple-400 flex items-center justify-center">
+          <Star size={20} />
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter and Search -->
+    <div class="bg-[#242C3B] border border-[#3B234B] rounded-2xl p-4 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
+      <div class="relative flex-1">
+        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+          <Search size={16} />
+        </span>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Buscar por nome, tipo ou tag..."
+          class="w-full pl-10 pr-4 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+        />
+      </div>
+
+      <div class="w-full sm:w-64">
+        <select
+          id="type-filter"
+          class="w-full px-4 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-none focus:border-[#7FC8E3]"
+        >
+          <option value="">Todos os Tipos</option>
+          {PROJECT_TYPES.map((t) => (
+            <option value={t}>{t}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    <!-- Table of Projects -->
+    <div class="bg-[#242C3B] border border-[#3B234B] rounded-3xl overflow-hidden shadow-xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-gray-300">
+          <thead class="bg-[#181129] text-xs uppercase tracking-wider text-gray-400 border-b border-[#3B234B]">
+            <tr>
+              <th scope="col" class="py-4 px-6">Projeto</th>
+              <th scope="col" class="py-4 px-6">Tipo</th>
+              <th scope="col" class="py-4 px-6">Cor / Formato</th>
+              <th scope="col" class="py-4 px-6">Status</th>
+              <th scope="col" class="py-4 px-6 text-right">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="projects-table-body" class="divide-y divide-[#3B234B]">
+            {projects.length === 0 ? (
+              <tr>
+                <td colspan="5" class="py-12 text-center text-gray-500">
+                  Nenhum projeto cadastrado ainda. Clique em "Criar Novo Projeto" para começar!
+                </td>
+              </tr>
+            ) : (
+              projects.map((project) => (
+                <tr class="project-row hover:bg-[#181129]/40 transition-colors" data-slug={project.slug} data-nome={project.nome.toLowerCase()} data-tipo={project.tipo.toLowerCase()} data-tags={project.tags.join(",").toLowerCase()}>
+                  <!-- Projeto & Thumb -->
+                  <td class="py-4 px-6">
+                    <div class="flex items-center space-x-4">
+                      <div class="w-14 h-10 rounded-lg overflow-hidden bg-[#181129] flex-shrink-0 border border-[#3B234B]">
+                        <img
+                          src={project.src.startsWith("http") || project.src.startsWith("/") ? project.src : (project.src === "api-ruby" ? "/api-ruby.png" : (project.src === "ibd" || project.src === "ib" ? "/ib.png" : (project.src === "celeste2" ? "/celeste2.png" : `/${project.src}`)))}
+                          alt={project.alt || project.nome}
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <a href={`/admin/projects/${project.slug}`} class="font-bold text-white hover:text-[#7FC8E3] transition-colors">
+                          {project.nome}
+                        </a>
+                        <span class="block text-xs text-gray-400">/{project.slug}</span>
+                      </div>
+                    </div>
+                  </td>
+
+                  <!-- Tipo -->
+                  <td class="py-4 px-6">
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[#3B234B] text-[#B9BDEF]">
+                      {project.tipo}
+                    </span>
+                  </td>
+
+                  <!-- Cor / Grid -->
+                  <td class="py-4 px-6">
+                    <div class="flex items-center space-x-2">
+                      <span class={`w-4 h-4 rounded-full ${project.bgColor} inline-block border border-black/20`} title={project.bgColor}></span>
+                      <span class="text-xs text-gray-400">
+                        {project.colSpan === "2" ? "2 colunas" : "1 coluna"}
+                      </span>
+                    </div>
+                  </td>
+
+                  <!-- Status -->
+                  <td class="py-4 px-6">
+                    <div class="flex items-center space-x-2">
+                      {project.draft ? (
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-950/60 text-amber-300 border border-amber-500/30">
+                          <FileText size={12} />
+                          <span>Rascunho</span>
+                        </span>
+                      ) : (
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-950/60 text-emerald-300 border border-emerald-500/30">
+                          <CircleCheck size={12} />
+                          <span>Publicado</span>
+                        </span>
+                      )}
+
+                      {project.featured && (
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-purple-950/60 text-purple-300 border border-purple-500/30" title="Em Destaque">
+                          <Star size={12} />
+                          <span>Destaque</span>
+                        </span>
+                      )}
+                    </div>
+                  </td>
+
+                  <!-- Ações -->
+                  <td class="py-4 px-6 text-right">
+                    <div class="inline-flex items-center space-x-1.5">
+                      <a
+                        href={`/projetos/${project.slug}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="p-2 text-gray-400 hover:text-[#7FC8E3] hover:bg-[#3B234B] rounded-lg transition-colors"
+                        title="Ver post no site"
+                      >
+                        <Eye size={16} />
+                      </a>
+                      <a
+                        href={`/admin/projects/${project.slug}`}
+                        class="p-2 text-gray-400 hover:text-white hover:bg-[#3B234B] rounded-lg transition-colors"
+                        title="Editar Projeto"
+                      >
+                        <Pencil size={16} />
+                      </a>
+                      <button
+                        type="button"
+                        data-slug={project.slug}
+                        data-nome={project.nome}
+                        class="delete-btn p-2 text-red-400 hover:text-red-300 hover:bg-red-950/50 rounded-lg transition-colors"
+                        title="Excluir Projeto"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal Dialog -->
+  <div id="delete-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-[#242C3B] border border-[#3B234B] rounded-3xl p-6 sm:p-8 max-w-md w-full space-y-5 shadow-2xl">
+      <h3 class="text-xl font-bold text-white">Excluir Projeto?</h3>
+      <p class="text-sm text-gray-300">
+        Tem certeza que deseja excluir o projeto <strong id="delete-modal-project-name" class="text-red-300"></strong>? Esta ação removerá o arquivo Markdown e não poderá ser desfeita.
+      </p>
+
+      <div class="flex items-center justify-end space-x-3 pt-2">
+        <button
+          type="button"
+          id="cancel-delete-btn"
+          class="px-4 py-2.5 rounded-xl border border-[#3B234B] bg-[#181129] hover:bg-[#343D4F] text-sm text-gray-300 font-medium transition-colors"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          id="confirm-delete-btn"
+          class="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-sm font-bold transition-colors"
+        >
+          Sim, Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("search-input") as HTMLInputElement;
+    const typeFilter = document.getElementById("type-filter") as HTMLSelectElement;
+    const projectRows = document.querySelectorAll(".project-row") as NodeListOf<HTMLTableRowElement>;
+
+    // Filter and Search logic
+    function filterProjects() {
+      const query = searchInput.value.toLowerCase().trim();
+      const selectedType = typeFilter.value.toLowerCase().trim();
+
+      projectRows.forEach((row) => {
+        const nome = row.getAttribute("data-nome") || "";
+        const tipo = row.getAttribute("data-tipo") || "";
+        const tags = row.getAttribute("data-tags") || "";
+
+        const matchesQuery =
+          !query || nome.includes(query) || tipo.includes(query) || tags.includes(query);
+        const matchesType = !selectedType || tipo === selectedType;
+
+        if (matchesQuery && matchesType) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    searchInput?.addEventListener("input", filterProjects);
+    typeFilter?.addEventListener("change", filterProjects);
+
+    // Delete Modal Logic
+    const deleteModal = document.getElementById("delete-modal") as HTMLDivElement;
+    const deleteModalName = document.getElementById("delete-modal-project-name") as HTMLElement;
+    const cancelDeleteBtn = document.getElementById("cancel-delete-btn") as HTMLButtonElement;
+    const confirmDeleteBtn = document.getElementById("confirm-delete-btn") as HTMLButtonElement;
+    let targetSlug = "";
+
+    document.querySelectorAll(".delete-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        targetSlug = btn.getAttribute("data-slug") || "";
+        const name = btn.getAttribute("data-nome") || "";
+        if (deleteModalName) deleteModalName.textContent = name;
+        deleteModal.classList.remove("hidden");
+      });
+    });
+
+    cancelDeleteBtn?.addEventListener("click", () => {
+      deleteModal.classList.add("hidden");
+      targetSlug = "";
+    });
+
+    confirmDeleteBtn?.addEventListener("click", async () => {
+      if (!targetSlug) return;
+
+      confirmDeleteBtn.disabled = true;
+      confirmDeleteBtn.textContent = "Excluindo...";
+
+      try {
+        const res = await fetch(`/api/admin/projects?slug=${targetSlug}`, {
+          method: "DELETE",
+        });
+
+        if (res.ok) {
+          const row = document.querySelector(`.project-row[data-slug="${targetSlug}"]`);
+          row?.remove();
+          deleteModal.classList.add("hidden");
+        } else {
+          const data = await res.json();
+          alert(data.error || "Erro ao excluir projeto.");
+        }
+      } catch {
+        alert("Erro de conexão ao tentar excluir projeto.");
+      } finally {
+        confirmDeleteBtn.disabled = false;
+        confirmDeleteBtn.textContent = "Sim, Excluir";
+      }
+    });
+  </script>
+</AdminLayout>

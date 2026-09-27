@@ -1,0 +1,119 @@
+---
+import { getSession } from "../utils/auth";
+import { FolderGit2, Plus, LogOut, ExternalLink } from "@lucide/astro";
+import "~/styles/globals.css";
+
+interface Props {
+  title: string;
+  activeNav?: "projects" | "new";
+}
+
+export const prerender = false;
+
+const { title, activeNav = "projects" } = Astro.props;
+// @ts-ignore
+const session = Astro.locals.user || (await getSession(Astro.cookies)) || { username: "Admin" };
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — Painel Administrativo</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      :root {
+        --font-google-sans: 'Google Sans', sans-serif;
+        --font-sans: 'Google Sans', sans-serif;
+        --font-poppins: 'Google Sans', sans-serif;
+      }
+      html, body {
+        font-family: 'Google Sans', var(--font-google-sans), sans-serif;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[#181129] font-sans text-gray-200 antialiased flex flex-col">
+    <!-- Header Admin -->
+    <header class="sticky top-0 z-40 bg-[#171C25]/90 backdrop-blur-md border-b border-[#3B234B] shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <!-- Brand -->
+        <div class="flex items-center space-x-3">
+          <a
+            href="/"
+            target="_blank"
+            class="flex items-center space-x-2 text-violeta-base-hover hover:text-white transition-colors"
+            title="Ver portfólio em nova aba"
+          >
+            <span class="font-bold text-lg md:text-xl text-[#7FC8E3]">Kaleb Henrique</span>
+            <ExternalLink size={16} class="text-[#877CC4]" />
+          </a>
+          <span class="bg-[#3B234B] text-[#B9BDEF] text-xs font-semibold px-2.5 py-0.5 rounded-full border border-[#877CC4]/30">
+            Painel CMS
+          </span>
+        </div>
+
+        <!-- Nav -->
+        <nav class="flex items-center space-x-1 sm:space-x-4">
+          <a
+            href="/admin"
+            class={`inline-flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              activeNav === "projects"
+                ? "bg-[#242C3B] text-[#7FC8E3] border border-[#7FC8E3]/30"
+                : "text-gray-300 hover:text-white hover:bg-[#242C3B]/60"
+            }`}
+          >
+            <FolderGit2 size={18} />
+            <span class="hidden sm:inline">Projetos</span>
+          </a>
+          <a
+            href="/admin/projects/new"
+            class={`inline-flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              activeNav === "new"
+                ? "bg-[#242C3B] text-[#7FC8E3] border border-[#7FC8E3]/30"
+                : "text-gray-300 hover:text-white hover:bg-[#242C3B]/60"
+            }`}
+          >
+            <Plus size={18} />
+            <span class="hidden sm:inline">Novo Projeto</span>
+          </a>
+        </nav>
+
+        <!-- User / Logout -->
+        <div class="flex items-center space-x-3">
+          <div class="hidden md:flex items-center space-x-2 bg-[#242C3B] px-3 py-1.5 rounded-full border border-[#3B234B]">
+            <div class="w-6 h-6 rounded-full bg-[#7FC8E3] text-[#181129] flex items-center justify-center text-xs font-bold uppercase">
+              {session.username ? session.username.charAt(0) : "A"}
+            </div>
+            <span class="text-xs text-gray-300 font-medium">{session.username}</span>
+          </div>
+
+          <a
+            href="/admin/logout"
+            class="inline-flex items-center space-x-1 text-sm text-gray-400 hover:text-red-400 px-3 py-1.5 rounded-lg hover:bg-[#242C3B] transition-colors"
+            title="Encerrar sessão"
+          >
+            <LogOut size={16} />
+            <span class="hidden sm:inline">Sair</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#3B234B] bg-[#171C25] py-4 text-center text-xs text-gray-500">
+      Kaleb Henrique &copy; {new Date().getFullYear()} — Painel de Gestão de Projetos
+    </footer>
+  </body>
+</html>

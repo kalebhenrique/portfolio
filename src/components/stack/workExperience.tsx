@@ -1,15 +1,16 @@
+import React, { type ReactNode } from "react";
 import { GoArrowUpRight } from "react-icons/go";
 
-interface workExperienceProps {
+export interface WorkExperienceProps {
   startDate: string;
   endDate: string;
   position: string;
   enterprise: string;
-  summary: (string | JSX.Element)[];
+  summary: (string | ReactNode)[];
   enterpriseUrl: string;
 }
 
-export default function WorkExperience(props: workExperienceProps) {
+export default function WorkExperience(props: WorkExperienceProps) {
   return (
     <div className="ml-3 mt-4 flex flex-col md:flex-row md:space-x-20">
       <div>
@@ -20,6 +21,7 @@ export default function WorkExperience(props: workExperienceProps) {
           {props.position} na{" "}
           <a
             target="_blank"
+            rel="noreferrer"
             href={props.enterpriseUrl}
             className="inline-flex items-center hover:text-violeta-base-hover"
           >

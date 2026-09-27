@@ -1,0 +1,21 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import ProjectEditor from "../../../components/admin/ProjectEditor.astro";
+import { getProjectBySlug } from "../../../utils/cms";
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+if (!slug) {
+  return Astro.redirect("/admin");
+}
+
+const project = await getProjectBySlug(slug);
+if (!project) {
+  return Astro.redirect("/admin");
+}
+---
+
+<AdminLayout title={`Editar: ${project.nome}`} activeNav="projects">
+  <ProjectEditor project={project} isNew={false} />
+</AdminLayout>

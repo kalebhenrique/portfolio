@@ -1,13 +1,30 @@
 import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
   darkMode: ["class"],
-  content: ["./src/**/*.tsx"],
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}"],
+  safelist: [
+    "text-azul-kaleb",
+    "text-red-300",
+    "text-emerald-300",
+    "text-purple-300",
+    "text-amber-300",
+    "text-cyan-300",
+    "bg-azul-kaleb",
+    "bg-red-300",
+    "bg-emerald-300",
+    "bg-purple-300",
+    "bg-amber-300",
+    "bg-cyan-300",
+    "bg-violeta-titulo",
+    "text-violeta-base",
+  ],
   theme: {
     extend: {
       fontFamily: {
-        poppins: ["var(--font-poppins)", "sans-serif"],
+        sans: ["'Google Sans'", "var(--font-google-sans)", "sans-serif"],
+        poppins: ["'Google Sans'", "var(--font-google-sans)", "sans-serif"],
+        "google-sans": ["'Google Sans'", "sans-serif"],
       },
       colors: {
         "cinza-fundo": "#242C3B",

@@ -1,8 +1,6 @@
-"use client";
-
+import React from "react";
 import { motion } from "framer-motion";
 import BackgroundContent from "./backgroundContent";
-import React from "react";
 
 interface SnowflakeProps {
   size: number;
@@ -12,7 +10,7 @@ interface SnowflakeProps {
 
 const Snowflake: React.FC<SnowflakeProps> = ({ size, startX, speed }) => {
   const zPrior = size > 12 ? "z-10" : "z-0";
-  const opacity = size > 12 ? "0.4" : "1";
+  const opacity = size > 12 ? 0.4 : 1;
 
   return (
     <motion.div
