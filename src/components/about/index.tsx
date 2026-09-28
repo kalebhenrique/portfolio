@@ -14,7 +14,7 @@ export default function AboutMe() {
         <div className="space-y-6 md:space-y-20">
           <FadeInWhenVisible>
             <div className="flex flex-col items-center justify-center">
-              <h1 className="text-center text-4xl text-violeta-titulo md:text-5xl lg:text-start lg:text-7xl">
+              <h1 className="text-center text-4xl font-semibold text-violeta-titulo md:text-5xl lg:text-start lg:text-7xl">
                 Eu sou um dev web e mobile front-end.
               </h1>
               <div className="lg:hidden">
@@ -34,8 +34,8 @@ export default function AboutMe() {
             <div className="space-y-3">
               <p>
                 Estudante de graduação no sexto semestre de Engenharia de
-                Computação na Universidade de Brasília e técnico de
-                informática pela Escola Técnica de Brasília.
+                Computação na Universidade de Brasília e técnico de informática
+                pela Escola Técnica de Brasília.
               </p>
               <p>
                 Tenho experiência em desenvolvimento de software e análise de

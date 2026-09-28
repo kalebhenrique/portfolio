@@ -25,21 +25,19 @@ const session = Astro.locals.user || (await getSession(Astro.cookies)) || { user
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style is:global>
       :root {
-        --font-google-sans: 'Google Sans', sans-serif;
-        --font-sans: 'Google Sans', sans-serif;
-        --font-poppins: 'Google Sans', sans-serif;
+        --font-poppins: 'Poppins', sans-serif;
       }
       html, body {
-        font-family: 'Google Sans', var(--font-google-sans), sans-serif;
+        font-family: 'Poppins', var(--font-poppins), sans-serif;
       }
     </style>
   </head>
-  <body class="min-h-screen bg-[#181129] font-sans text-gray-200 antialiased flex flex-col">
+  <body class="min-h-screen bg-[#181129] font-poppins text-gray-200 antialiased flex flex-col">
     <!-- Header Admin -->
     <header class="sticky top-0 z-40 bg-[#171C25]/90 backdrop-blur-md border-b border-[#3B234B] shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">

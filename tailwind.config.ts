@@ -22,9 +22,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["'Google Sans'", "var(--font-google-sans)", "sans-serif"],
-        poppins: ["'Google Sans'", "var(--font-google-sans)", "sans-serif"],
-        "google-sans": ["'Google Sans'", "sans-serif"],
+        poppins: ["var(--font-poppins)", "Poppins", "sans-serif"],
+        sans: ["var(--font-poppins)", "Poppins", "sans-serif"],
       },
       colors: {
         "cinza-fundo": "#242C3B",

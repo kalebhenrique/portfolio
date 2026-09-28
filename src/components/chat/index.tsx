@@ -197,7 +197,7 @@ export default function Chat() {
                   alt="Kaleb Avatar"
                   className="rounded-full border"
                 />
-                <h2 className="text-cinza-fundo">Kaleb Bot</h2>
+                <h2 className="font-semibold text-cinza-fundo">Kaleb Bot</h2>
               </div>
               <button
                 onClick={closeChat}
