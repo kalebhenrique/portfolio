@@ -1,7 +1,7 @@
 ---
 nome: "API Ruby on Rails"
 tipo: "Trainee Struct"
-src: "/api-ruby.png"
+src: "/api-ruby.webp"
 alt: "Tela de Controllers Ruby On Rails"
 bgColor: "bg-red-300"
 colSpan: "1"

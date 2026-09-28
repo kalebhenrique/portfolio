@@ -24,21 +24,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style is:global>
-      :root {
-        --font-poppins: 'Poppins', sans-serif;
-      }
-      html, body {
-        font-family: 'Poppins', var(--font-poppins), sans-serif;
-      }
-    </style>
+    <link rel="icon" type="image/png" href="/favicon-32.png" />
   </head>
   <body class="custom-scrollbar font-poppins text-sm text-violeta-base md:text-xl bg-cinza-fundo min-h-screen">
     {showNavbar && <Navbar />}

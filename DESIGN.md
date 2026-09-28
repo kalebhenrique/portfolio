@@ -229,7 +229,7 @@ Navbar fixo, centralizado, links semibold com hover Lavanda Nevasca, gap 16→48
 
 ### Hero (Introdução)
 
-Altura de viewport com degradê animado roxo→azul-noite (`#2C1431 → #161732 → #042433`, vaivém de 3s) e 80 flocos de neve (6–18px, opacidade 40–100%) cruzando em loop. Montanha de Celeste clicável com popover Lavanda Noturna 90% + blur. Setas de rolagem animadas na base.
+Altura de viewport (h-svh mobile / h-screen desktop). Degradê animado roxo→azul-noite documentado — `#2C1431 → #161732 → #042433` em vaivém de 3s (camada de 200% movida por transform, valores exclusivos do hero, não tokens de seção) — e 80 flocos de neve em CSS puro (6–18px, opacidade 40–100%, queda em loop; nenhum movimento sob `prefers-reduced-motion`). Montanha de Celeste clicável com popover Lavanda Noturna 90% + blur. Setas de rolagem animadas na base.
 
 ### Ícones
 

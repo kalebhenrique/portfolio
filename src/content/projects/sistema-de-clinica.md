@@ -1,7 +1,7 @@
 ---
 nome: "Sistema de Clínica"
 tipo: "Freelancer"
-src: "/ib.png"
+src: "/ib.webp"
 alt: "Página do Sistema"
 bgColor: "bg-azul-kaleb"
 colSpan: "2"

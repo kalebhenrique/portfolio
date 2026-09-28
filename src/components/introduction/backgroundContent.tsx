@@ -22,8 +22,8 @@ export default function BackgroundContent() {
           <Popover>
             <PopoverTrigger className="relative h-[274px] w-[360px] lg:h-[457px] lg:w-[600px]">
               <img
-                src="/celeste2.png"
-                alt="Montanha Celeste"
+                src="/celeste.webp"
+                alt="Montanha do jogo Celeste"
                 fetchPriority="high"
                 decoding="async"
                 className="absolute inset-0 h-full w-full object-cover z-0"

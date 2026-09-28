@@ -34,7 +34,9 @@ export default {
         "violeta-titulo": "#877CC4",
         "violeta-titulo-contraste": "#A498EA",
         "azul-kaleb": "#7FC8E3",
-        "roxo-kaleb-borda": "#3B234B",
+        "azul-kaleb-hover": "#A4E3FA",
+        "granito-penhasco": "#343D4F",
+        "texto-suave": "#8E91B6",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -68,13 +70,6 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        chart: {
-          "1": "hsl(var(--chart-1))",
-          "2": "hsl(var(--chart-2))",
-          "3": "hsl(var(--chart-3))",
-          "4": "hsl(var(--chart-4))",
-          "5": "hsl(var(--chart-5))",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",

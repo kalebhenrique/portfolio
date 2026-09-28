@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import { IoClose } from "react-icons/io5";
 import MessageWrapper from "./messageWrapper";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import MessageOption from "./messageOption";
 import { useStore } from "@nanostores/react";
 import { isChatOpen, closeChat } from "~/stores/chatStore";
@@ -35,14 +35,13 @@ export default function Chat() {
   const [isLoadingCat, setIsLoadingCat] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
 
   const catPic = async () => {
     try {
-      const res = await fetch(
-        "https://api.thecatapi.com/v1/images/search?api_key=live_uBfCks8W2Kdn6rg6g97fIcsaBX6T4hwAR9y6gvxQRgRfPBBPf6NvrBP69Stskz4Q",
-      );
-      const data: { url: string }[] = (await res.json()) as { url: string }[];
-      return data[0]?.url ?? "";
+      const res = await fetch("/api/cat");
+      const data: { url?: string } = (await res.json()) as { url?: string };
+      return data.url ?? "";
     } catch (error) {
       console.error(error);
       return "";
@@ -126,8 +125,20 @@ export default function Chat() {
       ],
     },
     contact: {
-      message:
-        "Você pode entrar em contato comigo através do email: kalebunb@email.com",
+      message: (
+        <>
+          Me chama no{" "}
+          <a
+            className="font-bold underline hover:text-violeta-base-hover"
+            href="https://www.linkedin.com/in/kalebhenrique/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
+          ! Respondo rápido por lá.
+        </>
+      ),
       options: [{ text: "Voltar ao menu", nextState: "initial" }],
     },
   };
@@ -157,6 +168,40 @@ export default function Chat() {
     }
   }, [messages, currentState]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    dialogRef.current?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeChat();
+        return;
+      }
+      if (event.key !== "Tab" || !dialogRef.current) return;
+
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && (active === first || active === dialogRef.current)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
   const handleOptionClick = (option: Option) => {
     setMessages((prev) => [...prev, { text: option.text, isUser: true }]);
 
@@ -175,61 +220,73 @@ export default function Chat() {
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 50 }}
-          transition={{
-            duration: 0.2,
-          }}
-          className="root-scrollbar fixed top-0 z-50 flex h-screen w-full bg-cinza-fundo bg-opacity-80 backdrop-blur-3xl md:bottom-0 md:right-0 md:top-auto md:m-10 md:h-[700px] md:w-[380px] md:rounded-3xl md:text-base md:shadow-2xl"
-        >
-          <div className="flex h-[680px] w-full flex-col">
-            <div className="flex items-center justify-between bg-violeta-base p-5 md:rounded-t-3xl">
-              <div className="flex flex-row items-center space-x-4">
-                <img
-                  width="40"
-                  height="40"
-                  src="/eu.jpg"
-                  alt="Kaleb Avatar"
-                  className="rounded-full border"
-                />
-                <h2 className="font-semibold text-cinza-fundo">Kaleb Bot</h2>
-              </div>
-              <button
-                onClick={closeChat}
-                className="rounded-md p-1 text-cinza-fundo hover:bg-slate-400 hover:text-gray-700"
-                aria-label="Fechar Chat"
-              >
-                <IoClose size={20} />
-              </button>
-            </div>
-            <div className="custom-scrollbar flex-grow overflow-y-auto">
-              <div className="flex flex-col items-start space-y-2 p-4">
-                {messages.map((msg, key) => (
-                  <MessageWrapper
-                    key={key}
-                    message={msg.text}
-                    isUser={msg.isUser}
+    <MotionConfig reducedMotion="user">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Chat com o Kaleb Bot"
+            tabIndex={-1}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{
+              duration: 0.2,
+            }}
+            className="root-scrollbar fixed top-0 z-50 flex h-dvh w-full bg-cinza-fundo bg-opacity-80 backdrop-blur-3xl focus:outline-none md:bottom-0 md:right-0 md:top-auto md:m-10 md:h-[700px] md:w-[380px] md:rounded-3xl md:text-base md:shadow-2xl"
+          >
+            <div className="flex h-full w-full flex-col">
+              <div className="flex items-center justify-between bg-violeta-base p-5 md:rounded-t-3xl">
+                <div className="flex flex-row items-center space-x-4">
+                  <img
+                    width="40"
+                    height="40"
+                    src="/eu-120.webp"
+                    alt="Kaleb Avatar"
+                    className="rounded-full border"
                   />
-                ))}
-                <div ref={messagesEndRef} />
+                  <h2 className="font-semibold text-cinza-fundo">Kaleb Bot</h2>
+                </div>
+                <button
+                  onClick={closeChat}
+                  className="rounded-md p-1 text-cinza-fundo hover:bg-violeta-base-hover"
+                  aria-label="Fechar Chat"
+                >
+                  <IoClose size={20} />
+                </button>
               </div>
-              <div className="flex flex-col items-start space-y-2 p-4">
-                {states[currentState]?.options[0]?.text !== "" &&
-                  states[currentState]?.options?.map((option, key) => (
-                    <button key={key} onClick={() => handleOptionClick(option)}>
-                      <MessageOption message={option.text} />
-                    </button>
+              <div className="custom-scrollbar flex-grow overflow-y-auto">
+                <div
+                  className="flex flex-col items-start space-y-2 p-4"
+                  aria-live="polite"
+                >
+                  {messages.map((msg, key) => (
+                    <MessageWrapper
+                      key={key}
+                      message={msg.text}
+                      isUser={msg.isUser}
+                    />
                   ))}
-                <div ref={messagesEndRef} />
+                  <div ref={messagesEndRef} />
+                </div>
+                <div className="flex flex-col items-start space-y-2 p-4">
+                  {states[currentState]?.options[0]?.text !== "" &&
+                    states[currentState]?.options?.map((option, key) => (
+                      <button
+                        key={key}
+                        onClick={() => handleOptionClick(option)}
+                      >
+                        <MessageOption message={option.text} />
+                      </button>
+                    ))}
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </MotionConfig>
   );
 }
