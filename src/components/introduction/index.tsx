@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, MotionConfig, useReducedMotion } from "framer-motion";
 import BackgroundContent from "./backgroundContent";
 
 interface SnowflakeProps {
@@ -36,6 +36,7 @@ const Snowflake: React.FC<SnowflakeProps> = ({ size, startX, speed }) => {
 };
 
 export default function Introduction() {
+  const shouldReduceMotion = useReducedMotion();
   const snowflakes = React.useMemo(
     () =>
       Array.from({ length: 80 }).map(() => ({
@@ -47,31 +48,37 @@ export default function Introduction() {
   );
 
   return (
-    <motion.div
-      animate={{
-        background: [
-          "linear-gradient(90deg, rgba(44, 20, 49, 1) 0%, rgba(22, 23, 50, 1) 50%, rgba(4, 36, 51, 1) 100%)",
-          "linear-gradient(90deg, rgba(4, 36, 51, 1) 0%, rgba(22, 23, 50, 1) 50%, rgba(44, 20, 49, 1) 100%)",
-        ],
-      }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        repeatType: "reverse",
-      }}
-      className="relative flex h-[770px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433] md:h-screen"
-    >
-      <div className="pointer-events-none absolute inset-0 hidden md:inline">
-        {snowflakes.map((flake, index) => (
-          <Snowflake
-            key={index}
-            size={flake.size}
-            startX={flake.startX}
-            speed={flake.speed}
-          />
-        ))}
-      </div>
-      <BackgroundContent />
-    </motion.div>
+    <MotionConfig reducedMotion="user">
+      <motion.div
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                background: [
+                  "linear-gradient(90deg, rgba(44, 20, 49, 1) 0%, rgba(22, 23, 50, 1) 50%, rgba(4, 36, 51, 1) 100%)",
+                  "linear-gradient(90deg, rgba(4, 36, 51, 1) 0%, rgba(22, 23, 50, 1) 50%, rgba(44, 20, 49, 1) 100%)",
+                ],
+              }
+        }
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+        className="relative flex h-svh w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433] md:h-screen"
+      >
+        <div className="pointer-events-none absolute inset-0 hidden md:inline">
+          {snowflakes.map((flake, index) => (
+            <Snowflake
+              key={index}
+              size={flake.size}
+              startX={flake.startX}
+              speed={flake.speed}
+            />
+          ))}
+        </div>
+        <BackgroundContent />
+      </motion.div>
+    </MotionConfig>
   );
 }

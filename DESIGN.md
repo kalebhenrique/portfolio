@@ -200,7 +200,7 @@ Sistema plano com camadas tonais confirmado: profundidade vem da troca de fundo 
 
 ## Shapes
 
-Forma cheia e arredondada em todo o sistema. Superfícies grandes (cartões, fotos, painel do chat) usam 24px (`rounded-3xl`); ações usam pill (`rounded-full`) — botão de chat, chips de resposta do bot, botões da página de detalhe; bolhas de mensagem e o botão flutuante usam 16px (`rounded-2xl`); tags usam 8px (`rounded-lg`). Bordas existem apenas na página de detalhe: 1px Borda Roxa em tags, molduras e divisores — nunca na home. As fotos dentro de cartões "grudam" na borda com raio de um lado só (`rounded-l-3xl`), como peça encaixada.
+Forma cheia e arredondada em todo o sistema. Superfícies grandes (cartões, fotos, painel do chat) usam 24px (`rounded-3xl`); ações usam pill (`rounded-full`) — botão de chat, chips de resposta do bot, botões da página de detalhe; bolhas de mensagem e o botão flutuante usam 16px (`rounded-2xl`); tags usam 8px (`rounded-lg`). Bordas existem apenas na página de detalhe: 1px em tags (Borda Roxa; nas tags de tecnologia, Violeta Aurora), molduras e divisores — nunca na home. As fotos dentro de cartões "grudam" na borda com raio de um lado só (`rounded-l-3xl`), como peça encaixada.
 
 ## Components
 
@@ -229,7 +229,7 @@ Navbar fixo, centralizado, links semibold com hover Lavanda Nevasca, gap 16→48
 
 ### Hero (Introdução)
 
-Altura de viewport (h-svh mobile / h-screen desktop). Degradê animado roxo→azul-noite documentado — `#2C1431 → #161732 → #042433` em vaivém de 3s (camada de 200% movida por transform, valores exclusivos do hero, não tokens de seção) — e 80 flocos de neve em CSS puro (6–18px, opacidade 40–100%, queda em loop; nenhum movimento sob `prefers-reduced-motion`). Montanha de Celeste clicável com popover Lavanda Noturna 90% + blur. Setas de rolagem animadas na base.
+Altura de viewport (h-svh mobile / h-screen desktop). Degradê animado roxo→azul-noite documentado — `#2C1431 → #161732 → #042433` em vaivém de 3s (valores exclusivos do hero, não tokens de seção) — e 80 flocos de neve animados (6–18px, opacidade 40–100%, cruzamento em loop). Escolha deliberada: a animação pesada do hero é intencional e se mantém; sob `prefers-reduced-motion` o vaivém para e os flocos ficam estáticos fora de cena. Montanha de Celeste clicável com popover Lavanda Noturna 90% + blur. Setas de rolagem animadas na base.
 
 ### Ícones
 

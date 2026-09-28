@@ -45,58 +45,6 @@
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Neve do hero: queda em CSS puro (GPU). 80 flocos, 6–18px, opacidade 40–100%. */
-.snowflake {
-  position: absolute;
-  top: -10vh;
-  border-radius: 9999px;
-  background: #ffffff;
-  animation: snow-fall linear infinite;
-}
-
-@keyframes snow-fall {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(3vw, 120vh, 0);
-  }
-}
-
-/* Vaivém do degradê do hero: camada de 200% movida por transform (compositor), sem repaint de background. */
-.hero-gradient {
-  isolation: isolate;
-  background-color: #161732;
-}
-
-.hero-gradient::before {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 200%;
-  background: linear-gradient(90deg, #2c1431 0%, #161732 25%, #042433 50%, #161732 75%, #2c1431 100%);
-  animation: hero-shift 3s ease-in-out infinite alternate;
-}
-
-@keyframes hero-shift {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-25%, 0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .snowflake {
-    animation: none;
-  }
-  .hero-gradient::before {
-    animation: none;
-  }
-}
-
 @layer base {
   * {
     @apply border-border;
