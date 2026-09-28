@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-28",
+  "title": "Design System: Kaleb H — Portfólio",
+  "extensions": {
+    "colorMeta": {
+      "granito-noturno": { "role": "neutral", "displayName": "Granito Noturno", "canonical": "#242C3B", "tonalRamp": ["oklch(15% 0.03 250)", "oklch(22% 0.03 250)", "oklch(28% 0.03 250)", "oklch(36% 0.03 250)", "oklch(45% 0.03 250)", "oklch(55% 0.03 250)", "oklch(68% 0.03 250)", "oklch(85% 0.02 250)"] },
+      "granito-caverna": { "role": "neutral", "displayName": "Granito Caverna", "canonical": "#171C25", "tonalRamp": ["oklch(12% 0.03 250)", "oklch(18% 0.03 250)", "oklch(22% 0.03 250)", "oklch(30% 0.03 250)", "oklch(40% 0.03 250)", "oklch(52% 0.03 250)", "oklch(66% 0.02 250)", "oklch(82% 0.02 250)"] },
+      "granito-penhasco": { "role": "neutral", "displayName": "Granito Penhasco", "canonical": "#343D4F", "tonalRamp": ["oklch(14% 0.03 250)", "oklch(20% 0.03 250)", "oklch(26% 0.03 250)", "oklch(32% 0.03 250)", "oklch(42% 0.03 250)", "oklch(54% 0.03 250)", "oklch(68% 0.02 250)", "oklch(84% 0.02 250)"] },
+      "roxo-abismo": { "role": "neutral", "displayName": "Roxo Abismo", "canonical": "#181129", "tonalRamp": ["oklch(12% 0.05 300)", "oklch(17% 0.05 300)", "oklch(22% 0.05 300)", "oklch(30% 0.05 300)", "oklch(40% 0.05 300)", "oklch(52% 0.05 300)", "oklch(66% 0.04 300)", "oklch(82% 0.03 300)"] },
+      "borda-roxa": { "role": "neutral", "displayName": "Borda Roxa", "canonical": "#3B234B", "tonalRamp": ["oklch(13% 0.06 300)", "oklch(20% 0.06 300)", "oklch(28% 0.06 300)", "oklch(37% 0.06 300)", "oklch(47% 0.06 300)", "oklch(58% 0.05 300)", "oklch(71% 0.04 300)", "oklch(85% 0.03 300)"] },
+      "lavanda-noturna": { "role": "primary", "displayName": "Lavanda Noturna", "canonical": "#B9BDEF", "tonalRamp": ["oklch(15% 0.07 280)", "oklch(25% 0.07 280)", "oklch(35% 0.07 280)", "oklch(45% 0.07 280)", "oklch(55% 0.07 280)", "oklch(65% 0.07 280)", "oklch(80% 0.07 280)", "oklch(95% 0.03 280)"] },
+      "lavanda-nevasca": { "role": "primary", "displayName": "Lavanda Nevasca", "canonical": "#D9DBF2", "tonalRamp": ["oklch(15% 0.03 280)", "oklch(25% 0.03 280)", "oklch(38% 0.03 280)", "oklch(50% 0.03 280)", "oklch(62% 0.03 280)", "oklch(75% 0.03 280)", "oklch(89% 0.03 280)", "oklch(96% 0.015 280)"] },
+      "violeta-nevoa": { "role": "tertiary", "displayName": "Violeta Névoa", "canonical": "#877CC4", "tonalRamp": ["oklch(15% 0.1 290)", "oklch(24% 0.1 290)", "oklch(33% 0.1 290)", "oklch(42% 0.1 290)", "oklch(51% 0.1 290)", "oklch(60% 0.1 290)", "oklch(72% 0.09 290)", "oklch(88% 0.05 290)"] },
+      "violeta-aurora": { "role": "tertiary", "displayName": "Violeta Aurora", "canonical": "#A498EA", "tonalRamp": ["oklch(15% 0.11 290)", "oklch(25% 0.11 290)", "oklch(35% 0.11 290)", "oklch(45% 0.11 290)", "oklch(55% 0.11 290)", "oklch(70% 0.11 290)", "oklch(80% 0.09 290)", "oklch(93% 0.04 290)"] },
+      "azul-celeste": { "role": "secondary", "displayName": "Azul Celeste", "canonical": "#7FC8E3", "tonalRamp": ["oklch(15% 0.09 220)", "oklch(25% 0.09 220)", "oklch(35% 0.09 220)", "oklch(45% 0.09 220)", "oklch(56% 0.09 220)", "oklch(68% 0.09 220)", "oklch(78% 0.09 220)", "oklch(93% 0.04 220)"] },
+      "azul-celeste-neve": { "role": "secondary", "displayName": "Azul Celeste Neve", "canonical": "#A4E3FA", "tonalRamp": ["oklch(15% 0.07 220)", "oklch(26% 0.07 220)", "oklch(38% 0.07 220)", "oklch(50% 0.07 220)", "oklch(62% 0.07 220)", "oklch(75% 0.07 220)", "oklch(87% 0.07 220)", "oklch(96% 0.03 220)"] },
+      "texto-suave": { "role": "neutral", "displayName": "Texto Suave", "canonical": "#8E91B6", "tonalRamp": ["oklch(15% 0.04 275)", "oklch(24% 0.04 275)", "oklch(33% 0.04 275)", "oklch(43% 0.04 275)", "oklch(53% 0.04 275)", "oklch(65% 0.04 275)", "oklch(78% 0.03 275)", "oklch(92% 0.02 275)"] },
+      "neve": { "role": "neutral", "displayName": "Neve", "canonical": "#FFFFFF", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(37% 0 0)", "oklch(48% 0 0)", "oklch(59% 0 0)", "oklch(70% 0 0)", "oklch(85% 0 0)", "oklch(100% 0 0)"] },
+      "pastel-vermelho": { "role": "tertiary", "displayName": "Pastel Vermelho", "canonical": "#FCA5A5", "tonalRamp": ["oklch(15% 0.11 25)", "oklch(26% 0.11 25)", "oklch(37% 0.11 25)", "oklch(48% 0.11 25)", "oklch(59% 0.11 25)", "oklch(70% 0.11 25)", "oklch(80% 0.11 25)", "oklch(94% 0.05 25)"] },
+      "pastel-esmeralda": { "role": "tertiary", "displayName": "Pastel Esmeralda", "canonical": "#6EE7B7", "tonalRamp": ["oklch(15% 0.13 165)", "oklch(27% 0.13 165)", "oklch(39% 0.13 165)", "oklch(51% 0.13 165)", "oklch(63% 0.13 165)", "oklch(74% 0.13 165)", "oklch(82% 0.13 165)", "oklch(95% 0.05 165)"] },
+      "pastel-lilas": { "role": "tertiary", "displayName": "Pastel Lilás", "canonical": "#D8B4FE", "tonalRamp": ["oklch(15% 0.11 305)", "oklch(27% 0.11 305)", "oklch(39% 0.11 305)", "oklch(51% 0.11 305)", "oklch(63% 0.11 305)", "oklch(74% 0.11 305)", "oklch(81% 0.11 305)", "oklch(95% 0.04 305)"] },
+      "pastel-ambar": { "role": "tertiary", "displayName": "Pastel Âmbar", "canonical": "#FCD34D", "tonalRamp": ["oklch(15% 0.13 90)", "oklch(28% 0.13 90)", "oklch(41% 0.13 90)", "oklch(54% 0.13 90)", "oklch(67% 0.13 90)", "oklch(78% 0.13 90)", "oklch(86% 0.13 90)", "oklch(96% 0.06 90)"] },
+      "pastel-ciano": { "role": "tertiary", "displayName": "Pastel Ciano", "canonical": "#67E8F9", "tonalRamp": ["oklch(15% 0.11 210)", "oklch(27% 0.11 210)", "oklch(39% 0.11 210)", "oklch(51% 0.11 210)", "oklch(63% 0.11 210)", "oklch(75% 0.11 210)", "oklch(84% 0.11 210)", "oklch(96% 0.04 210)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Títulos de seção na home (Stack & Trajetória, Portfólio, Sobre)." },
+      "headline": { "displayName": "Headline", "purpose": "Título da página de detalhe do projeto, na cor de destaque." },
+      "title": { "displayName": "Title", "purpose": "Subtítulos de seção." },
+      "body": { "displayName": "Body", "purpose": "Corpo de texto padrão do site (14px mobile → 20px md)." },
+      "label": { "displayName": "Label", "purpose": "Tags, datas, rótulos de navegação." }
+    },
+    "shadows": [
+      { "name": "sombra-acao", "value": "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)", "purpose": "Botão primário de ação (Acessar Projeto). Acompanha affordance de clique." },
+      { "name": "sombra-flutuante", "value": "0 25px 50px -12px rgba(0,0,0,0.25)", "purpose": "Painel do chat, imagem-destaque, botão voltar ao topo. Só em elementos sobrepostos à página." }
+    ],
+    "motion": [
+      { "name": "hover-padrao", "value": "300ms cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Hover de cartões e transições de cor de botões." },
+      { "name": "fade-entrada", "value": "1000ms ease-in-out translateY(40px)", "purpose": "Fade-in de seções ao entrar na viewport (IntersectionObserver, threshold 0.1)." },
+      { "name": "chat-entrada", "value": "200ms translateY(50px) + fade", "purpose": "Abertura do painel do chat." },
+      { "name": "hero-degrade", "value": "3000ms vaivém linear", "purpose": "Alternância do degradê do hero entre #2C1431→#161732→#042433 e o inverso." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão CTA Chat",
+      "kind": "button",
+      "refersTo": "button-chat",
+      "description": "CTA principal do site (navbar, seção Sobre, footer). Abre o chat.",
+      "html": "<button class=\"ds-btn-chat\">Chat</button>",
+      "css": ".ds-btn-chat { background: #B9BDEF; color: #242C3B; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; border: none; border-radius: 9999px; padding: 8px 16px; cursor: pointer; transition: background 150ms; } .ds-btn-chat:hover { background: #D9DBF2; } .ds-btn-chat:focus-visible { outline: none; box-shadow: 0 0 0 2px #7FC8E3; }"
+    },
+    {
+      "name": "Botão Acessar Projeto",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "Ação primária na página de projeto; fundo Azul Celeste com sombra de ação.",
+      "html": "<button class=\"ds-btn-accent\">Acessar Projeto</button>",
+      "css": ".ds-btn-accent { background: #7FC8E3; color: #181129; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; border: none; border-radius: 9999px; padding: 10px 20px; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); transition: background 150ms; } .ds-btn-accent:hover { background: #A4E3FA; } .ds-btn-accent:focus-visible { outline: none; box-shadow: 0 0 0 2px #7FC8E3; }"
+    },
+    {
+      "name": "Botão Ver Código",
+      "kind": "button",
+      "refersTo": "button-ghost-dark",
+      "description": "Ação secundária na página de projeto; fantasma granito com borda roxa.",
+      "html": "<button class=\"ds-btn-ghost\">Ver Código no GitHub</button>",
+      "css": ".ds-btn-ghost { background: #242C3B; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; border: 1px solid #3B234B; border-radius: 9999px; padding: 10px 20px; cursor: pointer; transition: background 150ms; } .ds-btn-ghost:hover { background: #343D4F; } .ds-btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 2px #7FC8E3; }"
+    },
+    {
+      "name": "Tag de Tecnologia",
+      "kind": "chip",
+      "refersTo": "chip-tag",
+      "description": "Tag #tecnologia na página de projeto; roxo abismo com borda roxa.",
+      "html": "<span class=\"ds-tag\">#React</span>",
+      "css": ".ds-tag { display: inline-block; background: #181129; color: #A498EA; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; border: 1px solid #3B234B; border-radius: 8px; padding: 4px 12px; }"
+    },
+    {
+      "name": "Cartão de Projeto",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "Cartão da grade de projetos: fundo pastel, texto granito, imagem ancorada à esquerda, hover com escala.",
+      "html": "<a href=\"#\" class=\"ds-card-project\"><div class=\"ds-card-project-text\"><h3>Freelancer</h3><h4>Sistema de Clínica</h4></div><img class=\"ds-card-project-img\" src=\"\" alt=\"\" /></a>",
+      "css": ".ds-card-project { display: flex; flex-direction: column; width: 100%; height: 320px; background: #6EE7B7; color: #242C3B; font-family: 'Poppins', sans-serif; border-radius: 24px; overflow: hidden; text-decoration: none; cursor: pointer; transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-card-project:hover { transform: scale(1.1); } .ds-card-project:focus-visible { outline: none; box-shadow: 0 0 0 2px #7FC8E3; } .ds-card-project-text { display: flex; flex: 1; flex-direction: column; align-items: flex-end; justify-content: flex-end; gap: 8px; padding: 16px 16px 0 0; text-align: right; } .ds-card-project-text h3 { margin: 0; font-size: 24px; font-weight: 700; } .ds-card-project-text h4 { margin: 0; font-size: 16px; font-weight: 500; } .ds-card-project-img { margin-top: auto; margin-left: 16px; width: 70%; height: 45%; object-fit: cover; border-top-left-radius: 24px; border-bottom-left-radius: 24px; }"
+    },
+    {
+      "name": "Bolha do Bot",
+      "kind": "custom",
+      "refersTo": "bubble-bot",
+      "description": "Mensagem do Kaleb Bot; violeta névoa, alinhada à esquerda.",
+      "html": "<div class=\"ds-bubble-bot\">Olá, aqui é o Kaleb</div>",
+      "css": ".ds-bubble-bot { display: inline-block; align-self: flex-start; background: #877CC4; color: #242C3B; font-family: 'Poppins', sans-serif; font-size: 16px; border-radius: 16px; padding: 16px; max-width: 85%; }"
+    },
+    {
+      "name": "Bolha do Usuário",
+      "kind": "custom",
+      "refersTo": "bubble-user",
+      "description": "Mensagem do visitante; lavanda noturna, alinhada à direita.",
+      "html": "<div class=\"ds-bubble-user\">Quero uma foto surpresa de gato! 🐱</div>",
+      "css": ".ds-bubble-user { display: inline-block; align-self: flex-end; background: #B9BDEF; color: #242C3B; font-family: 'Poppins', sans-serif; font-size: 16px; border-radius: 16px; padding: 16px; max-width: 85%; }"
+    },
+    {
+      "name": "Chip de Resposta do Chat",
+      "kind": "chip",
+      "refersTo": "chat-option",
+      "description": "Opção clicável do bot; outline lavanda em pill.",
+      "html": "<button class=\"ds-chat-option\">Cadê o repositório deste portfólio?</button>",
+      "css": ".ds-chat-option { display: inline-block; background: transparent; color: #B9BDEF; font-family: 'Poppins', sans-serif; font-size: 16px; border: 2px solid #B9BDEF; border-radius: 9999px; padding: 16px; cursor: pointer; max-width: 85%; text-align: left; transition: background 150ms, color 150ms; } .ds-chat-option:hover { background: #B9BDEF; color: #242C3B; } .ds-chat-option:focus-visible { outline: none; box-shadow: 0 0 0 2px #7FC8E3; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Noite na montanha Celeste",
+    "overview": "O sistema visual é uma noite de inverno na montanha do jogo Celeste: céu profundo em degradê roxo-azulado, neve caindo, e cores claras que se destacam como lanternas no escuro. O fundo escuro (Granito Noturno e Roxo Abismo) ocupa quase toda a tela; as cores vivas existem para falar e agir — a Lavanda Noturna é a voz do site (texto, CTAs, o próprio bot), o Azul Celeste é a ação (ícones, foco, botões de acesso a projeto). Nada grita; tudo ilumina. A densidade é média com margens generosas e a personalidade é confiante e direta — componentes se afirmam com contraste e peso, sem ornamento gratuito — mas com afeto nas bordas: cantos generosos de 24px, pills para toda ação, toques lúdicos (neve animada, fotos de gatos no bot) que pertencem à voz do Kaleb, não à decoração.",
+    "keyCharacteristics": [
+      "Fundo escuro dominante; cores claras só onde há voz ou ação.",
+      "Cantos cheios: 24px em superfícies, pill (9999px) em toda ação, 16px em bolhas de chat.",
+      "Duas vozes de acento com papéis fixos: lavanda fala, azul age.",
+      "Profundidade plana: camadas tonais, blur em overlay fixo, sombra só no que flutua.",
+      "Tipografia Poppins única, pesos 400/600/700, escala de 36px a 72px nos títulos.",
+      "Movimento suave e de baixa fricção: fade-in ao rolar, scroll suave, hover com escala contida."
+    ],
+    "rules": [
+      { "name": "A Regra das Duas Vozes", "body": "Lavanda fala, azul age. Texto e CTA primário são sempre lavanda; ícone, foco e ação de projeto são sempre azul. Trocar os papéis quebra a gramática do site.", "section": "colors" },
+      { "name": "A Regra da Noite", "body": "Fundo escuro ocupa no mínimo ~80% de qualquer viewport. Cores vivas (lavanda, azul, violetas, pastéis) são lanternas: aparecem em texto, ícones e superfícies pequenas, nunca como grandes campos além dos pastéis de cartão.", "section": "colors" },
+      { "name": "A Regra do Texto Sobre Pastel", "body": "Texto sobre cartão pastel é sempre Granito Noturno — jamais branco, jamais lavanda.", "section": "colors" },
+      { "name": "A Regra dos Três Pesos", "body": "Só 400, 600 e 700 existem no carregamento da fonte. Qualquer font-extrabold/800 renderiza peso sintetizado (falso) — não usar até o peso ser importado de verdade.", "section": "typography" },
+      { "name": "A Regra do que Flutua", "body": "Sombra existe apenas em elementos fixos sobrepostos ao conteúdo (chat, FAB, imagem-destaque). Cartão, tag e seção nunca têm sombra em repouso — separação é tom, não sombra.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar Lavanda Noturna para todo texto principal sobre fundo escuro — branco é exceção de prosa/artigo, não padrão.",
+      "Do usar pill (9999px) em toda ação clicável; cartões e superfícies em 24px; bolhas em 16px.",
+      "Do aplicar o par fundo→texto correto: pastel com Granito Noturno, escuro com Lavanda/Neve.",
+      "Do dar hover de cor nos links (Lavanda Nevasca) e escala contida (102–110%) nos cartões.",
+      "Do anunciar foco com ring-2 Azul Celeste em qualquer elemento focável customizado.",
+      "Do manter o peso máximo de fonte em 700 (400/600/700 são os pesos carregados)."
+    ],
+    "donts": [
+      "Don't usar sombra em superfície em repouso (cartão, tag, seção) — sombra é só para o que flutua (chat, FAB, imagem-destaque).",
+      "Don't usar borda na home — borda 1px Borda Roxa é idioma da página de detalhe.",
+      "Don't usar font-extrabold/800 enquanto o peso não estiver importado (renderiza sintetizado).",
+      "Don't trocar as vozes: nunca azul para texto primário ou lavanda para anel de foco/ação.",
+      "Don't introduzir branco puro como fundo de seção — a noite não tem clareira.",
+      "Don't criar segundo tipo de cartão de projeto com outra altura, raio ou padrão de hover."
+    ]
+  }
+}
