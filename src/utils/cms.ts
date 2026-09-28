@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import YAML from "yaml";
 
 export interface ProjectPayload {
   slug: string;
@@ -526,3 +527,185 @@ export async function saveUploadedImage(
     return { success: true, url: dataUrl };
   }
 }
+
+// ==========================================
+// EXPERIÊNCIAS PROFISSIONAIS (experiences.md)
+// ==========================================
+
+export interface ExperienceItem {
+  startDate: string;
+  endDate: string;
+  position: string;
+  enterprise: string;
+  summary: string[];
+  enterpriseUrl: string;
+}
+
+/** Analisa o arquivo Markdown de experiências */
+export function parseExperiencesMarkdown(raw: string): ExperienceItem[] {
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match) return [];
+  try {
+    const data = YAML.parse(match[1]);
+    return Array.isArray(data?.experiences) ? data.experiences : [];
+  } catch (e) {
+    console.error("Erro ao analisar YAML de experiências:", e);
+    return [];
+  }
+}
+
+/** Formata a lista de experiências para o arquivo Markdown com frontmatter YAML */
+export function serializeExperiencesMarkdown(items: ExperienceItem[]): string {
+  const doc = YAML.stringify({ experiences: items });
+  return `---\n${doc}---\n`;
+}
+
+/** Obtém a lista de experiências profissionais */
+export async function getExperiences(): Promise<ExperienceItem[]> {
+  const gh = getGitHubConfig();
+  const targetPath = "src/content/experiences.md";
+
+  if (gh.isEnabled) {
+    try {
+      const res = await fetch(
+        `https://api.github.com/repos/${gh.owner}/${gh.repo}/contents/${targetPath}?ref=${gh.branch}`,
+        {
+          headers: {
+            Authorization: `Bearer ${gh.token}`,
+            Accept: "application/vnd.github.v3+json",
+            "User-Agent": "Portfolio-CMS",
+          },
+        },
+      );
+      if (res.ok) {
+        const fileData = await res.json();
+        const content = Buffer.from(fileData.content, "base64").toString("utf-8");
+        return parseExperiencesMarkdown(content);
+      }
+    } catch {
+      // fallback local
+    }
+  }
+
+  // Local
+  try {
+    const fullPath = path.resolve(process.cwd(), "src/content/experiences.md");
+    if (fs.existsSync(fullPath)) {
+      const raw = fs.readFileSync(fullPath, "utf-8");
+      return parseExperiencesMarkdown(raw);
+    }
+  } catch (e) {
+    console.error("Erro ao ler experiences.md local:", e);
+  }
+  return [];
+}
+
+/** Obtém o conteúdo bruto do arquivo experiences.md */
+export async function getExperiencesRaw(): Promise<string> {
+  const gh = getGitHubConfig();
+  const targetPath = "src/content/experiences.md";
+
+  if (gh.isEnabled) {
+    try {
+      const res = await fetch(
+        `https://api.github.com/repos/${gh.owner}/${gh.repo}/contents/${targetPath}?ref=${gh.branch}`,
+        {
+          headers: {
+            Authorization: `Bearer ${gh.token}`,
+            Accept: "application/vnd.github.v3+json",
+            "User-Agent": "Portfolio-CMS",
+          },
+        },
+      );
+      if (res.ok) {
+        const fileData = await res.json();
+        return Buffer.from(fileData.content, "base64").toString("utf-8");
+      }
+    } catch {
+      // fallback local
+    }
+  }
+
+  try {
+    const fullPath = path.resolve(process.cwd(), "src/content/experiences.md");
+    if (fs.existsSync(fullPath)) {
+      return fs.readFileSync(fullPath, "utf-8");
+    }
+  } catch {}
+  return "";
+}
+
+/** Salva o conteúdo bruto do arquivo experiences.md */
+export async function saveExperiencesRaw(
+  rawContent: string,
+  authorName = "Kaleb Henrique",
+): Promise<{ success: boolean; message?: string }> {
+  const gh = getGitHubConfig();
+  const targetPath = "src/content/experiences.md";
+
+  if (gh.isEnabled) {
+    try {
+      let currentSha: string | undefined;
+      const getFileRes = await fetch(
+        `https://api.github.com/repos/${gh.owner}/${gh.repo}/contents/${targetPath}?ref=${gh.branch}`,
+        {
+          headers: {
+            Authorization: `Bearer ${gh.token}`,
+            Accept: "application/vnd.github.v3+json",
+            "User-Agent": "Portfolio-CMS",
+          },
+        },
+      );
+      if (getFileRes.ok) {
+        const fileData = await getFileRes.json();
+        currentSha = fileData.sha;
+      }
+
+      const base64Content = Buffer.from(rawContent, "utf-8").toString("base64");
+
+      const commitRes = await fetch(
+        `https://api.github.com/repos/${gh.owner}/${gh.repo}/contents/${targetPath}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${gh.token}`,
+            Accept: "application/vnd.github.v3+json",
+            "Content-Type": "application/json",
+            "User-Agent": "Portfolio-CMS",
+          },
+          body: JSON.stringify({
+            message: `cms: atualiza experiências profissionais por ${authorName}`,
+            content: base64Content,
+            branch: gh.branch,
+            sha: currentSha,
+          }),
+        },
+      );
+
+      if (commitRes.ok) {
+        return { success: true };
+      }
+    } catch (e: any) {
+      // fallback local
+    }
+  }
+
+  // Local
+  try {
+    const fullPath = path.resolve(process.cwd(), "src/content/experiences.md");
+    fs.writeFileSync(fullPath, rawContent, "utf-8");
+    return { success: true };
+  } catch (e: any) {
+    return { success: false, message: e?.message || "Erro ao salvar arquivo local" };
+  }
+}
+
+/** Salva lista estruturada de experiências no arquivo experiences.md */
+export async function saveExperiences(
+  items: ExperienceItem[],
+  authorName = "Kaleb Henrique",
+): Promise<{ success: boolean; message?: string }> {
+  const raw = serializeExperiencesMarkdown(items);
+  return saveExperiencesRaw(raw, authorName);
+}
+

@@ -1,11 +1,9 @@
-import React from "react";
 import { motion } from "framer-motion";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
-import CldImage from "../cldImage";
 import ArrowDownAnimate from "./arrowDownAnimate";
 
 export default function BackgroundContent() {
@@ -23,12 +21,12 @@ export default function BackgroundContent() {
         <div className="flex flex-row items-end">
           <Popover>
             <PopoverTrigger className="relative h-[274px] w-[360px] lg:h-[457px] lg:w-[600px]">
-              <CldImage
-                fill
-                priority
+              <img
                 src="/celeste2.png"
                 alt="Montanha Celeste"
-                className="z-0"
+                fetchPriority="high"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover z-0"
               />
             </PopoverTrigger>
             <PopoverContent className="mr-2 w-52 bg-violeta-base bg-opacity-90 text-sm text-cinza-fundo backdrop-blur-sm md:w-80 md:text-base">
@@ -42,7 +40,7 @@ export default function BackgroundContent() {
         </div>
 
         <div className="py-3 text-center md:w-[500px] lg:w-[600px]">
-          <span className="text-lg md:text-2xl md:leading-relaxed">
+          <span className="text-lg font-semibold md:text-2xl md:leading-relaxed">
             Sou apaixonado por criar experiências envolventes, acessíveis e
             centradas no usuário.
           </span>

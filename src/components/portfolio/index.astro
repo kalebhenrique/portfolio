@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import FadeInWhenVisible from "../fadeInWhenVisible";
-import ProjectCard from "./projectCard";
+import FadeInWhenVisible from "../FadeInWhenVisible.astro";
+import ProjectCard from "./ProjectCard.astro";
 
 const projects = await getCollection("projects", ({ data }) => !data.draft);
 projects.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
@@ -11,12 +11,12 @@ projects.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
   id="projetos"
   class="flex flex-col items-center justify-center space-y-16 bg-cinza-fundo px-6 pb-16 md:items-start md:justify-start md:px-40 md:py-24 xl:px-60 xl:py-28"
 >
-  <FadeInWhenVisible client:visible>
-    <h1 class="text-4xl text-violeta-titulo-contraste md:text-7xl font-semibold">
+  <FadeInWhenVisible>
+    <h2 class="text-4xl text-violeta-titulo-contraste md:text-7xl font-semibold">
       Portfólio
-    </h1>
+    </h2>
   </FadeInWhenVisible>
-  <FadeInWhenVisible client:visible delay={0.2}>
+  <FadeInWhenVisible delay={0.2}>
     <div class="grid-col-1 grid gap-8 md:grid-cols-3 xl:gap-14 w-full">
       {projects.map((project) => {
         const isWide =

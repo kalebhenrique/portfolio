@@ -15,7 +15,7 @@ const projects = defineCollection({
   schema: z.object({
     nome: z.string(),
     tipo: z.string(),
-    src: z.string(), // ID Cloudinary (ex: "api-ruby") ou caminho de imagem (/images/uploads/...)
+    src: z.string(),
     alt: z.string(),
     bgColor: z.string().default("bg-azul-kaleb"),
     colSpan: z.enum(["1", "2"]).default("1"),

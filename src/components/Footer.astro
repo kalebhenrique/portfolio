@@ -1,0 +1,91 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+---
+
+<footer class="bg-cinza-fundo md:px-40 md:py-12 xl:px-60 xl:py-28">
+  <div class="flex flex-row items-start md:space-x-72 xl:space-x-[600px]">
+    <div class="hidden font-semibold md:inline">
+      <span>Kaleb Henrique@2026</span>
+    </div>
+    <div class="mx-6 flex grow items-start justify-between py-7 md:py-0">
+      <ul class="flex flex-col space-y-6">
+        <li>
+          <h2 class="font-semibold text-violeta-titulo-contraste">
+            Onde estou
+          </h2>
+        </li>
+        <li>
+          <a
+            class="inline-flex items-center hover:text-violeta-base-hover"
+            target="_blank"
+            rel="noreferrer"
+            href="https://github.com/kalebhenrique"
+          >
+            <span>GitHub</span>
+            <span class="flex items-start ml-0.5">
+              <ArrowUpRight class="w-4 h-4" />
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="inline-flex items-center hover:text-violeta-base-hover"
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.linkedin.com/in/kalebhenrique/"
+          >
+            <span>LinkedIn</span>
+            <span class="flex items-start ml-0.5">
+              <ArrowUpRight class="w-4 h-4" />
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="inline-flex items-center hover:text-violeta-base-hover"
+            target="_blank"
+            rel="noreferrer"
+            href="https://drive.google.com/drive/folders/1r4_Hosk6TaU2fzFxwKn5AJSYdhE2Npe9?usp=sharing"
+          >
+            <span>Baixar CV</span>
+            <span class="flex items-start ml-0.5">
+              <ArrowUpRight class="w-4 h-4" />
+            </span>
+          </a>
+        </li>
+      </ul>
+      <ul class="flex flex-col space-y-6">
+        <li>
+          <h2 class="font-semibold text-violeta-titulo-contraste">
+            Contato
+          </h2>
+        </li>
+        <li>
+          <button
+            id="footer-chat-btn"
+            type="button"
+            class="hover:text-violeta-base-hover cursor-pointer"
+          >
+            Chat
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="flex justify-center py-7 md:hidden">
+    <span>Kaleb Henrique@2026</span>
+  </div>
+</footer>
+
+<script>
+  import { toggleChat } from "~/stores/chatStore";
+
+  function setupFooter() {
+    document.getElementById("footer-chat-btn")?.addEventListener("click", () => {
+      toggleChat();
+    });
+  }
+
+  setupFooter();
+  document.addEventListener("astro:page-load", setupFooter);
+</script>

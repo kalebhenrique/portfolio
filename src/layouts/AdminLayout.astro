@@ -1,11 +1,11 @@
 ---
 import { getSession } from "../utils/auth";
-import { FolderGit2, Plus, LogOut, ExternalLink } from "@lucide/astro";
+import { FolderGit2, Plus, LogOut, ExternalLink, Briefcase } from "@lucide/astro";
 import "~/styles/globals.css";
 
 interface Props {
   title: string;
-  activeNav?: "projects" | "new";
+  activeNav?: "projects" | "new" | "experiences" | "new-experience";
 }
 
 export const prerender = false;
@@ -58,7 +58,7 @@ const session = Astro.locals.user || (await getSession(Astro.cookies)) || { user
         </div>
 
         <!-- Nav -->
-        <nav class="flex items-center space-x-1 sm:space-x-4">
+        <nav class="flex items-center space-x-1 sm:space-x-3">
           <a
             href="/admin"
             class={`inline-flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -69,6 +69,17 @@ const session = Astro.locals.user || (await getSession(Astro.cookies)) || { user
           >
             <FolderGit2 size={18} />
             <span class="hidden sm:inline">Projetos</span>
+          </a>
+          <a
+            href="/admin/experiences"
+            class={`inline-flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              activeNav === "experiences"
+                ? "bg-[#242C3B] text-[#7FC8E3] border border-[#7FC8E3]/30"
+                : "text-gray-300 hover:text-white hover:bg-[#242C3B]/60"
+            }`}
+          >
+            <Briefcase size={18} />
+            <span class="hidden sm:inline">Experiências</span>
           </a>
           <a
             href="/admin/projects/new"

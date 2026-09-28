@@ -1,0 +1,40 @@
+---
+interface Props {
+  delay?: number;
+  class?: string;
+}
+
+const { delay = 0, class: className = "" } = Astro.props;
+---
+
+<div
+  class={`fade-in-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-in-out ${className}`}
+  style={delay ? `transition-delay: ${delay}s;` : undefined}
+>
+  <slot />
+</div>
+
+<script>
+  function setupFadeIn() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-10");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "50px" }
+    );
+
+    document.querySelectorAll(".fade-in-on-scroll:not([data-observed])").forEach((el) => {
+      el.setAttribute("data-observed", "true");
+      observer.observe(el);
+    });
+  }
+
+  setupFadeIn();
+  document.addEventListener("astro:page-load", setupFadeIn);
+</script>

@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import { IoClose } from "react-icons/io5";
 import MessageWrapper from "./messageWrapper";
 import { motion, AnimatePresence } from "framer-motion";
 import MessageOption from "./messageOption";
 import { useStore } from "@nanostores/react";
 import { isChatOpen, closeChat } from "~/stores/chatStore";
-import CldImage from "../cldImage";
 
 interface Message {
   text: string | ReactNode;
@@ -190,7 +189,7 @@ export default function Chat() {
           <div className="flex h-[680px] w-full flex-col">
             <div className="flex items-center justify-between bg-violeta-base p-5 md:rounded-t-3xl">
               <div className="flex flex-row items-center space-x-4">
-                <CldImage
+                <img
                   width="40"
                   height="40"
                   src="/eu.jpg"

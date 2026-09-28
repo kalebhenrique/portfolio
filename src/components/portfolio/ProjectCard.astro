@@ -1,0 +1,44 @@
+---
+interface Props {
+  tipo: string;
+  nome: string;
+  src: string;
+  alt: string;
+  bgColor: string;
+  colSpan?: "1" | "2" | string;
+}
+
+const {
+  tipo,
+  nome,
+  src,
+  alt,
+  bgColor,
+  colSpan = "1",
+} = Astro.props;
+
+const colSpanClass =
+  colSpan === "2" || bgColor.includes("col-span-2")
+    ? "md:col-span-2"
+    : "";
+---
+
+<div
+  class={`flex h-80 w-full flex-col rounded-3xl ${bgColor} ${colSpanClass} transform overflow-hidden transition-transform duration-300 ease-in-out hover:scale-110`}
+>
+  <div class="flex flex-1 flex-col items-end justify-end space-y-2 pr-4 pt-4 text-cinza-fundo">
+    <h3 class="text-lg md:text-2xl font-bold">{tipo}</h3>
+    <h4 class="font-medium">{nome}</h4>
+  </div>
+  <div class="ml-4 mt-auto flex w-full transform items-end justify-end transition-transform duration-300 ease-in-out hover:translate-y-3">
+    <img
+      width="600"
+      height="400"
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      class="rounded-l-3xl object-cover"
+    />
+  </div>
+</div>

@@ -1,0 +1,50 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+
+interface Props {
+  startDate: string;
+  endDate: string;
+  position: string;
+  enterprise: string;
+  summary: string[];
+  enterpriseUrl: string;
+}
+
+const {
+  startDate,
+  endDate,
+  position,
+  enterprise,
+  summary,
+  enterpriseUrl,
+} = Astro.props;
+---
+
+<div class="ml-3 mt-4 flex flex-col md:flex-row md:space-x-20">
+  <div>
+    <p class="w-44 text-[#8E91B6]">{`${startDate} — ${endDate}`}</p>
+  </div>
+  <div>
+    <h3 class="text-violeta-titulo-contraste font-semibold">
+      {position} na{" "}
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href={enterpriseUrl}
+        class="inline-flex items-center hover:text-violeta-base-hover"
+      >
+        <span>{enterprise}</span>
+        <span class="flex items-start ml-0.5">
+          <ArrowUpRight class="w-4 h-4" />
+        </span>
+      </a>
+    </h3>
+    <ul class="ml-5 mt-2 list-disc text-violeta-base">
+      {summary && summary.map((item) => (
+        <li>
+          <Fragment set:html={item} />
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

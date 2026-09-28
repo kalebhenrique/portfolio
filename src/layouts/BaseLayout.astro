@@ -1,6 +1,6 @@
 ---
-import Navbar from "~/components/navbar";
-import Footer from "~/components/footer";
+import Navbar from "~/components/Navbar.astro";
+import Footer from "~/components/Footer.astro";
 import Chat from "~/components/chat";
 import "~/styles/globals.css";
 
@@ -12,7 +12,7 @@ interface Props {
 
 const {
   title = "Kaleb H • Dev Web",
-  description = "Kaleb Henrique, dev web fullstack react",
+  description = "Kaleb Henrique, desenvolvedor web fullstack",
   showNavbar = true,
 } = Astro.props;
 ---
@@ -41,9 +41,9 @@ const {
     </style>
   </head>
   <body class="custom-scrollbar font-poppins text-sm text-violeta-base md:text-xl bg-cinza-fundo min-h-screen">
-    {showNavbar && <Navbar client:load />}
+    {showNavbar && <Navbar />}
     <slot />
-    <Footer client:idle />
+    <Footer />
     <Chat client:idle />
   </body>
 </html>
