@@ -44,6 +44,7 @@ const pageBgClass = DARK_BG_MAP[project.data.bgColor] || "bg-[#181129]";
       <div>
         <a
           href="/#projetos"
+          id="back-to-projects-btn"
           class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm md:text-base transition-colors"
         >
           <ArrowLeft class="w-5 h-5" />
@@ -189,23 +190,27 @@ const pageBgClass = DARK_BG_MAP[project.data.bgColor] || "bg-[#181129]";
   </button>
 
   <script>
-    const scrollBtn = document.getElementById("scroll-to-top");
+    function setupProjectPage() {
+      const scrollBtn = document.getElementById("scroll-to-top");
 
-    const toggleScrollBtn = () => {
-      if (window.scrollY > 250) {
-        scrollBtn?.classList.remove("opacity-0", "pointer-events-none", "translate-y-4");
-        scrollBtn?.classList.add("opacity-100", "pointer-events-auto", "translate-y-0");
-      } else {
-        scrollBtn?.classList.add("opacity-0", "pointer-events-none", "translate-y-4");
-        scrollBtn?.classList.remove("opacity-100", "pointer-events-auto", "translate-y-0");
-      }
-    };
+      const toggleScrollBtn = () => {
+        if (window.scrollY > 250) {
+          scrollBtn?.classList.remove("opacity-0", "pointer-events-none", "translate-y-4");
+          scrollBtn?.classList.add("opacity-100", "pointer-events-auto", "translate-y-0");
+        } else {
+          scrollBtn?.classList.add("opacity-0", "pointer-events-none", "translate-y-4");
+          scrollBtn?.classList.remove("opacity-100", "pointer-events-auto", "translate-y-0");
+        }
+      };
 
-    window.addEventListener("scroll", toggleScrollBtn, { passive: true });
+      window.addEventListener("scroll", toggleScrollBtn, { passive: true });
 
-    scrollBtn?.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+      scrollBtn?.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    setupProjectPage();
   </script>
 </BaseLayout>
 

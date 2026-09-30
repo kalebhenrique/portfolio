@@ -6,17 +6,17 @@ alt: "Interface do StudyFlow com timer Pomodoro e matérias"
 src2: "/study2.webp"
 alt2: "Loja de recompensas e economia de créditos do StudyFlow"
 bgColor: "bg-purple-300"
-colSpan: "1"
-order: 3
-github: "https://github.com/MauroSon/StudyFlow"
-tags: ["Next.js", "Tauri", "TypeScript", "Tailwind CSS", "Clean Architecture", "Supabase", "Gamificação"]
+colSpan: "2"
+order: 1
+link: "https://study-flow-neon.vercel.app"
+tags: ["Next.js", "Tauri", "Clean Architecture", "Supabase"]
 featured: true
 draft: false
 ---
 
 ## Visão Geral
 
-O **StudyFlow** foi desenvolvido junto com o dev [Mauro](https://github.com/MauroSon) 
+O **StudyFlow** foi desenvolvido junto com o dev [Mauro](https://github.com/MauroSon).
 
 A aplicação opera de forma híbrida e idêntica em duas frentes: como plataforma **Web** moderna (Next.js) e como aplicativo **Desktop nativo** de alta performance (Tauri v2).
 

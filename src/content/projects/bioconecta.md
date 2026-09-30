@@ -4,8 +4,8 @@ tipo: "Freelancer"
 src: "/bioconecta.webp"
 alt: "Tela de lading page"
 bgColor: "bg-emerald-300"
-colSpan: "1"
-order: 0
+colSpan: "2"
+order: 2
 link: "https://bio-conecta-seven.vercel.app"
 tags: ["Astro", "Javascript", "Voluntário"]
 featured: false

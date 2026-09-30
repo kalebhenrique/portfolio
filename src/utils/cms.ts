@@ -365,6 +365,26 @@ export async function saveProject(
   }
 }
 
+/** Atualiza a ordem dos projetos baseado em uma lista de slugs ordenados */
+export async function reorderProjects(
+  orderedSlugs: string[],
+  authorName = "Kaleb Henrique",
+): Promise<{ success: boolean; message?: string }> {
+  const allProjects = await getAllProjects();
+  for (let i = 0; i < orderedSlugs.length; i++) {
+    const slug = orderedSlugs[i];
+    const project = allProjects.find((p) => p.slug === slug);
+    if (project && project.order !== i) {
+      project.order = i;
+      const res = await saveProject(project, authorName);
+      if (!res.success) {
+        return res;
+      }
+    }
+  }
+  return { success: true };
+}
+
 /** Exclui um projeto */
 export async function deleteProject(
   slug: string,

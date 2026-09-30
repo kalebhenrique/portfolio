@@ -7,7 +7,7 @@ src2: "/lazyrails2.webp"
 alt2: "Tela de navegação e atalhos do plugin"
 bgColor: "bg-red-300"
 colSpan: "1"
-order: 3
+order: 0
 github: "https://github.com/kalebhenrique/lazyrails.nvim"
 tags: ["Neovim", "Lua", "Ruby on Rails", "Inertia.js", "Produtividade", "Open Source"]
 featured: false

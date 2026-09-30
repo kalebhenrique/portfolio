@@ -54,7 +54,7 @@
     font-family: 'Poppins', var(--font-poppins), sans-serif;
   }
   @media (prefers-reduced-motion: no-preference) {
-    * {
+    html.smooth-scroll {
       scroll-behavior: smooth;
     }
   }

@@ -25,6 +25,15 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/png" href="/favicon-32.png" />
+    <script is:inline>
+      if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+        window.addEventListener("DOMContentLoaded", () => {
+          setTimeout(() => {
+            document.documentElement.classList.add("smooth-scroll");
+          }, 100);
+        });
+      }
+    </script>
   </head>
   <body class="custom-scrollbar font-poppins text-sm text-violeta-base md:text-xl bg-cinza-fundo min-h-screen">
     {showNavbar && <Navbar />}

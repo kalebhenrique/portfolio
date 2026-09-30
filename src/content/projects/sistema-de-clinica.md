@@ -5,7 +5,7 @@ src: "/ib.webp"
 alt: "Página do Sistema"
 bgColor: "bg-azul-kaleb"
 colSpan: "1"
-order: 2
+order: 3
 tags: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Gestão Clínica"]
 featured: true
 draft: false

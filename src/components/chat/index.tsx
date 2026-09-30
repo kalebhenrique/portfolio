@@ -48,16 +48,6 @@ export default function Chat() {
     }
   };
 
-  useEffect(() => {
-    const loadInitialCatImage = async () => {
-      const initialUrl = await catPic();
-      setCatUrl(initialUrl);
-      setIsLoadingCat(false);
-    };
-
-    void loadInitialCatImage();
-  }, []);
-
   const states: States = {
     loading: {
       options: [

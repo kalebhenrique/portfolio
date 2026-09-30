@@ -5,6 +5,7 @@ import {
   getProjectBySlug,
   saveProject,
   deleteProject,
+  reorderProjects,
   type ProjectPayload,
 } from "../../../utils/cms";
 
@@ -122,6 +123,45 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   } catch (e: any) {
     return new Response(
       JSON.stringify({ error: e?.message || "Erro ao processar dados do projeto." }),
+      { status: 500, headers: { "Content-Type": "application/json" } },
+    );
+  }
+};
+
+/** PUT: Atualiza a ordem dos projetos */
+export const PUT: APIRoute = async ({ request, cookies }) => {
+  const session = await getSession(cookies);
+  if (!session) {
+    return new Response(JSON.stringify({ error: "Não autorizado." }), {
+      status: 401,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  try {
+    const data = await request.json();
+    if (!Array.isArray(data.slugs)) {
+      return new Response(JSON.stringify({ error: "Lista de slugs inválida." }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const result = await reorderProjects(data.slugs, session.username);
+    if (!result.success) {
+      return new Response(
+        JSON.stringify({ error: result.message || "Erro ao reordenar projetos." }),
+        { status: 500, headers: { "Content-Type": "application/json" } },
+      );
+    }
+
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (e: any) {
+    return new Response(
+      JSON.stringify({ error: e?.message || "Erro interno ao reordenar projetos." }),
       { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }
