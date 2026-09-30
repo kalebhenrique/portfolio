@@ -1,0 +1,164 @@
+---
+/**
+ * Authentic Celeste pixel art stars based on the night sky in Celeste:
+ * - Dot: 1 tiny pixel
+ * - X: 4-pixel diagonal cross
+ * - Plus: cardinal cross (+) with brighter center
+ * - Sparkle: large 4-point star with core and rays
+ *
+ * Uses crisp SVG pixel grids (shape-rendering="crispEdges")
+ * matching the game's actual pixel proportions and palette.
+ */
+
+type StarType = "dot" | "x" | "plus" | "sparkle";
+
+interface StarItem {
+  left: number;
+  top: number;
+  type: StarType;
+  duration: number;
+  delay: number;
+  maxOpacity: number;
+}
+
+// Distribution of stars across the sky
+const starConfigs: StarItem[] = [
+  // Large sparkles
+  { left: 12, top: 18, type: "sparkle", duration: 4.2, delay: 0.5, maxOpacity: 0.95 },
+  { left: 48, top: 12, type: "sparkle", duration: 4.8, delay: 2.1, maxOpacity: 0.9 },
+  { left: 82, top: 22, type: "sparkle", duration: 4.5, delay: 1.2, maxOpacity: 0.95 },
+  { left: 74, top: 68, type: "sparkle", duration: 5.1, delay: 3.4, maxOpacity: 0.85 },
+
+  // Medium plus crosses (+)
+  { left: 24, top: 38, type: "plus", duration: 3.8, delay: 1.0, maxOpacity: 0.9 },
+  { left: 62, top: 28, type: "plus", duration: 4.0, delay: 0.3, maxOpacity: 0.85 },
+  { left: 90, top: 45, type: "plus", duration: 4.4, delay: 2.7, maxOpacity: 0.8 },
+  { left: 18, top: 72, type: "plus", duration: 3.9, delay: 1.8, maxOpacity: 0.85 },
+  { left: 44, top: 82, type: "plus", duration: 4.6, delay: 0.8, maxOpacity: 0.9 },
+
+  // Diagonal crosses (x)
+  { left: 8, top: 48, type: "x", duration: 3.5, delay: 2.2, maxOpacity: 0.85 },
+  { left: 34, top: 22, type: "x", duration: 3.2, delay: 0.7, maxOpacity: 0.8 },
+  { left: 56, top: 52, type: "x", duration: 3.6, delay: 1.5, maxOpacity: 0.85 },
+  { left: 78, top: 38, type: "x", duration: 3.4, delay: 3.1, maxOpacity: 0.8 },
+  { left: 88, top: 78, type: "x", duration: 3.7, delay: 0.4, maxOpacity: 0.75 },
+  { left: 28, top: 88, type: "x", duration: 3.3, delay: 2.5, maxOpacity: 0.8 },
+
+  // Dots
+  { left: 15, top: 30, type: "dot", duration: 2.8, delay: 0.2, maxOpacity: 0.75 },
+  { left: 22, top: 12, type: "dot", duration: 3.0, delay: 1.7, maxOpacity: 0.7 },
+  { left: 40, top: 42, type: "dot", duration: 2.9, delay: 2.8, maxOpacity: 0.8 },
+  { left: 52, top: 75, type: "dot", duration: 3.1, delay: 0.9, maxOpacity: 0.7 },
+  { left: 68, top: 16, type: "dot", duration: 2.7, delay: 3.3, maxOpacity: 0.75 },
+  { left: 72, top: 48, type: "dot", duration: 3.2, delay: 1.4, maxOpacity: 0.7 },
+  { left: 85, top: 12, type: "dot", duration: 2.9, delay: 0.6, maxOpacity: 0.8 },
+  { left: 95, top: 62, type: "dot", duration: 3.0, delay: 2.0, maxOpacity: 0.75 },
+  { left: 6, top: 82, type: "dot", duration: 2.8, delay: 1.1, maxOpacity: 0.7 },
+];
+---
+
+<div
+  class="absolute inset-0 overflow-hidden pointer-events-none select-none"
+  aria-hidden="true"
+>
+  {
+    starConfigs.map((s) => (
+      <div
+        class="celeste-star absolute"
+        style={`
+          left: ${s.left}%;
+          top: ${s.top}%;
+          --star-max-opacity: ${s.maxOpacity};
+          animation: celesteTwinkle ${s.duration}s ease-in-out ${s.delay}s infinite;
+        `}
+      >
+        {s.type === "dot" && (
+          <svg width="4" height="4" viewBox="0 0 4 4" shape-rendering="crispEdges">
+            <rect width="4" height="4" fill="#a0e8ff" />
+          </svg>
+        )}
+
+        {s.type === "x" && (
+          <svg width="9" height="9" viewBox="0 0 9 9" shape-rendering="crispEdges">
+            <rect x="0" y="0" width="3" height="3" fill="#5bcefa" />
+            <rect x="6" y="0" width="3" height="3" fill="#5bcefa" />
+            <rect x="3" y="3" width="3" height="3" fill="#ffffff" />
+            <rect x="0" y="6" width="3" height="3" fill="#5bcefa" />
+            <rect x="6" y="6" width="3" height="3" fill="#5bcefa" />
+          </svg>
+        )}
+
+        {s.type === "plus" && (
+          <svg width="15" height="15" viewBox="0 0 15 15" shape-rendering="crispEdges">
+            <rect x="6" y="0" width="3" height="3" fill="#3aafcc" />
+            <rect x="6" y="3" width="3" height="3" fill="#7dd8f0" />
+            <rect x="0" y="6" width="3" height="3" fill="#3aafcc" />
+            <rect x="3" y="6" width="3" height="3" fill="#7dd8f0" />
+            <rect x="6" y="6" width="3" height="3" fill="#ffffff" />
+            <rect x="9" y="6" width="3" height="3" fill="#7dd8f0" />
+            <rect x="12" y="6" width="3" height="3" fill="#3aafcc" />
+            <rect x="6" y="9" width="3" height="3" fill="#7dd8f0" />
+            <rect x="6" y="12" width="3" height="3" fill="#3aafcc" />
+          </svg>
+        )}
+
+        {s.type === "sparkle" && (
+          <svg width="21" height="21" viewBox="0 0 21 21" shape-rendering="crispEdges">
+            {/* Cardinal ray tips */}
+            <rect x="9" y="0" width="3" height="3" fill="#3aafcc" />
+            <rect x="0" y="9" width="3" height="3" fill="#3aafcc" />
+            <rect x="18" y="9" width="3" height="3" fill="#3aafcc" />
+            <rect x="9" y="18" width="3" height="3" fill="#3aafcc" />
+
+            {/* Mid rays */}
+            <rect x="9" y="3" width="3" height="3" fill="#5bcefa" />
+            <rect x="3" y="9" width="3" height="3" fill="#5bcefa" />
+            <rect x="15" y="9" width="3" height="3" fill="#5bcefa" />
+            <rect x="9" y="15" width="3" height="3" fill="#5bcefa" />
+
+            {/* Inner rays */}
+            <rect x="9" y="6" width="3" height="3" fill="#a0e8ff" />
+            <rect x="6" y="9" width="3" height="3" fill="#a0e8ff" />
+            <rect x="12" y="9" width="3" height="3" fill="#a0e8ff" />
+            <rect x="9" y="12" width="3" height="3" fill="#a0e8ff" />
+
+            {/* Diagonal points */}
+            <rect x="6" y="6" width="3" height="3" fill="#5bcefa" />
+            <rect x="12" y="6" width="3" height="3" fill="#5bcefa" />
+            <rect x="6" y="12" width="3" height="3" fill="#5bcefa" />
+            <rect x="12" y="12" width="3" height="3" fill="#5bcefa" />
+
+            {/* White core */}
+            <rect x="9" y="9" width="3" height="3" fill="#ffffff" />
+          </svg>
+        )}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .celeste-star {
+    transform: translate(-50%, -50%);
+  }
+
+  @keyframes celesteTwinkle {
+    0%,
+    100% {
+      opacity: 0.12;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    50% {
+      opacity: var(--star-max-opacity, 0.9);
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .celeste-star {
+      animation: none !important;
+      opacity: 0.5 !important;
+      transform: translate(-50%, -50%) !important;
+    }
+  }
+</style>

@@ -7,7 +7,9 @@ import Projects from "~/components/portfolio/index.astro";
 ---
 
 <BaseLayout>
-  <main class="relative mx-auto">
+  <main
+    class="relative mx-auto [&>section]:px-6 [&>section]:py-16 md:[&>section]:px-32 md:[&>section]:py-24 2xl:[&>section]:px-72 2xl:[&>section]:py-28"
+  >
     <Introduction client:load />
     <AboutMe />
     <Stack />

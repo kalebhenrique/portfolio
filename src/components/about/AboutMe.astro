@@ -1,76 +1,85 @@
 ---
 import FadeInWhenVisible from "../FadeInWhenVisible.astro";
+import FloatingPixels from "./FloatingPixels.astro";
 ---
 
 <section
   id="sobre"
-  class="bg-roxo-fundo px-6 py-16 md:px-40 md:py-24 xl:px-60 xl:py-28"
+  class="bg-roxo-fundo relative overflow-hidden"
 >
-  <div class="flex flex-col md:flex-row md:space-x-28 xl:space-x-40">
-    <div class="space-y-6 md:space-y-20">
-      <FadeInWhenVisible>
-        <div class="flex flex-col items-center justify-center">
-          <h1 class="text-center text-4xl font-semibold text-violeta-titulo md:text-5xl lg:text-start lg:text-7xl">
-            Eu sou um dev web fullstack.
-          </h1>
-          <div class="lg:hidden">
-            <div class="w-full max-w-[242px] md:max-w-[400px]">
-              <img
-                width="800"
-                height="800"
-                src="/eu-800.webp"
-                alt="Eu, Kaleb"
-                loading="lazy"
-                decoding="async"
-                class="mx-auto my-10 w-full rounded-3xl object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </FadeInWhenVisible>
+  <FloatingPixels />
 
-      <FadeInWhenVisible delay={0.2}>
-        <div class="space-y-3">
-          <p>
-            Estudante de graduação no sexto semestre de Engenharia de
-            Computação na Universidade de Brasília e técnico de informática
-            pela Escola Técnica de Brasília.
-          </p>
-          <p>
-            Tenho experiência em desenvolvimento de software e análise de
-            requisitos, com um forte interesse em gerência de projetos e
-            engenharia de software.
-          </p>
-          <div class="flex items-center justify-between md:justify-start md:space-x-5">
-            <p>Se te interessou, entre em contato:</p>
+  <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:gap-16 xl:gap-24">
+      <!-- Text content -->
+      <div class="flex-1 space-y-8 md:space-y-10">
+        <FadeInWhenVisible>
+          <header>
+            <h1 class="text-3xl font-semibold text-violeta-titulo sm:text-4xl md:text-5xl lg:text-7xl leading-tight">
+              Eu sou um dev web fullstack.
+            </h1>
+          </header>
+
+          <!-- Mobile photo -->
+          <div class="lg:hidden my-8 flex justify-center">
+            <img
+              width="800"
+              height="800"
+              src="/eu-800.webp"
+              alt="Eu, Kaleb"
+              loading="lazy"
+              decoding="async"
+              class="w-44 h-44 sm:w-52 sm:h-52 rounded-3xl object-cover aspect-square"
+            />
+          </div>
+        </FadeInWhenVisible>
+
+        <FadeInWhenVisible delay={0.15}>
+          <div class="space-y-4 text-violeta-base text-base md:text-lg leading-relaxed">
+            <p>
+              Estudante de Engenharia de Computação no sexto semestre na
+              Universidade de Brasília e técnico em informática formado pela
+              Escola Técnica de Brasília.
+            </p>
+            <p>
+              Atuo com desenvolvimento de software de ponta a ponta e análise
+              de requisitos, com foco constante em boas práticas de engenharia,
+              arquitetura limpa e gerência de projetos.
+            </p>
+          </div>
+        </FadeInWhenVisible>
+
+        <FadeInWhenVisible delay={0.25}>
+          <div class="space-y-3">
+            <h2 class="text-xl md:text-2xl text-violeta-titulo font-semibold">
+              Motivação e Propósito
+            </h2>
+            <p class="text-violeta-base text-base md:text-lg leading-relaxed">
+              Busco ambientes colaborativos onde possa aprender continuamente,
+              resolver problemas complexos e construir produtos que gerem
+              impacto real.
+            </p>
+          </div>
+        </FadeInWhenVisible>
+
+        <FadeInWhenVisible delay={0.35}>
+          <div class="pt-4 border-t border-violeta-titulo/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <p class="text-texto-suave text-sm md:text-base">
+              Tem um projeto em mente ou quer trocar uma ideia?
+            </p>
             <button
               id="about-chat-btn"
               type="button"
-              class="rounded-full bg-azul-kaleb px-5 py-2 font-semibold text-roxo-fundo hover:bg-azul-kaleb-hover transition-colors md:text-xl cursor-pointer"
+              class="inline-flex items-center justify-center rounded-full bg-azul-kaleb px-6 py-2.5 font-semibold text-roxo-fundo hover:bg-azul-kaleb-hover transition-colors text-base md:text-lg cursor-pointer shrink-0 self-start sm:self-auto"
             >
-              Chat
+              Falar no Chat
             </button>
           </div>
-        </div>
-      </FadeInWhenVisible>
+        </FadeInWhenVisible>
+      </div>
 
-      <FadeInWhenVisible delay={0.2}>
-        <div>
-          <h2 class="text-2xl text-violeta-titulo font-semibold">
-            Motivação e Propósito
-          </h2>
-          <p class="mt-2">
-            Estou continuamente aprimorando minhas habilidades e buscando
-            novas oportunidades para contribuir em um ambiente que me
-            permita fazer a diferença.
-          </p>
-        </div>
-      </FadeInWhenVisible>
-    </div>
-
-    <div class="hidden lg:inline">
-      <FadeInWhenVisible>
-        <div>
+      <!-- Desktop photo -->
+      <div class="hidden lg:flex justify-center shrink-0">
+        <FadeInWhenVisible delay={0.2}>
           <img
             width="800"
             height="800"
@@ -78,12 +87,11 @@ import FadeInWhenVisible from "../FadeInWhenVisible.astro";
             alt="Eu, Kaleb"
             loading="lazy"
             decoding="async"
-            class="mx-auto my-10 rounded-3xl object-cover"
+            class="w-64 h-64 xl:w-72 xl:h-72 rounded-3xl object-cover aspect-square"
           />
-        </div>
-      </FadeInWhenVisible>
+        </FadeInWhenVisible>
+      </div>
     </div>
-  </div>
 </section>
 
 <script>
