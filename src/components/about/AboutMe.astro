@@ -15,12 +15,12 @@ import FloatingPixels from "./FloatingPixels.astro";
         <FadeInWhenVisible>
           <header>
             <h1 class="text-3xl font-semibold text-violeta-titulo sm:text-4xl md:text-5xl lg:text-7xl leading-tight">
-              Eu sou um dev web fullstack.
+              Eu sou um dev fullstack.
             </h1>
           </header>
 
           <!-- Mobile photo -->
-          <div class="lg:hidden my-8 flex justify-center">
+          <div class="lg:hidden my-8 flex flex-col items-center justify-center">
             <img
               width="800"
               height="800"
@@ -29,6 +29,13 @@ import FloatingPixels from "./FloatingPixels.astro";
               loading="lazy"
               decoding="async"
               class="w-44 h-44 sm:w-52 sm:h-52 rounded-3xl object-cover aspect-square"
+            />
+            <img
+              src="/tape.gif"
+              alt="Tape"
+              width="253"
+              height="100"
+              class="w-40 sm:w-48 mt-4 select-none pointer-events-none"
             />
           </div>
         </FadeInWhenVisible>
@@ -80,15 +87,24 @@ import FloatingPixels from "./FloatingPixels.astro";
       <!-- Desktop photo -->
       <div class="hidden lg:flex justify-center shrink-0">
         <FadeInWhenVisible delay={0.2}>
-          <img
-            width="800"
-            height="800"
-            src="/eu-800.webp"
-            alt="Eu, Kaleb"
-            loading="lazy"
-            decoding="async"
-            class="w-64 h-64 xl:w-72 xl:h-72 rounded-3xl object-cover aspect-square"
-          />
+          <div class="flex flex-col items-center">
+            <img
+              width="800"
+              height="800"
+              src="/eu-800.webp"
+              alt="Eu, Kaleb"
+              loading="lazy"
+              decoding="async"
+              class="w-64 h-64 xl:w-72 xl:h-72 rounded-3xl object-cover aspect-square"
+            />
+            <img
+              src="/tape.gif"
+              alt="Tape"
+              width="253"
+              height="100"
+              class="w-56 xl:w-64 mt-4 select-none pointer-events-none"
+            />
+          </div>
         </FadeInWhenVisible>
       </div>
     </div>

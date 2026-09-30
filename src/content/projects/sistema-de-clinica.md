@@ -6,10 +6,9 @@ alt: "Página do Sistema"
 bgColor: "bg-azul-kaleb"
 colSpan: "2"
 order: 2
+tags: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Gestão Clínica"]
 featured: true
 draft: false
-tags: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Gestão Clínica"]
-github: "https://github.com/kalebhenrique"
 ---
 
 ## Visão Geral

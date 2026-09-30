@@ -20,16 +20,16 @@ const otherProjects = (allProjects || [])
   .filter((p) => p.id !== project.id)
   .slice(0, 2);
 
-// Cor de destaque do projeto para o título
-const COLOR_MAP: Record<string, string> = {
-  "bg-azul-kaleb": "text-azul-kaleb",
-  "bg-red-300": "text-red-300",
-  "bg-emerald-300": "text-emerald-300",
-  "bg-purple-300": "text-purple-300",
-  "bg-amber-300": "text-amber-300",
-  "bg-cyan-300": "text-cyan-300",
+// Versões noturnas escurecidas da cor de destaque para eliminar ofuscamento
+const DARK_BG_MAP: Record<string, string> = {
+  "bg-azul-kaleb": "bg-[#14232E]",
+  "bg-red-300": "bg-[#2B161C]",
+  "bg-emerald-300": "bg-[#12271E]",
+  "bg-purple-300": "bg-[#231730]",
+  "bg-amber-300": "bg-[#2A2015]",
+  "bg-cyan-300": "bg-[#11252D]",
 };
-const titleColorClass = COLOR_MAP[project.data.bgColor] || "text-azul-kaleb";
+const pageBgClass = DARK_BG_MAP[project.data.bgColor] || "bg-[#181129]";
 ---
 
 <BaseLayout
@@ -37,97 +37,102 @@ const titleColorClass = COLOR_MAP[project.data.bgColor] || "text-azul-kaleb";
   description={project.data.description || `Projeto ${project.data.nome} por Kaleb Henrique`}
   showNavbar={false}
 >
-  <main class="min-h-screen pt-12 md:pt-16 pb-20 px-6 md:px-20 lg:px-40 xl:px-60">
-    <div class="max-w-4xl mx-auto space-y-8">
-      <!-- Navegação Voltar (no topo da página) -->
+  <!-- Background escurecido na tonalidade da cor de destaque -->
+  <main class={`min-h-screen ${pageBgClass} pt-8 md:pt-14 pb-20 px-4 sm:px-6 md:px-12 lg:px-20 transition-colors duration-300`}>
+    <div class="max-w-4xl mx-auto space-y-6">
+      <!-- Navegação Voltar -->
       <div>
         <a
           href="/#projetos"
-          class="inline-flex items-center space-x-2 text-violeta-base hover:text-violeta-base-hover transition-colors text-sm md:text-xl font-semibold"
+          class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm md:text-base transition-colors"
         >
           <ArrowLeft class="w-5 h-5" />
-          <span>Voltar</span>
+          <span>Voltar aos Projetos</span>
         </a>
       </div>
 
-      <!-- Cabeçalho do Artigo -->
-      <header class="space-y-4">
-        <h1 class={`text-3xl md:text-5xl lg:text-6xl font-bold ${titleColorClass} leading-tight`}>
-          {project.data.nome}
-        </h1>
+      <!-- Card da postagem em papel amarelado suave de leitura (Warm Paper) -->
+      <article class="bg-[#FAF6EE] text-[#2B2520] border border-[#EADBCA] rounded-3xl p-6 sm:p-10 md:p-14 shadow-2xl space-y-8">
+        <!-- Cabeçalho do Artigo -->
+        <header class="space-y-4">
+          <!-- Título da postagem -->
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1C1714] leading-tight">
+            {project.data.nome}
+          </h1>
 
-        <!-- Tags / Tecnologias (roxo padrão) -->
-        {project.data.tags && project.data.tags.length > 0 && (
-          <div class="flex flex-wrap gap-2 pt-1">
-            {project.data.tags.map((tag) => (
-              <span class="px-3 py-1 rounded-lg text-xs md:text-sm font-semibold bg-[#181129] text-violeta-titulo-contraste border border-violeta-titulo-contraste">
-                #{tag}
-              </span>
-            ))}
+          <!-- Tags com borda preta/escura, texto escuro e background cinza-amarelado -->
+          {project.data.tags && project.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 pt-1">
+              {project.data.tags.map((tag) => (
+                <span class="px-3 py-1 rounded-lg text-xs md:text-sm font-semibold bg-[#EFE9DB] text-[#2B2520] border border-[#2B2520]">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <!-- Links Externos (Demo / GitHub) -->
+          {(project.data.link || project.data.github) && (
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              {project.data.link && (
+                <a
+                  href={project.data.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#2B2520] hover:bg-[#403831] text-[#FAF6EE] font-bold text-sm transition-all shadow-md cursor-pointer"
+                >
+                  <span>Acessar Projeto</span>
+                  <ExternalLink class="w-4 h-4" />
+                </a>
+              )}
+              {project.data.github && (
+                <a
+                  href={project.data.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full border border-[#2B2520] bg-transparent hover:bg-[#EFE9DB] text-[#2B2520] font-semibold text-sm transition-colors cursor-pointer"
+                >
+                  <CodeXml class="w-4 h-4" />
+                  <span>Ver Código no GitHub</span>
+                </a>
+              )}
+            </div>
+          )}
+        </header>
+
+        <!-- Imagem de Destaque do Projeto -->
+        <div class="w-full flex justify-center py-2">
+          <div class="w-full aspect-[16/9] overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
+            <img
+              src={project.data.src}
+              alt={project.data.alt || project.data.nome}
+              width="1200"
+              height="675"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            />
           </div>
-        )}
-
-        <!-- Links Externos (Demo / GitHub) -->
-        {(project.data.link || project.data.github) && (
-          <div class="flex flex-wrap items-center gap-4 pt-2">
-            {project.data.link && (
-              <a
-                href={project.data.link}
-                target="_blank"
-                rel="noreferrer"
-                class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#7FC8E3] hover:bg-[#A4E3FA] text-[#181129] font-bold text-sm transition-all shadow-md"
-              >
-                <span>Acessar Projeto</span>
-                <ExternalLink class="w-4 h-4" />
-              </a>
-            )}
-          </div>
-        )}
-      </header>
-
-      <!-- Imagem do Projeto (16:9 e tamanho reduzido) -->
-      <div class="w-full flex justify-center py-2">
-        <div class="w-full max-w-2xl aspect-[16/9] overflow-hidden rounded-2xl border border-[#3B234B] shadow-2xl bg-[#171C25]">
-          <img
-            src={project.data.src}
-            alt={project.data.alt || project.data.nome}
-            width="1200"
-            height="675"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-          />
         </div>
-      </div>
 
-      <!-- Conteúdo do Post (Markdown com suporte a texto normal e destaque) -->
-      <article class="prose prose-invert max-w-none font-normal text-white prose-p:font-normal prose-p:text-white prose-p:leading-relaxed prose-headings:font-bold prose-headings:text-white prose-strong:font-bold prose-strong:text-white prose-li:font-normal prose-li:text-gray-100 prose-code:font-mono prose-code:text-white prose-blockquote:font-normal prose-blockquote:text-gray-200 text-base md:text-lg leading-relaxed pt-4 border-t border-[#3B234B] space-y-4">
-        <Content />
-          {project.data.github && (
-            <a
-              href={project.data.github}
-              target="_blank"
-              rel="noreferrer"
-              class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-violeta-base text-cinza-fundo hover:bg-violeta-base-hover font-semibold text-sm transition-colors"
-            >
-              <CodeXml class="w-4 h-4" />
-              <span>Ver Código no GitHub</span>
-            </a>
-         )}
+        <!-- Conteúdo do Post em Markdown com estilos otimizados para papel de leitura -->
+        <div class="project-content pt-6 border-t border-[#E5D7BE]">
+          <Content />
+        </div>
       </article>
 
       <!-- Outros Projetos -->
       {otherProjects.length > 0 && (
-        <section class="pt-16 border-t border-[#3B234B] space-y-6">
-          <h2 class="text-2xl font-bold text-white">
+        <section class="pt-10 space-y-6">
+          <h2 class="text-2xl md:text-3xl font-bold text-white">
             Outros Projetos
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {otherProjects.map((p) => (
               <a
                 href={`/projetos/${p.id}`}
-                class="block focus:outline-none focus:ring-2 focus:ring-[#7FC8E3] rounded-3xl group"
+                class="block focus:outline-none focus:ring-2 focus:ring-[#7FC8E3] rounded-3xl group shadow-lg transition-transform duration-300 hover:scale-[1.02]"
               >
                 <ProjectCard
                   tipo={p.data.tipo}
@@ -145,7 +150,7 @@ const titleColorClass = COLOR_MAP[project.data.bgColor] || "text-azul-kaleb";
     </div>
   </main>
 
-  <!-- Botão Flutuante Voltar ao Topo (canto inferior direito) -->
+  <!-- Botão Flutuante Voltar ao Topo -->
   <button
     id="scroll-to-top"
     type="button"
@@ -175,3 +180,140 @@ const titleColorClass = COLOR_MAP[project.data.bgColor] || "text-azul-kaleb";
     });
   </script>
 </BaseLayout>
+
+<style is:global>
+  /* Tipografia editorial confortável em papel amarelado suave */
+  .project-content h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1C1714;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+
+  .project-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1C1714;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #E5D7BE;
+    line-height: 1.3;
+  }
+
+  .project-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1C1714;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .project-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1C1714;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-content p {
+    font-size: 1.0625rem;
+    color: #2B2520;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-content ul {
+    list-style-type: disc !important;
+    padding-left: 1.5rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1.25rem !important;
+    color: #2B2520 !important;
+  }
+
+  .project-content ol {
+    list-style-type: decimal !important;
+    padding-left: 1.5rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1.25rem !important;
+    color: #2B2520 !important;
+  }
+
+  .project-content li {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    color: #2B2520;
+  }
+
+  .project-content li::marker {
+    color: #2B2520;
+  }
+
+  .project-content strong,
+  .project-content b {
+    font-weight: 700;
+    color: #1C1714;
+  }
+
+  .project-content a {
+    color: #1d4ed8;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.15s ease;
+  }
+
+  .project-content a:hover {
+    color: #1e3a8a;
+  }
+
+  .project-content code {
+    background-color: #EDE5D3;
+    color: #2B2520;
+    border: 1px solid #DDD3BF;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.375rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.875em;
+  }
+
+  .project-content pre {
+    background-color: #181129;
+    color: #F9FAFB;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid #3B234B;
+    overflow-x: auto;
+    font-family: ui-monospace, monospace;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-content pre code {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    padding: 0;
+  }
+
+  .project-content blockquote {
+    border-left: 4px solid #8C7A68;
+    background-color: #F2ECE0;
+    padding: 0.75rem 1rem;
+    margin: 1.25rem 0;
+    font-style: italic;
+    color: #3F362E;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+
+  .project-content hr {
+    border: none;
+    border-top: 1px solid #E5D7BE;
+    margin: 2rem 0;
+  }
+</style>
