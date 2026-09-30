@@ -84,6 +84,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       tipo: (data.tipo || "Projeto Pessoal").trim(),
       src: (data.src || "celeste2").trim(),
       alt: (data.alt || data.nome).trim(),
+      src2: data.src2 ? String(data.src2).trim() : undefined,
+      alt2: data.alt2 ? String(data.alt2).trim() : undefined,
       bgColor: (data.bgColor || "bg-azul-kaleb").trim(),
       colSpan: data.colSpan === "2" ? "2" : "1",
       order: Number(data.order) || 0,

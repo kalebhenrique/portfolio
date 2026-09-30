@@ -26,6 +26,8 @@ const initialSlug = project?.slug || "";
 const initialTipo = project?.tipo || "Projeto Pessoal";
 const initialSrc = project?.src || "celeste2";
 const initialAlt = project?.alt || "";
+const initialSrc2 = project?.src2 || "";
+const initialAlt2 = project?.alt2 || "";
 const initialBgColor = project?.bgColor || "bg-azul-kaleb";
 const initialColSpan = project?.colSpan || "1";
 const initialOrder = project?.order ?? 0;
@@ -93,18 +95,19 @@ const COLOR_PRESETS = [
     <div class="max-w-md mx-auto">
       <div
         id="preview-card"
-        class={`flex h-80 w-full flex-col rounded-3xl ${initialBgColor} transform overflow-hidden transition-transform duration-300 ease-in-out`}
+        class={`flex h-80 w-full flex-col rounded-3xl ${initialBgColor} isolate overflow-hidden transition-transform duration-300 ease-in-out`}
+        style="-webkit-mask-image: -webkit-radial-gradient(white, black);"
       >
-        <div class="flex flex-1 flex-col items-end justify-end space-y-2 pr-4 pt-4 text-cinza-fundo">
+        <div class="flex flex-1 flex-col items-end justify-end space-y-2 pr-6 pt-4 text-cinza-fundo">
           <h1 id="preview-tipo" class="text-lg md:text-2xl font-bold">{initialTipo}</h1>
           <h2 id="preview-nome" class="font-semibold">{initialNome || "Nome do Projeto"}</h2>
         </div>
-        <div class="ml-4 mt-auto flex w-full transform items-end justify-end">
+        <div class="ml-6 mt-auto flex w-full items-end justify-end">
           <img
             id="preview-img"
             src={initialSrc.startsWith("http") || initialSrc.startsWith("/") ? initialSrc : `https://res.cloudinary.com/djh6kz6nb/image/upload/f_auto,q_auto/${initialSrc}`}
             alt={initialAlt || initialNome}
-            class="rounded-l-3xl max-h-48 w-full object-cover"
+            class="rounded-tl-3xl rounded-bl-none max-h-48 w-full object-cover object-left-top"
           />
         </div>
       </div>
@@ -235,6 +238,58 @@ const COLOR_PRESETS = [
             placeholder="Ex: Tela de Controllers Ruby on Rails"
             class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
           />
+        </div>
+
+        <!-- Segunda Imagem (Opcional) -->
+        <div class="pt-4 border-t border-[#3B234B]/60 space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label for="project-src2" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                Segunda Imagem do Projeto (Opcional)
+              </label>
+              <span class="text-xs text-[#877CC4] font-medium">Exibida apenas na postagem</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-2">
+              Aparecerá ao lado da primeira imagem (desktop) ou abaixo (mobile) na página de detalhes do projeto.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+              <input
+                type="text"
+                id="project-src2"
+                name="src2"
+                value={initialSrc2}
+                placeholder="ex: /api-ruby-2.webp ou URL de upload"
+                class="flex-1 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+              />
+
+              <!-- Hidden File Input para Segunda Imagem -->
+              <input type="file" id="file-upload-input-2" accept="image/*" class="hidden" />
+
+              <button
+                type="button"
+                id="upload-btn-2"
+                class="inline-flex items-center justify-center space-x-2 px-4 py-2.5 bg-[#3B234B] hover:bg-[#4d2f62] text-white text-xs font-semibold rounded-xl transition-colors whitespace-nowrap"
+              >
+                <Upload size={16} />
+                <span id="upload-btn-text-2">Fazer Upload</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Alt Text Imagem 2 -->
+          <div>
+            <label for="project-alt2" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+              Texto Alternativo da Segunda Imagem (Opcional)
+            </label>
+            <input
+              type="text"
+              id="project-alt2"
+              name="alt2"
+              value={initialAlt2}
+              placeholder="Ex: Segunda tela do projeto"
+              class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+            />
+          </div>
         </div>
 
         <!-- Descrição / Markdown -->
@@ -411,6 +466,8 @@ const COLOR_PRESETS = [
   const tipoSelect = document.getElementById("project-tipo-select") as HTMLSelectElement;
   const srcInput = document.getElementById("project-src") as HTMLInputElement;
   const altInput = document.getElementById("project-alt") as HTMLInputElement;
+  const src2Input = document.getElementById("project-src2") as HTMLInputElement;
+  const alt2Input = document.getElementById("project-alt2") as HTMLInputElement;
   const bgInput = document.getElementById("project-bgcolor") as HTMLInputElement;
   const colSpanSelect = document.getElementById("project-colspan") as HTMLSelectElement;
   const orderInput = document.getElementById("project-order") as HTMLInputElement;
@@ -437,6 +494,10 @@ const COLOR_PRESETS = [
   const uploadBtn = document.getElementById("upload-btn") as HTMLButtonElement;
   const uploadBtnText = document.getElementById("upload-btn-text") as HTMLElement;
   const fileUploadInput = document.getElementById("file-upload-input") as HTMLInputElement;
+
+  const uploadBtn2 = document.getElementById("upload-btn-2") as HTMLButtonElement;
+  const uploadBtnText2 = document.getElementById("upload-btn-text-2") as HTMLElement;
+  const fileUploadInput2 = document.getElementById("file-upload-input-2") as HTMLInputElement;
 
   // Preset color buttons
   const colorBtns = document.querySelectorAll(".preset-color-btn");
@@ -503,10 +564,12 @@ const COLOR_PRESETS = [
     if (previewTipo) previewTipo.textContent = tipoInput.value || "Projeto Pessoal";
 
     if (previewCard) {
-      previewCard.className = `flex h-80 w-full flex-col rounded-3xl ${bgInput.value || "bg-azul-kaleb"} transform overflow-hidden transition-transform duration-300 ease-in-out`;
+      previewCard.className = `flex h-80 w-full flex-col rounded-3xl ${bgInput.value || "bg-azul-kaleb"} isolate overflow-hidden transition-transform duration-300 ease-in-out`;
+      (previewCard.style as any).webkitMaskImage = "-webkit-radial-gradient(white, black)";
     }
 
     if (previewImg) {
+      previewImg.className = "rounded-tl-3xl rounded-bl-none max-h-48 w-full object-cover object-left-top";
       const src = srcInput.value.trim();
       if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("/")) {
         previewImg.src = src;
@@ -569,6 +632,46 @@ const COLOR_PRESETS = [
     }
   });
 
+  // Upload handler imagem 2
+  uploadBtn2?.addEventListener("click", () => {
+    fileUploadInput2.click();
+  });
+
+  fileUploadInput2?.addEventListener("change", async () => {
+    const file = fileUploadInput2.files?.[0];
+    if (!file) return;
+
+    uploadBtn2.disabled = true;
+    uploadBtnText2.textContent = "Enviando...";
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        showToast(data.error || "Erro no upload da imagem.", "error");
+        uploadBtn2.disabled = false;
+        uploadBtnText2.textContent = "Fazer Upload";
+        return;
+      }
+
+      src2Input.value = data.url;
+      showToast("Segunda imagem enviada com sucesso!", "success");
+    } catch {
+      showToast("Falha de rede ao enviar segunda imagem.", "error");
+    } finally {
+      uploadBtn2.disabled = false;
+      uploadBtnText2.textContent = "Fazer Upload";
+      fileUploadInput2.value = "";
+    }
+  });
+
   // Save Project
   saveBtn?.addEventListener("click", async () => {
     const nome = nomeInput.value.trim();
@@ -576,6 +679,8 @@ const COLOR_PRESETS = [
     const tipo = tipoInput.value.trim();
     const src = srcInput.value.trim();
     const alt = altInput.value.trim();
+    const src2 = src2Input ? src2Input.value.trim() : "";
+    const alt2 = alt2Input ? alt2Input.value.trim() : "";
     const bgColor = bgInput.value.trim() || "bg-azul-kaleb";
     const colSpan = colSpanSelect.value;
     const order = Number(orderInput.value) || 0;
@@ -604,6 +709,8 @@ const COLOR_PRESETS = [
           tipo,
           src,
           alt: alt || nome,
+          src2: src2 || undefined,
+          alt2: alt2 || undefined,
           bgColor,
           colSpan,
           order,

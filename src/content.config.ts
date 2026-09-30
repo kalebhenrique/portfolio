@@ -17,6 +17,8 @@ const projects = defineCollection({
     tipo: z.string(),
     src: z.string(),
     alt: z.string(),
+    src2: z.string().optional(),
+    alt2: z.string().optional(),
     bgColor: z.string().default("bg-azul-kaleb"),
     colSpan: z.enum(["1", "2"]).default("1"),
     order: z.number().default(0),

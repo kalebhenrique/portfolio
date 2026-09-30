@@ -8,6 +8,8 @@ export interface ProjectPayload {
   tipo: string;
   src: string;
   alt: string;
+  src2?: string;
+  alt2?: string;
   bgColor: string;
   colSpan: "1" | "2";
   order: number;
@@ -25,6 +27,8 @@ export interface ProjectSummary {
   tipo: string;
   src: string;
   alt: string;
+  src2?: string;
+  alt2?: string;
   bgColor: string;
   colSpan: "1" | "2";
   order: number;
@@ -59,6 +63,8 @@ export function serializeProjectMarkdown(project: ProjectPayload): string {
   const tipo = project.tipo.replace(/"/g, '\\"');
   const src = project.src.trim();
   const alt = project.alt.replace(/"/g, '\\"');
+  const src2 = (project.src2 || "").trim();
+  const alt2 = (project.alt2 || "").replace(/"/g, '\\"');
   const bgColor = project.bgColor.trim();
   const colSpan = project.colSpan || "1";
   const order = Number(project.order) || 0;
@@ -75,10 +81,16 @@ export function serializeProjectMarkdown(project: ProjectPayload): string {
     `tipo: "${tipo}"`,
     `src: "${src}"`,
     `alt: "${alt}"`,
+  ];
+
+  if (src2) lines.push(`src2: "${src2}"`);
+  if (alt2) lines.push(`alt2: "${alt2}"`);
+
+  lines.push(
     `bgColor: "${bgColor}"`,
     `colSpan: "${colSpan}"`,
     `order: ${order}`,
-  ];
+  );
 
   if (link) lines.push(`link: "${link.replace(/"/g, '\\"')}"`);
   if (github) lines.push(`github: "${github.replace(/"/g, '\\"')}"`);
@@ -164,6 +176,8 @@ export function parseProjectMarkdown(raw: string, slug: string): ProjectPayload 
     tipo: data.tipo || "Projeto Pessoal",
     src: data.src || "celeste2",
     alt: data.alt || data.nome || slug,
+    src2: data.src2 ? data.src2.trim() : undefined,
+    alt2: data.alt2 ? data.alt2.trim() : undefined,
     bgColor: data.bgColor || "bg-azul-kaleb",
     colSpan: data.colSpan === "2" ? "2" : "1",
     order: Number(data.order) || 0,

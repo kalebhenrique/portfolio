@@ -100,21 +100,49 @@ const pageBgClass = DARK_BG_MAP[project.data.bgColor] || "bg-[#181129]";
           )}
         </header>
 
-        <!-- Imagem de Destaque do Projeto -->
-        <div class="w-full flex justify-center py-2">
-          <div class="w-full aspect-[16/9] overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
-            <img
-              src={project.data.src}
-              alt={project.data.alt || project.data.nome}
-              width="1200"
-              height="675"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-            />
+        <!-- Imagens do Projeto (1 imagem centralizada ou 2 imagens lado a lado / empilhadas no mobile) -->
+        {project.data.src2 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 py-2">
+            <div class="w-full aspect-[16/9] overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
+              <img
+                src={project.data.src}
+                alt={project.data.alt || project.data.nome}
+                width="1200"
+                height="675"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="w-full aspect-[16/9] overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
+              <img
+                src={project.data.src2}
+                alt={project.data.alt2 || project.data.nome}
+                width="1200"
+                height="675"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div class="w-full flex justify-center py-2">
+            <div class="w-full aspect-[16/9] overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
+              <img
+                src={project.data.src}
+                alt={project.data.alt || project.data.nome}
+                width="1200"
+                height="675"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+          </div>
+        )}
 
         <!-- Conteúdo do Post em Markdown com estilos otimizados para papel de leitura -->
         <div class="project-content pt-6 border-t border-[#E5D7BE]">
