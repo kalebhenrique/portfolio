@@ -1,0 +1,118 @@
+---
+import type { Lang } from "~/i18n/ui";
+
+interface Props {
+  currentLang?: Lang;
+}
+
+const { currentLang = "pt" } = Astro.props;
+const isEn = currentLang === "en";
+---
+
+<div
+  id="language-switch"
+  class="relative inline-flex items-center rounded-full bg-violeta-base/15 p-1 border border-violeta-base/25 backdrop-blur-md select-none"
+  role="group"
+  aria-label="Selecionar idioma / Select language"
+>
+  <!-- Animated sliding pill indicator -->
+  <div
+    id="lang-indicator"
+    class={`absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-violeta-base shadow-sm transition-transform duration-300 ease-out pointer-events-none ${
+      isEn ? "translate-x-full" : "translate-x-0"
+    }`}
+  ></div>
+
+  <!-- PT button -->
+  <button
+    type="button"
+    data-lang="pt"
+    class={`relative z-10 px-2.5 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold transition-colors duration-200 cursor-pointer ${
+      !isEn ? "text-cinza-fundo" : "text-violeta-base hover:text-violeta-base-hover"
+    }`}
+    aria-pressed={!isEn}
+  >
+    PT
+  </button>
+
+  <!-- EN button -->
+  <button
+    type="button"
+    data-lang="en"
+    class={`relative z-10 px-2.5 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold transition-colors duration-200 cursor-pointer ${
+      isEn ? "text-cinza-fundo" : "text-violeta-base hover:text-violeta-base-hover"
+    }`}
+    aria-pressed={isEn}
+  >
+    EN
+  </button>
+</div>
+
+<script>
+  function setupLangSwitch() {
+    const switchContainer = document.getElementById("language-switch");
+    if (!switchContainer) return;
+
+    const buttons = switchContainer.querySelectorAll("button[data-lang]");
+    const indicator = document.getElementById("lang-indicator");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetLang = btn.getAttribute("data-lang");
+        if (!targetLang) return;
+
+        // Current path analysis
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+        const isCurrentEn = currentPath.startsWith("/en");
+
+        if ((targetLang === "en" && isCurrentEn) || (targetLang === "pt" && !isCurrentEn)) {
+          return;
+        }
+
+        // Animate slider immediately for visual responsiveness
+        if (targetLang === "en") {
+          indicator?.classList.remove("translate-x-0");
+          indicator?.classList.add("translate-x-full");
+        } else {
+          indicator?.classList.remove("translate-x-full");
+          indicator?.classList.add("translate-x-0");
+        }
+
+        // Store preference
+        try {
+          localStorage.setItem("preferred_lang", targetLang);
+        } catch {}
+
+        // Compute destination URL
+        let destination = "/";
+        if (targetLang === "en") {
+          if (currentPath === "/" || currentPath === "") {
+            destination = "/en" + currentHash;
+          } else if (currentPath.startsWith("/projetos/")) {
+            destination = currentPath.replace("/projetos/", "/en/projects/");
+          } else {
+            destination = "/en";
+          }
+        } else {
+          if (currentPath === "/en" || currentPath === "/en/") {
+            destination = "/" + currentHash;
+          } else if (currentPath.startsWith("/en/projects/")) {
+            destination = currentPath.replace("/en/projects/", "/projetos/");
+          } else if (currentPath.startsWith("/en/")) {
+            destination = currentPath.replace(/^\/en/, "");
+          } else {
+            destination = "/";
+          }
+        }
+
+        // Slight delay to allow CSS slide animation to start before page navigation
+        setTimeout(() => {
+          window.location.href = destination;
+        }, 150);
+      });
+    });
+  }
+
+  setupLangSwitch();
+</script>

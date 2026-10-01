@@ -3,8 +3,17 @@ import FadeInWhenVisible from "../FadeInWhenVisible.astro";
 import TechIcons from "./TechIcons.astro";
 import WorkExperience from "./WorkExperience.astro";
 import { getExperiences } from "~/utils/cms";
+import { useTranslations, experiencesEn, type Lang } from "~/i18n/ui";
 
-const experiences = await getExperiences();
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pt" } = Astro.props;
+const t = useTranslations(lang);
+
+const experiencesPt = await getExperiences();
+const experiences = lang === "en" ? experiencesEn : experiencesPt;
 ---
 
 <section
@@ -13,7 +22,7 @@ const experiences = await getExperiences();
 >
   <FadeInWhenVisible>
     <h2 class="text-center text-4xl font-semibold text-violeta-titulo-contraste md:text-5xl lg:text-start lg:text-7xl">
-      Stack & Trajetória
+      {t("stack.title")}
     </h2>
   </FadeInWhenVisible>
   <FadeInWhenVisible delay={0.2}>
@@ -22,11 +31,11 @@ const experiences = await getExperiences();
   <FadeInWhenVisible delay={0.2}>
     <div class="flex flex-col justify-start">
       <h2 class="text-lg text-violeta-titulo-contraste md:text-2xl font-semibold">
-        Experiência Profissional
+        {t("stack.experience_title")}
       </h2>
       <div class="space-y-11 mt-4">
         {experiences.map((item) => (
-          <WorkExperience {...item} />
+          <WorkExperience {...item} lang={lang} />
         ))}
       </div>
     </div>

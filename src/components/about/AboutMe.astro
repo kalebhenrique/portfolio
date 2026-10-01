@@ -1,6 +1,14 @@
 ---
 import FadeInWhenVisible from "../FadeInWhenVisible.astro";
 import FloatingPixels from "./FloatingPixels.astro";
+import { useTranslations, type Lang } from "~/i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pt" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section
@@ -15,7 +23,7 @@ import FloatingPixels from "./FloatingPixels.astro";
         <FadeInWhenVisible>
           <header>
             <h1 class="text-3xl font-semibold text-violeta-titulo sm:text-4xl md:text-5xl lg:text-7xl leading-tight">
-              Eu sou um dev fullstack.
+              {t("about.title")}
             </h1>
           </header>
 
@@ -43,14 +51,10 @@ import FloatingPixels from "./FloatingPixels.astro";
         <FadeInWhenVisible delay={0.15}>
           <div class="space-y-4 text-violeta-base text-base md:text-lg leading-relaxed">
             <p>
-              Estudante de Engenharia de Computação no sexto semestre na
-              Universidade de Brasília e técnico em informática formado pela
-              Escola Técnica de Brasília.
+              {t("about.bio1")}
             </p>
             <p>
-              Atuo com desenvolvimento de software de ponta a ponta e análise
-              de requisitos, com foco constante em boas práticas de engenharia,
-              arquitetura limpa e gerência de projetos.
+              {t("about.bio2")}
             </p>
           </div>
         </FadeInWhenVisible>
@@ -58,12 +62,10 @@ import FloatingPixels from "./FloatingPixels.astro";
         <FadeInWhenVisible delay={0.25}>
           <div class="space-y-3">
             <h2 class="text-xl md:text-2xl text-violeta-titulo font-semibold">
-              Motivação e Propósito
+              {t("about.purpose_title")}
             </h2>
             <p class="text-violeta-base text-base md:text-lg leading-relaxed">
-              Busco ambientes colaborativos onde possa aprender continuamente,
-              resolver problemas complexos e construir produtos que gerem
-              impacto real.
+              {t("about.purpose_desc")}
             </p>
           </div>
         </FadeInWhenVisible>
@@ -71,14 +73,14 @@ import FloatingPixels from "./FloatingPixels.astro";
         <FadeInWhenVisible delay={0.35}>
           <div class="pt-4 border-t border-violeta-titulo/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <p class="text-texto-suave text-sm md:text-base">
-              Tem um projeto em mente ou quer trocar uma ideia?
+              {t("about.cta_question")}
             </p>
             <button
               id="about-chat-btn"
               type="button"
               class="inline-flex items-center justify-center rounded-full bg-azul-kaleb px-6 py-2.5 font-semibold text-roxo-fundo hover:bg-azul-kaleb-hover transition-colors text-base md:text-lg cursor-pointer shrink-0 self-start sm:self-auto"
             >
-              Falar no Chat
+              {t("about.cta_button")}
             </button>
           </div>
         </FadeInWhenVisible>
@@ -120,5 +122,4 @@ import FloatingPixels from "./FloatingPixels.astro";
   }
 
   setupAbout();
-  document.addEventListener("astro:page-load", setupAbout);
 </script>

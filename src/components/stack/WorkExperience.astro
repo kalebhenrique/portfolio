@@ -1,5 +1,6 @@
 ---
 import { ArrowUpRight } from "@lucide/astro";
+import type { Lang } from "~/i18n/ui";
 
 interface Props {
   startDate: string;
@@ -8,6 +9,7 @@ interface Props {
   enterprise: string;
   summary: string[];
   enterpriseUrl: string;
+  lang?: Lang;
 }
 
 const {
@@ -17,7 +19,10 @@ const {
   enterprise,
   summary,
   enterpriseUrl,
+  lang = "pt",
 } = Astro.props;
+
+const atWord = lang === "en" ? "at" : "na";
 ---
 
 <div class="ml-3 mt-4 flex flex-col md:flex-row md:space-x-20">
@@ -26,7 +31,7 @@ const {
   </div>
   <div>
     <h3 class="text-violeta-titulo-contraste font-semibold">
-      {position} na{" "}
+      {position} {atWord}{" "}
       <a
         target="_blank"
         rel="noreferrer"

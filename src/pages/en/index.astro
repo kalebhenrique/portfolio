@@ -6,13 +6,17 @@ import Stack from "~/components/stack/Stack.astro";
 import Projects from "~/components/portfolio/index.astro";
 ---
 
-<BaseLayout lang="pt">
+<BaseLayout
+  lang="en"
+  title="Kaleb H • Web Dev"
+  description="Kaleb Henrique, fullstack web developer portfolio"
+>
   <main
     class="relative mx-auto [&>section]:px-6 [&>section]:py-16 md:[&>section]:px-32 md:[&>section]:py-24 2xl:[&>section]:px-72 2xl:[&>section]:py-28"
   >
-    <Introduction client:load lang="pt" />
-    <AboutMe lang="pt" />
-    <Stack lang="pt" />
-    <Projects lang="pt" />
+    <Introduction client:load lang="en" />
+    <AboutMe lang="en" />
+    <Stack lang="en" />
+    <Projects lang="en" />
   </main>
 </BaseLayout>

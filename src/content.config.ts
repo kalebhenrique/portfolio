@@ -10,25 +10,32 @@ export const PROJECT_TYPES = [
   "Acadêmico",
 ] as const;
 
-const projects = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
-  schema: z.object({
-    nome: z.string(),
-    tipo: z.string(),
-    src: z.string(),
-    alt: z.string(),
-    src2: z.string().optional(),
-    alt2: z.string().optional(),
-    bgColor: z.string().default("bg-azul-kaleb"),
-    colSpan: z.enum(["1", "2"]).default("1"),
-    order: z.number().default(0),
-    link: z.string().optional(),
-    github: z.string().optional(),
-    description: z.string().optional(),
-    tags: z.array(z.string()).default([]),
-    featured: z.boolean().default(false),
-    draft: z.boolean().default(false),
-  }),
+const projectSchema = z.object({
+  nome: z.string(),
+  tipo: z.string(),
+  src: z.string(),
+  alt: z.string(),
+  src2: z.string().optional(),
+  alt2: z.string().optional(),
+  bgColor: z.string().default("bg-azul-kaleb"),
+  colSpan: z.enum(["1", "2"]).default("1"),
+  order: z.number().default(0),
+  link: z.string().optional(),
+  github: z.string().optional(),
+  description: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+  featured: z.boolean().default(false),
+  draft: z.boolean().default(false),
 });
 
-export const collections = { projects };
+const projects = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
+  schema: projectSchema,
+});
+
+const projectsEn = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects-en" }),
+  schema: projectSchema,
+});
+
+export const collections = { projects, projectsEn };

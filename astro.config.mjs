@@ -12,6 +12,13 @@ export default defineConfig({
   site: SITE,
   output: "static",
   adapter: vercel(),
+  i18n: {
+    defaultLocale: "pt",
+    locales: ["pt", "en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   security: {
     checkOrigin: false,
   },

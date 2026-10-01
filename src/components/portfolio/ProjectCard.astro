@@ -1,4 +1,6 @@
 ---
+import { useTranslations, type Lang } from "~/i18n/ui";
+
 interface Props {
   tipo: string;
   nome: string;
@@ -6,6 +8,7 @@ interface Props {
   alt: string;
   bgColor: string;
   colSpan?: "1" | "2" | string;
+  lang?: Lang;
 }
 
 const {
@@ -14,21 +17,20 @@ const {
   src,
   alt,
   bgColor,
-  colSpan = "1",
+  lang = "pt",
 } = Astro.props;
 
-const colSpanClass =
-  colSpan === "2" || bgColor.includes("col-span-2")
-    ? "md:col-span-2"
-    : "";
+const t = useTranslations(lang);
+const typeKey = `types.${tipo}` as any;
+const displayTipo = t(typeKey) || tipo;
 ---
 
 <div
-  class={`flex h-80 w-full flex-col rounded-3xl ${bgColor} ${colSpanClass} isolate overflow-hidden transition-transform duration-300 ease-in-out hover:scale-[1.03]`}
+  class={`flex h-80 w-full flex-col rounded-3xl ${bgColor} isolate overflow-hidden`}
   style="-webkit-mask-image: -webkit-radial-gradient(white, black);"
 >
   <div class="flex flex-1 flex-col items-end justify-end space-y-2 pr-6 pt-4 text-cinza-fundo">
-    <h3 class="text-lg md:text-2xl font-bold">{tipo}</h3>
+    <h3 class="text-lg md:text-2xl font-bold">{displayTipo}</h3>
     <h4 class="font-medium">{nome}</h4>
   </div>
   <div class="ml-6 mt-auto flex w-full items-end justify-end transition-transform duration-300 ease-in-out group-hover:translate-y-3">

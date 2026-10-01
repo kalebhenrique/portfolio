@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, MotionConfig, useReducedMotion } from "framer-motion";
 import BackgroundContent from "./backgroundContent";
+import type { Lang } from "~/i18n/ui";
 
 interface SnowflakeProps {
   size: number;
@@ -35,7 +36,11 @@ const Snowflake: React.FC<SnowflakeProps> = ({ size, startX, speed }) => {
   );
 };
 
-export default function Introduction() {
+interface IntroductionProps {
+  lang?: Lang;
+}
+
+export default function Introduction({ lang = "pt" }: IntroductionProps) {
   const shouldReduceMotion = useReducedMotion();
   const snowflakes = React.useMemo(
     () =>
@@ -77,7 +82,7 @@ export default function Introduction() {
             />
           ))}
         </div>
-        <BackgroundContent />
+        <BackgroundContent lang={lang} />
       </motion.div>
     </MotionConfig>
   );

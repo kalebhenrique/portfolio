@@ -7,10 +7,16 @@ export const prerender = false;
 const API_KEY = import.meta.env.CAT_API_KEY ?? "";
 
 export const GET: APIRoute = async () => {
-  const headers = { "Content-Type": "application/json" };
+  const headers = {
+    "Content-Type": "application/json",
+    "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0",
+  };
   try {
     const res = await fetch(
       `https://api.thecatapi.com/v1/images/search?api_key=${API_KEY}`,
+      { cache: "no-store" },
     );
     if (!res.ok) return new Response(JSON.stringify({ url: "" }), { headers });
     const data: { url?: string }[] = await res.json();

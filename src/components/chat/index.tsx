@@ -1,13 +1,14 @@
-import { useState, useEffect, useRef, type ReactNode } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoClose } from "react-icons/io5";
-import MessageWrapper from "./messageWrapper";
-import { motion, AnimatePresence, MotionConfig } from "framer-motion";
-import MessageOption from "./messageOption";
 import { useStore } from "@nanostores/react";
 import { isChatOpen, closeChat } from "~/stores/chatStore";
+import { motion, AnimatePresence, MotionConfig } from "framer-motion";
+import MessageWrapper from "./messageWrapper";
+import MessageOption from "./messageOption";
+import type { Lang } from "~/i18n/ui";
 
 interface Message {
-  text: string | ReactNode;
+  text: string | React.ReactNode;
   isUser: boolean;
 }
 
@@ -17,56 +18,48 @@ interface Option {
 }
 
 interface State {
-  message?: string | ReactNode;
+  message?: string | React.ReactNode;
   options: Option[];
 }
 
-type States = Record<string, State>;
+interface States {
+  [key: string]: State;
+}
 
-export default function Chat() {
+interface ChatProps {
+  lang?: Lang;
+}
+
+export default function Chat({ lang = "pt" }: ChatProps) {
+  const isEn = lang === "en";
   const isOpen = useStore(isChatOpen);
-
   const [messages, setMessages] = useState<Message[]>([
-    { text: "Olá, aqui é o Kaleb", isUser: false },
-    { text: "Como posso ajudar?", isUser: false },
+    { text: isEn ? "Hello, this is Kaleb" : "Olá, aqui é o Kaleb", isUser: false },
+    { text: isEn ? "How can I help you?" : "Como posso ajudar?", isUser: false },
   ]);
   const [currentState, setCurrentState] = useState<string>("initial");
-  const [catUrl, setCatUrl] = useState<string>("");
   const [isLoadingCat, setIsLoadingCat] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const dialogRef = useRef<HTMLDivElement | null>(null);
 
-  const catPic = async () => {
-    try {
-      const res = await fetch("/api/cat");
-      const data: { url?: string } = (await res.json()) as { url?: string };
-      return data.url ?? "";
-    } catch (error) {
-      console.error(error);
-      return "";
-    }
-  };
-
   const states: States = {
     loading: {
-      options: [
-        {
-          text: "",
-          nextState: "initial",
-        },
-      ],
+      options: [],
     },
     initial: {
-      message: "Como posso ajudar?",
+      message: isEn ? "How can I help you?" : "Como posso ajudar?",
       options: [
         {
-          text: "Cadê o repositório deste portfólio?",
+          text: isEn ? "Where is this portfolio's repository?" : "Cadê o repositório deste portfólio?",
           nextState: "repository",
         },
-        { text: "Quero uma foto surpresa de gato! 🐱", nextState: "catPhoto" },
         {
-          text: "Gostaria de entrar em contato.",
+          text: isEn ? "Surprise me with a cat photo! 🐱" : "Quero uma foto surpresa de gato! 🐱",
+          nextState: "catPhoto",
+        },
+        {
+          text: isEn ? "I'd like to get in touch." : "Gostaria de entrar em contato.",
           nextState: "contact",
         },
       ],
@@ -74,50 +67,29 @@ export default function Chat() {
     repository: {
       message: (
         <>
-          O link do repositório está{" "}
+          {isEn ? "The repository link is right " : "O link do repositório está "}
           <a
             className="font-bold underline hover:text-violeta-base-hover"
             href="https://github.com/kalebhenrique/portfolio"
             target="_blank"
             rel="noreferrer"
           >
-            aqui.
+            {isEn ? "here." : "aqui."}
           </a>
         </>
       ),
-      options: [{ text: "Voltar ao menu", nextState: "initial" }],
+      options: [{ text: isEn ? "Back to menu" : "Voltar ao menu", nextState: "initial" }],
     },
     catPhoto: {
-      message: (
-        <div>
-          {isLoadingCat ? (
-            <div>Carregando...</div>
-          ) : (
-            <div className="space-y-3">
-              <div className="relative flex items-center justify-center">
-                <img
-                  src={catUrl}
-                  alt="gato"
-                  className="max-h-48 rounded-lg object-contain"
-                  width={200}
-                  height={150}
-                  loading="lazy"
-                />
-              </div>
-              <div>Aqui está uma foto surpresa de gato! 🐱</div>
-            </div>
-          )}
-        </div>
-      ),
       options: [
-        { text: "Quero mais uma foto!", nextState: "catPhoto" },
-        { text: "Voltar ao menu", nextState: "initial" },
+        { text: isEn ? "Give me another photo!" : "Quero mais uma foto!", nextState: "catPhoto" },
+        { text: isEn ? "Back to menu" : "Voltar ao menu", nextState: "initial" },
       ],
     },
     contact: {
       message: (
         <>
-          Me chama no{" "}
+          {isEn ? "Reach out on " : "Me chama no "}
           <a
             className="font-bold underline hover:text-violeta-base-hover"
             href="https://www.linkedin.com/in/kalebhenrique/"
@@ -126,25 +98,12 @@ export default function Chat() {
           >
             LinkedIn
           </a>
-          ! Respondo rápido por lá.
+          {isEn ? "! I reply quickly there." : "! Respondo rápido por lá."}
         </>
       ),
-      options: [{ text: "Voltar ao menu", nextState: "initial" }],
+      options: [{ text: isEn ? "Back to menu" : "Voltar ao menu", nextState: "initial" }],
     },
   };
-
-  useEffect(() => {
-    const loadNewCatImage = async () => {
-      setIsLoadingCat(true);
-      const newUrl = await catPic();
-      setCatUrl(newUrl);
-      setIsLoadingCat(false);
-    };
-
-    if (currentState === "catPhoto") {
-      void loadNewCatImage();
-    }
-  }, [currentState]);
 
   useEffect(() => {
     if (isOpen && messagesEndRef.current) {
@@ -156,57 +115,125 @@ export default function Chat() {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages, currentState]);
+  }, [messages, isLoadingCat, currentState]);
 
+  // Trap focus inside modal when open
   useEffect(() => {
     if (!isOpen) return;
 
-    dialogRef.current?.focus();
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+    dialog.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
         closeChat();
         return;
       }
-      if (event.key !== "Tab" || !dialogRef.current) return;
 
-      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      if (e.key !== "Tab") return;
+
+      const focusableElements = dialog.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
-      if (focusable.length === 0) return;
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
 
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      const active = document.activeElement;
-
-      if (event.shiftKey && (active === first || active === dialogRef.current)) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && active === last) {
-        event.preventDefault();
-        first.focus();
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement?.focus();
+        }
       }
     };
 
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  const handleOptionClick = (option: Option) => {
-    setMessages((prev) => [...prev, { text: option.text, isUser: true }]);
+  const handleOptionClick = async (option: Option) => {
+    // 1. Append user's choice message
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { text: option.text, isUser: true },
+    ]);
 
-    const nextStateMessage = states[option.nextState]?.message;
-    if (nextStateMessage) {
-      setTimeout(() => {
-        setMessages((prev) => [
-          ...prev,
-          { text: nextStateMessage, isUser: false },
+    // 2. Specialized handling for cat photos (fetches fresh image each time)
+    if (option.nextState === "catPhoto") {
+      setIsLoadingCat(true);
+      setCurrentState("loading");
+
+      try {
+        const res = await fetch(`/api/cat?t=${Date.now()}`);
+        const data: { url?: string } = (await res.json()) as { url?: string };
+        const newUrl = data.url ?? "";
+
+        if (newUrl) {
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              text: (
+                <div className="space-y-3">
+                  <div className="relative flex items-center justify-center">
+                    <img
+                      src={newUrl}
+                      alt={isEn ? "Cute cat" : "Gatinho fofo"}
+                      className="max-h-48 rounded-lg object-contain"
+                      width={200}
+                      height={150}
+                      loading="eager"
+                    />
+                  </div>
+                  <div>{isEn ? "Here is a surprise cat photo! 🐱" : "Aqui está uma foto surpresa de gato! 🐱"}</div>
+                </div>
+              ),
+              isUser: false,
+            },
+          ]);
+        } else {
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              text: isEn ? "Oops, the cat ran away! Try again in a moment. 🐾" : "Ops, o gatinho fugiu! Tente novamente em instantes. 🐾",
+              isUser: false,
+            },
+          ]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch cat:", error);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            text: isEn ? "Could not fetch cat photo. Please try again! 🐾" : "Não foi possível carregar a foto. Tente novamente! 🐾",
+            isUser: false,
+          },
         ]);
-      }, 1000);
+      } finally {
+        setIsLoadingCat(false);
+        setCurrentState("catPhoto");
+      }
+      return;
     }
 
-    setCurrentState("loading");
-    setTimeout(() => setCurrentState(option.nextState), 2000);
+    // 3. Standard state transitions
+    const nextState = states[option.nextState];
+    if (nextState) {
+      setTimeout(() => {
+        if (nextState.message) {
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: nextState.message, isUser: false },
+          ]);
+        }
+        setCurrentState(option.nextState);
+      }, 300);
+    }
   };
 
   return (
@@ -217,7 +244,7 @@ export default function Chat() {
             ref={dialogRef}
             role="dialog"
             aria-modal="true"
-            aria-label="Chat com o Kaleb Bot"
+            aria-label={isEn ? "Chat with Kaleb Bot" : "Chat com o Kaleb Bot"}
             tabIndex={-1}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -242,7 +269,7 @@ export default function Chat() {
                 <button
                   onClick={closeChat}
                   className="rounded-md p-1 text-cinza-fundo hover:bg-violeta-base-hover"
-                  aria-label="Fechar Chat"
+                  aria-label={isEn ? "Close Chat" : "Fechar Chat"}
                 >
                   <IoClose size={20} />
                 </button>
@@ -259,11 +286,23 @@ export default function Chat() {
                       isUser={msg.isUser}
                     />
                   ))}
+                  {isLoadingCat && (
+                    <MessageWrapper
+                      message={
+                        <div className="flex items-center space-x-2">
+                          <span className="inline-block animate-bounce">🐾</span>
+                          <span>{isEn ? "Fetching a cute cat..." : "Buscando um gatinho..."}</span>
+                        </div>
+                      }
+                      isUser={false}
+                    />
+                  )}
                   <div ref={messagesEndRef} />
                 </div>
                 <div className="flex flex-col items-start space-y-2 p-4">
-                  {states[currentState]?.options[0]?.text !== "" &&
-                    states[currentState]?.options?.map((option, key) => (
+                  {!isLoadingCat &&
+                    states[currentState]?.options?.length > 0 &&
+                    states[currentState].options.map((option, key) => (
                       <button
                         key={key}
                         onClick={() => handleOptionClick(option)}
