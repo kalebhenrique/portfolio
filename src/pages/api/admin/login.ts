@@ -22,7 +22,9 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const isValid = validateCredentials(username, password);
     if (!isValid) {
       return new Response(
-        JSON.stringify({ error: "Credenciais inválidas. Verifique usuário e senha." }),
+        JSON.stringify({
+          error: "Credenciais inválidas. Verifique usuário e senha.",
+        }),
         { status: 401, headers: { "Content-Type": "application/json" } },
       );
     }

@@ -97,14 +97,14 @@ const featuredCount = projects.filter((p) => p.featured).length;
           type="text"
           id="search-input"
           placeholder="Buscar por nome, tipo ou tag..."
-          class="w-full pl-10 pr-4 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+          class="w-full pl-10 pr-4 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
         />
       </div>
 
       <div class="w-full sm:w-64">
         <select
           id="type-filter"
-          class="w-full px-4 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-none focus:border-[#7FC8E3]"
+          class="w-full px-4 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-hidden focus:border-[#7FC8E3]"
         >
           <option value="">Todos os Tipos</option>
           {PROJECT_TYPES.map((t) => (
@@ -166,7 +166,7 @@ const featuredCount = projects.filter((p) => p.featured).length;
                   <!-- Projeto & Thumb -->
                   <td class="py-4 px-6">
                     <div class="flex items-center space-x-4">
-                      <div class="w-14 h-10 rounded-lg overflow-hidden bg-[#181129] flex-shrink-0 border border-[#3B234B]">
+                      <div class="w-14 h-10 rounded-lg overflow-hidden bg-[#181129] shrink-0 border border-[#3B234B]">
                         <img
                           src={project.src.startsWith("http") || project.src.startsWith("/") ? project.src : (project.src === "api-ruby" ? "/api-ruby.png" : (project.src === "ibd" || project.src === "ib" ? "/ib.png" : (project.src === "celeste2" ? "/celeste2.png" : `/${project.src}`)))}
                           alt={project.alt || project.nome}
@@ -263,7 +263,7 @@ const featuredCount = projects.filter((p) => p.featured).length;
   </div>
 
   <!-- Delete Modal Dialog -->
-  <div id="delete-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+  <div id="delete-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-[#242C3B] border border-[#3B234B] rounded-3xl p-6 sm:p-8 max-w-md w-full space-y-5 shadow-2xl">
       <h3 class="text-xl font-bold text-white">Excluir Projeto?</h3>
       <p class="text-sm text-gray-300">

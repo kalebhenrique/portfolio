@@ -38,7 +38,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const ext = file.name.split(".").pop()?.toLowerCase() || "";
     const validExts = ["jpg", "jpeg", "png", "webp", "gif", "svg", "avif"];
 
-    const isValidType = validMimes.includes(file.type) || validExts.includes(ext);
+    const isValidType =
+      validMimes.includes(file.type) || validExts.includes(ext);
 
     if (!isValidType) {
       return new Response(
@@ -58,11 +59,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    const result = await saveUploadedImage(
-      file.name,
-      buffer,
-      session.username,
-    );
+    const result = await saveUploadedImage(file.name, buffer, session.username);
 
     if (!result.success) {
       return new Response(
@@ -73,13 +70,10 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       );
     }
 
-    return new Response(
-      JSON.stringify({ success: true, url: result.url }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      },
-    );
+    return new Response(JSON.stringify({ success: true, url: result.url }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (e: any) {
     return new Response(
       JSON.stringify({ error: e?.message || "Erro no upload da imagem." }),

@@ -70,7 +70,7 @@ export default function Introduction({ lang = "pt" }: IntroductionProps) {
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        className="relative flex h-svh w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-[#2C1431] via-[#161732] to-[#042433] md:h-screen"
+        className="relative flex h-svh w-full flex-col items-center justify-center overflow-hidden bg-linear-to-r from-[#2C1431] via-[#161732] to-[#042433] md:h-screen"
       >
         <div className="pointer-events-none absolute inset-0 hidden md:inline">
           {snowflakes.map((flake, index) => (

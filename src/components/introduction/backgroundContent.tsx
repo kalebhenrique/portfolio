@@ -11,7 +11,9 @@ interface BackgroundContentProps {
   lang?: Lang;
 }
 
-export default function BackgroundContent({ lang = "pt" }: BackgroundContentProps) {
+export default function BackgroundContent({
+  lang = "pt",
+}: BackgroundContentProps) {
   const t = useTranslations(lang);
   const isEn = lang === "en";
 
@@ -28,16 +30,20 @@ export default function BackgroundContent({ lang = "pt" }: BackgroundContentProp
       >
         <div className="flex flex-row items-end">
           <Popover>
-            <PopoverTrigger className="relative h-[274px] w-[360px] lg:h-[457px] lg:w-[600px] cursor-pointer">
+            <PopoverTrigger className="relative h-[274px] w-[360px] cursor-pointer lg:h-[457px] lg:w-[600px]">
               <img
                 src={isEn ? "/celeste-en.webp" : "/celeste.webp"}
-                alt={isEn ? "Celeste Mountain - Hey, I'm Kaleb" : "Montanha do jogo Celeste - Olá, sou Kaleb"}
+                alt={
+                  isEn
+                    ? "Celeste Mountain - Hey, I'm Kaleb"
+                    : "Montanha do jogo Celeste - Olá, sou Kaleb"
+                }
                 fetchPriority="high"
                 decoding="async"
-                className="absolute inset-0 h-full w-full object-cover z-0"
+                className="absolute inset-0 z-0 h-full w-full object-cover"
               />
             </PopoverTrigger>
-            <PopoverContent className="mr-2 w-52 bg-violeta-base bg-opacity-90 text-sm text-cinza-fundo backdrop-blur-sm md:w-80 md:text-base">
+            <PopoverContent className="mr-2 w-52 bg-violeta-base/90 text-sm text-cinza-fundo backdrop-blur-xs md:w-80 md:text-base">
               <p>{t("hero.popover")}</p>
             </PopoverContent>
           </Popover>
@@ -56,7 +62,7 @@ export default function BackgroundContent({ lang = "pt" }: BackgroundContentProp
           duration: 1,
           delay: 0.3,
         }}
-        className="absolute bottom-4 left-0 right-0 flex justify-center"
+        className="absolute right-0 bottom-4 left-0 flex justify-center"
       >
         <ArrowDownAnimate />
       </motion.div>

@@ -93,7 +93,7 @@ const rawContent = await getExperiencesRaw();
       <textarea
         id="raw-textarea"
         rows={22}
-        class="w-full p-5 bg-[#181129] border border-[#3B234B] rounded-2xl text-gray-200 font-mono text-sm leading-relaxed focus:outline-none focus:border-[#7FC8E3] resize-y"
+        class="w-full p-5 bg-[#181129] border border-[#3B234B] rounded-2xl text-gray-200 font-mono text-sm leading-relaxed focus:outline-hidden focus:border-[#7FC8E3] resize-y"
       >{rawContent}</textarea>
     </div>
   </div>
@@ -268,7 +268,7 @@ const rawContent = await getExperiencesRaw();
                 data-index="${index}"
                 value="${item.position || ""}"
                 placeholder="Ex: Diretor Comercial"
-                class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-none focus:border-[#7FC8E3]"
+                class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-hidden focus:border-[#7FC8E3]"
               />
             </div>
 
@@ -280,7 +280,7 @@ const rawContent = await getExperiencesRaw();
                 data-index="${index}"
                 value="${item.enterprise || ""}"
                 placeholder="Ex: Empresa Júnior Struct"
-                class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-none focus:border-[#7FC8E3]"
+                class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-hidden focus:border-[#7FC8E3]"
               />
             </div>
 
@@ -292,7 +292,7 @@ const rawContent = await getExperiencesRaw();
                 data-index="${index}"
                 value="${item.enterpriseUrl || ""}"
                 placeholder="https://www.struct.unb.br/"
-                class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-none focus:border-[#7FC8E3]"
+                class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-hidden focus:border-[#7FC8E3]"
               />
             </div>
 
@@ -305,7 +305,7 @@ const rawContent = await getExperiencesRaw();
                   data-index="${index}"
                   value="${item.startDate || ""}"
                   placeholder="2024"
-                  class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-none focus:border-[#7FC8E3]"
+                  class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-hidden focus:border-[#7FC8E3]"
                 />
               </div>
 
@@ -317,7 +317,7 @@ const rawContent = await getExperiencesRaw();
                   data-index="${index}"
                   value="${item.endDate || ""}"
                   placeholder="Presente"
-                  class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-none focus:border-[#7FC8E3]"
+                  class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm focus:outline-hidden focus:border-[#7FC8E3]"
                 />
               </div>
             </div>
@@ -332,7 +332,7 @@ const rawContent = await getExperiencesRaw();
                 data-index="${index}"
                 rows="3"
                 placeholder="Liderança das equipes de comercial e projetos internos..."
-                class="w-full p-3 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm font-mono focus:outline-none focus:border-[#7FC8E3] resize-y"
+                class="w-full p-3 bg-[#181129] border border-[#3B234B] rounded-xl text-white text-sm font-mono focus:outline-hidden focus:border-[#7FC8E3] resize-y"
               >${bulletsText}</textarea>
             </div>
           </div>

@@ -34,8 +34,14 @@ export default function Chat({ lang = "pt" }: ChatProps) {
   const isEn = lang === "en";
   const isOpen = useStore(isChatOpen);
   const [messages, setMessages] = useState<Message[]>([
-    { text: isEn ? "Hello, this is Kaleb" : "Olá, aqui é o Kaleb", isUser: false },
-    { text: isEn ? "How can I help you?" : "Como posso ajudar?", isUser: false },
+    {
+      text: isEn ? "Hello, this is Kaleb" : "Olá, aqui é o Kaleb",
+      isUser: false,
+    },
+    {
+      text: isEn ? "How can I help you?" : "Como posso ajudar?",
+      isUser: false,
+    },
   ]);
   const [currentState, setCurrentState] = useState<string>("initial");
   const [isLoadingCat, setIsLoadingCat] = useState(false);
@@ -51,15 +57,21 @@ export default function Chat({ lang = "pt" }: ChatProps) {
       message: isEn ? "How can I help you?" : "Como posso ajudar?",
       options: [
         {
-          text: isEn ? "Where is this portfolio's repository?" : "Cadê o repositório deste portfólio?",
+          text: isEn
+            ? "Where is this portfolio's repository?"
+            : "Cadê o repositório deste portfólio?",
           nextState: "repository",
         },
         {
-          text: isEn ? "Surprise me with a cat photo! 🐱" : "Quero uma foto surpresa de gato! 🐱",
+          text: isEn
+            ? "Surprise me with a cat photo! 🐱"
+            : "Quero uma foto surpresa de gato! 🐱",
           nextState: "catPhoto",
         },
         {
-          text: isEn ? "I'd like to get in touch." : "Gostaria de entrar em contato.",
+          text: isEn
+            ? "I'd like to get in touch."
+            : "Gostaria de entrar em contato.",
           nextState: "contact",
         },
       ],
@@ -67,7 +79,9 @@ export default function Chat({ lang = "pt" }: ChatProps) {
     repository: {
       message: (
         <>
-          {isEn ? "The repository link is right " : "O link do repositório está "}
+          {isEn
+            ? "The repository link is right "
+            : "O link do repositório está "}
           <a
             className="font-bold underline hover:text-violeta-base-hover"
             href="https://github.com/kalebhenrique/portfolio"
@@ -78,12 +92,23 @@ export default function Chat({ lang = "pt" }: ChatProps) {
           </a>
         </>
       ),
-      options: [{ text: isEn ? "Back to menu" : "Voltar ao menu", nextState: "initial" }],
+      options: [
+        {
+          text: isEn ? "Back to menu" : "Voltar ao menu",
+          nextState: "initial",
+        },
+      ],
     },
     catPhoto: {
       options: [
-        { text: isEn ? "Give me another photo!" : "Quero mais uma foto!", nextState: "catPhoto" },
-        { text: isEn ? "Back to menu" : "Voltar ao menu", nextState: "initial" },
+        {
+          text: isEn ? "Give me another photo!" : "Quero mais uma foto!",
+          nextState: "catPhoto",
+        },
+        {
+          text: isEn ? "Back to menu" : "Voltar ao menu",
+          nextState: "initial",
+        },
       ],
     },
     contact: {
@@ -101,7 +126,12 @@ export default function Chat({ lang = "pt" }: ChatProps) {
           {isEn ? "! I reply quickly there." : "! Respondo rápido por lá."}
         </>
       ),
-      options: [{ text: isEn ? "Back to menu" : "Voltar ao menu", nextState: "initial" }],
+      options: [
+        {
+          text: isEn ? "Back to menu" : "Voltar ao menu",
+          nextState: "initial",
+        },
+      ],
     },
   };
 
@@ -190,7 +220,11 @@ export default function Chat({ lang = "pt" }: ChatProps) {
                       loading="eager"
                     />
                   </div>
-                  <div>{isEn ? "Here is a surprise cat photo! 🐱" : "Aqui está uma foto surpresa de gato! 🐱"}</div>
+                  <div>
+                    {isEn
+                      ? "Here is a surprise cat photo! 🐱"
+                      : "Aqui está uma foto surpresa de gato! 🐱"}
+                  </div>
                 </div>
               ),
               isUser: false,
@@ -200,7 +234,9 @@ export default function Chat({ lang = "pt" }: ChatProps) {
           setMessages((prevMessages) => [
             ...prevMessages,
             {
-              text: isEn ? "Oops, the cat ran away! Try again in a moment. 🐾" : "Ops, o gatinho fugiu! Tente novamente em instantes. 🐾",
+              text: isEn
+                ? "Oops, the cat ran away! Try again in a moment. 🐾"
+                : "Ops, o gatinho fugiu! Tente novamente em instantes. 🐾",
               isUser: false,
             },
           ]);
@@ -210,7 +246,9 @@ export default function Chat({ lang = "pt" }: ChatProps) {
         setMessages((prevMessages) => [
           ...prevMessages,
           {
-            text: isEn ? "Could not fetch cat photo. Please try again! 🐾" : "Não foi possível carregar a foto. Tente novamente! 🐾",
+            text: isEn
+              ? "Could not fetch cat photo. Please try again! 🐾"
+              : "Não foi possível carregar a foto. Tente novamente! 🐾",
             isUser: false,
           },
         ]);
@@ -252,7 +290,7 @@ export default function Chat({ lang = "pt" }: ChatProps) {
             transition={{
               duration: 0.2,
             }}
-            className="root-scrollbar fixed top-0 z-50 flex h-dvh w-full bg-cinza-fundo bg-opacity-80 backdrop-blur-3xl focus:outline-none md:bottom-0 md:right-0 md:top-auto md:m-10 md:h-[700px] md:w-[380px] md:rounded-3xl md:text-base md:shadow-2xl"
+            className="root-scrollbar fixed top-0 z-50 flex h-dvh w-full bg-cinza-fundo/80 backdrop-blur-3xl focus:outline-hidden md:top-auto md:right-0 md:bottom-0 md:m-10 md:h-[700px] md:w-[380px] md:rounded-3xl md:text-base md:shadow-2xl"
           >
             <div className="flex h-full w-full flex-col">
               <div className="flex items-center justify-between bg-violeta-base p-5 md:rounded-t-3xl">
@@ -274,7 +312,7 @@ export default function Chat({ lang = "pt" }: ChatProps) {
                   <IoClose size={20} />
                 </button>
               </div>
-              <div className="custom-scrollbar flex-grow overflow-y-auto">
+              <div className="custom-scrollbar grow overflow-y-auto">
                 <div
                   className="flex flex-col items-start space-y-2 p-4"
                   aria-live="polite"
@@ -290,8 +328,14 @@ export default function Chat({ lang = "pt" }: ChatProps) {
                     <MessageWrapper
                       message={
                         <div className="flex items-center space-x-2">
-                          <span className="inline-block animate-bounce">🐾</span>
-                          <span>{isEn ? "Fetching a cute cat..." : "Buscando um gatinho..."}</span>
+                          <span className="inline-block animate-bounce">
+                            🐾
+                          </span>
+                          <span>
+                            {isEn
+                              ? "Fetching a cute cat..."
+                              : "Buscando um gatinho..."}
+                          </span>
                         </div>
                       }
                       isUser={false}

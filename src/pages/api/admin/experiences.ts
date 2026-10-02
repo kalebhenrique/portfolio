@@ -51,24 +51,34 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         // Se falhou ao parsear e não for intencionalmente vazio, avisa
         if (data.raw.includes("experiences:")) {
           return new Response(
-            JSON.stringify({ error: "Sintaxe YAML/Markdown inválida no arquivo experiences.md." }),
+            JSON.stringify({
+              error:
+                "Sintaxe YAML/Markdown inválida no arquivo experiences.md.",
+            }),
             { status: 400, headers: { "Content-Type": "application/json" } },
           );
         }
       }
       result = await saveExperiencesRaw(data.raw, session.username);
     } else if (Array.isArray(data.experiences)) {
-      result = await saveExperiences(data.experiences as ExperienceItem[], session.username);
+      result = await saveExperiences(
+        data.experiences as ExperienceItem[],
+        session.username,
+      );
     } else {
       return new Response(
-        JSON.stringify({ error: "Payload inválido. Envie 'raw' ou 'experiences'." }),
+        JSON.stringify({
+          error: "Payload inválido. Envie 'raw' ou 'experiences'.",
+        }),
         { status: 400, headers: { "Content-Type": "application/json" } },
       );
     }
 
     if (!result.success) {
       return new Response(
-        JSON.stringify({ error: result.message || "Erro ao salvar experiences.md" }),
+        JSON.stringify({
+          error: result.message || "Erro ao salvar experiences.md",
+        }),
         { status: 500, headers: { "Content-Type": "application/json" } },
       );
     }

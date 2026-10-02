@@ -25,10 +25,13 @@ export const GET: APIRoute = async ({ url, cookies }) => {
   if (slug) {
     const project = await getProjectBySlug(slug);
     if (!project) {
-      return new Response(JSON.stringify({ error: "Projeto não encontrado." }), {
-        status: 404,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: "Projeto não encontrado." }),
+        {
+          status: 404,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
     }
     return new Response(JSON.stringify(project), {
       status: 200,
@@ -57,10 +60,13 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const data = await request.json();
 
     if (!data.nome || !data.nome.trim()) {
-      return new Response(JSON.stringify({ error: "O nome do projeto é obrigatório." }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: "O nome do projeto é obrigatório." }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
     }
 
     if (!data.slug || !data.slug.trim()) {
@@ -95,8 +101,11 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       tags: Array.isArray(data.tags)
         ? data.tags
         : typeof data.tags === "string"
-        ? data.tags.split(",").map((t: string) => t.trim()).filter(Boolean)
-        : [],
+          ? data.tags
+              .split(",")
+              .map((t: string) => t.trim())
+              .filter(Boolean)
+          : [],
       featured: Boolean(data.featured),
       draft: Boolean(data.draft),
       content: (data.content || "").trim(),
@@ -122,7 +131,9 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     );
   } catch (e: any) {
     return new Response(
-      JSON.stringify({ error: e?.message || "Erro ao processar dados do projeto." }),
+      JSON.stringify({
+        error: e?.message || "Erro ao processar dados do projeto.",
+      }),
       { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }
@@ -141,16 +152,21 @@ export const PUT: APIRoute = async ({ request, cookies }) => {
   try {
     const data = await request.json();
     if (!Array.isArray(data.slugs)) {
-      return new Response(JSON.stringify({ error: "Lista de slugs inválida." }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: "Lista de slugs inválida." }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
     }
 
     const result = await reorderProjects(data.slugs, session.username);
     if (!result.success) {
       return new Response(
-        JSON.stringify({ error: result.message || "Erro ao reordenar projetos." }),
+        JSON.stringify({
+          error: result.message || "Erro ao reordenar projetos.",
+        }),
         { status: 500, headers: { "Content-Type": "application/json" } },
       );
     }
@@ -161,7 +177,9 @@ export const PUT: APIRoute = async ({ request, cookies }) => {
     });
   } catch (e: any) {
     return new Response(
-      JSON.stringify({ error: e?.message || "Erro interno ao reordenar projetos." }),
+      JSON.stringify({
+        error: e?.message || "Erro interno ao reordenar projetos.",
+      }),
       { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }

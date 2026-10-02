@@ -101,7 +101,10 @@ export async function verifySessionToken(
 }
 
 /** Verifica as credenciais de login */
-export function validateCredentials(username: string, password: string): boolean {
+export function validateCredentials(
+  username: string,
+  password: string,
+): boolean {
   if (!username || !password) return false;
 
   const adminPassword =
@@ -158,7 +161,9 @@ export function clearSessionCookie(cookies: any): void {
 }
 
 /** Recupera a sessão atual da requisição ou cookie */
-export async function getSession(cookies: any): Promise<{ username: string } | null> {
+export async function getSession(
+  cookies: any,
+): Promise<{ username: string } | null> {
   const token = cookies.get(SESSION_COOKIE_NAME)?.value;
   return verifySessionToken(token);
 }

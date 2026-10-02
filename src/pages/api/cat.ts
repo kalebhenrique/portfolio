@@ -10,8 +10,8 @@ export const GET: APIRoute = async () => {
   const headers = {
     "Content-Type": "application/json",
     "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-    "Pragma": "no-cache",
-    "Expires": "0",
+    Pragma: "no-cache",
+    Expires: "0",
   };
   try {
     const res = await fetch(

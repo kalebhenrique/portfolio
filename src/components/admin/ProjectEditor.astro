@@ -107,7 +107,7 @@ const COLOR_PRESETS = [
             id="preview-img"
             src={initialSrc.startsWith("http") || initialSrc.startsWith("/") ? initialSrc : `https://res.cloudinary.com/djh6kz6nb/image/upload/f_auto,q_auto/${initialSrc}`}
             alt={initialAlt || initialNome}
-            class="rounded-tl-3xl rounded-bl-none max-h-48 w-full object-cover object-left-top"
+            class="rounded-tl-3xl rounded-bl-none max-h-48 w-full object-cover object-top-left"
           />
         </div>
       </div>
@@ -136,7 +136,7 @@ const COLOR_PRESETS = [
             required
             value={initialNome}
             placeholder="Ex: API Ruby on Rails"
-            class="w-full px-4 py-3 bg-[#181129] border border-[#3B234B] rounded-xl text-white placeholder-gray-500 text-base focus:outline-none focus:border-[#7FC8E3] focus:ring-1 focus:ring-[#7FC8E3] transition-all"
+            class="w-full px-4 py-3 bg-[#181129] border border-[#3B234B] rounded-xl text-white placeholder-gray-500 text-base focus:outline-hidden focus:border-[#7FC8E3] focus:ring-1 focus:ring-[#7FC8E3] transition-all"
           />
         </div>
 
@@ -156,7 +156,7 @@ const COLOR_PRESETS = [
             value={initialSlug}
             readonly={!isNew}
             placeholder="ex: api-ruby-on-rails"
-            class={`w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3] ${
+            class={`w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-gray-300 placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3] ${
               !isNew ? "opacity-70 cursor-not-allowed" : ""
             }`}
           />
@@ -173,7 +173,7 @@ const COLOR_PRESETS = [
           <div class="flex gap-2">
             <select
               id="project-tipo-select"
-              class="w-full sm:w-1/2 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-none focus:border-[#7FC8E3]"
+              class="w-full sm:w-1/2 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-hidden focus:border-[#7FC8E3]"
             >
               {PROJECT_TYPES.map((t) => (
                 <option value={t} selected={t === initialTipo}>{t}</option>
@@ -186,7 +186,7 @@ const COLOR_PRESETS = [
               name="tipo"
               value={initialTipo}
               required
-              class="w-full sm:w-1/2 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+              class="w-full sm:w-1/2 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
             />
           </div>
         </div>
@@ -207,7 +207,7 @@ const COLOR_PRESETS = [
               required
               value={initialSrc}
               placeholder="ex: /api-ruby.png ou /images/uploads/minha-imagem.png"
-              class="flex-1 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+              class="flex-1 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
             />
 
             <!-- Hidden File Input -->
@@ -236,7 +236,7 @@ const COLOR_PRESETS = [
             required
             value={initialAlt}
             placeholder="Ex: Tela de Controllers Ruby on Rails"
-            class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+            class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
           />
         </div>
 
@@ -259,7 +259,7 @@ const COLOR_PRESETS = [
                 name="src2"
                 value={initialSrc2}
                 placeholder="ex: /api-ruby-2.webp ou URL de upload"
-                class="flex-1 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+                class="flex-1 px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
               />
 
               <!-- Hidden File Input para Segunda Imagem -->
@@ -287,7 +287,7 @@ const COLOR_PRESETS = [
               name="alt2"
               value={initialAlt2}
               placeholder="Ex: Segunda tela do projeto"
-              class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+              class="w-full px-4 py-2.5 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
             />
           </div>
         </div>
@@ -302,7 +302,7 @@ const COLOR_PRESETS = [
             name="content"
             rows="6"
             placeholder="Descreva as responsabilidades, arquitetura e aprendizados deste projeto..."
-            class="w-full px-4 py-3 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3] resize-y"
+            class="w-full px-4 py-3 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3] resize-y"
           >{initialContent}</textarea>
         </div>
       </div>
@@ -341,7 +341,7 @@ const COLOR_PRESETS = [
             name="bgColor"
             value={initialBgColor}
             placeholder="ex: bg-azul-kaleb ou bg-[#123456]"
-            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
           />
         </div>
 
@@ -353,7 +353,7 @@ const COLOR_PRESETS = [
           <select
             id="project-colspan"
             name="colSpan"
-            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-none focus:border-[#7FC8E3]"
+            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-hidden focus:border-[#7FC8E3]"
           >
             <option value="1" selected={initialColSpan === "1"}>1 Coluna (Padrão)</option>
             <option value="2" selected={initialColSpan === "2"}>2 Colunas (Destaque Largo)</option>
@@ -370,7 +370,7 @@ const COLOR_PRESETS = [
             id="project-order"
             name="order"
             value={initialOrder}
-            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-none focus:border-[#7FC8E3]"
+            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-sm text-white focus:outline-hidden focus:border-[#7FC8E3]"
           />
         </div>
 
@@ -387,7 +387,7 @@ const COLOR_PRESETS = [
               name="link"
               value={initialLink}
               placeholder="https://..."
-              class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+              class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
             />
           </div>
 
@@ -402,7 +402,7 @@ const COLOR_PRESETS = [
               name="github"
               value={initialGithub}
               placeholder="https://github.com/..."
-              class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+              class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
             />
           </div>
         </div>
@@ -418,7 +418,7 @@ const COLOR_PRESETS = [
             name="tags"
             value={initialTags}
             placeholder="React, TypeScript, Tailwind"
-            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#7FC8E3]"
+            class="w-full px-3 py-2 bg-[#181129] border border-[#3B234B] rounded-xl text-xs text-white placeholder-gray-500 focus:outline-hidden focus:border-[#7FC8E3]"
           />
         </div>
 
@@ -569,7 +569,7 @@ const COLOR_PRESETS = [
     }
 
     if (previewImg) {
-      previewImg.className = "rounded-tl-3xl rounded-bl-none max-h-48 w-full object-cover object-left-top";
+      previewImg.className = "rounded-tl-3xl rounded-bl-none max-h-48 w-full object-cover object-top-left";
       const src = srcInput.value.trim();
       if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("/")) {
         previewImg.src = src;

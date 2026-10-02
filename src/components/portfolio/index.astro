@@ -38,7 +38,7 @@ projects.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
         return (
           <a
             href={projectHref}
-            class={`block ${isWide ? "md:col-span-2" : ""} focus:outline-none focus:ring-2 focus:ring-azul-kaleb rounded-3xl group cursor-pointer transition-transform duration-300 hover:scale-[1.02]`}
+            class={`block ${isWide ? "md:col-span-2" : ""} focus:outline-hidden focus:ring-2 focus:ring-azul-kaleb rounded-3xl group cursor-pointer transition-transform duration-300 hover:scale-[1.02]`}
             title={`${t("portfolio.open_post")} ${project.data.nome}`}
           >
             <ProjectCard

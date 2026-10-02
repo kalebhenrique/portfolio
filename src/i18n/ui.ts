@@ -14,13 +14,18 @@ export const ui = {
     "nav.portfolio": "Portfólio",
     "nav.chat": "Chat",
     "nav.switch_lang": "Mudar idioma",
-    "hero.popover": "Montanha do jogo eletrônico Celeste, obra que aborda temas de superação e perseverança — qualidades essenciais para programadores!",
-    "hero.subtitle": "Sou apaixonado por criar experiências envolventes, acessíveis e centradas no usuário.",
+    "hero.popover":
+      "Montanha do jogo eletrônico Celeste, obra que aborda temas de superação e perseverança — qualidades essenciais para programadores!",
+    "hero.subtitle":
+      "Sou apaixonado por criar experiências envolventes, acessíveis e centradas no usuário.",
     "about.title": "Eu sou um dev fullstack.",
-    "about.bio1": "Estudante de Engenharia de Computação na Universidade de Brasília e Técnico em Informática formado pela Escola Técnica de Brasília.",
-    "about.bio2": "Atuo com desenvolvimento de software de ponta a ponta e análise de requisitos, com foco constante em boas práticas de engenharia, arquitetura limpa e escabilidade.",
+    "about.bio1":
+      "Estudante de Engenharia de Computação na Universidade de Brasília e Técnico em Informática formado pela Escola Técnica de Brasília.",
+    "about.bio2":
+      "Atuo com desenvolvimento de software de ponta a ponta e análise de requisitos, com foco constante em boas práticas de engenharia, arquitetura limpa e escabilidade.",
     "about.purpose_title": "Motivação e Propósito",
-    "about.purpose_desc": "Busco ambientes colaborativos onde possa aprender continuamente, resolver problemas complexos e construir produtos que gerem impacto real.",
+    "about.purpose_desc":
+      "Busco ambientes colaborativos onde possa aprender continuamente, resolver problemas complexos e construir produtos que gerem impacto real.",
     "about.cta_question": "Tem um projeto em mente ou quer trocar uma ideia?",
     "about.cta_button": "Falar no Chat",
     "stack.title": "Stack & Trajetória",
@@ -62,13 +67,18 @@ export const ui = {
     "nav.portfolio": "Portfolio",
     "nav.chat": "Chat",
     "nav.switch_lang": "Switch language",
-    "hero.popover": "Mountain from the video game Celeste, a masterpiece exploring themes of resilience and overcoming obstacles — essential qualities for software developers!",
-    "hero.subtitle": "I'm passionate about building engaging, accessible, and user-centered digital experiences.",
+    "hero.popover":
+      "Mountain from the video game Celeste, a masterpiece exploring themes of resilience and overcoming obstacles — essential qualities for software developers!",
+    "hero.subtitle":
+      "I'm passionate about building engaging, accessible, and user-centered digital experiences.",
     "about.title": "I'm a fullstack developer.",
-    "about.bio1": "Computer Engineering student at University of Brasília (UnB) and Information Technology graduate from Brasília Technical School (ETB).",
-    "about.bio2": "I work with end-to-end software development and requirements engineering, constantly focused on clean architecture, sound engineering practices, and scalability.",
+    "about.bio1":
+      "Computer Engineering student at University of Brasília (UnB) and Information Technology graduate from Brasília Technical School (ETB).",
+    "about.bio2":
+      "I work with end-to-end software development and requirements engineering, constantly focused on clean architecture, sound engineering practices, and scalability.",
     "about.purpose_title": "Motivation & Purpose",
-    "about.purpose_desc": "I seek collaborative environments where I can continuously learn, tackle complex problems, and build products with real impact.",
+    "about.purpose_desc":
+      "I seek collaborative environments where I can continuously learn, tackle complex problems, and build products with real impact.",
     "about.cta_question": "Have a project in mind or want to talk?",
     "about.cta_button": "Open Chat",
     "stack.title": "Stack & Journey",
@@ -106,7 +116,7 @@ export const ui = {
   },
 } as const;
 
-export type TranslationKey = keyof typeof ui["pt"];
+export type TranslationKey = keyof (typeof ui)["pt"];
 
 export function useTranslations(lang: Lang = "pt") {
   return function t(key: TranslationKey): string {
@@ -132,8 +142,8 @@ export const experiencesEn: ExperienceItem[] = [
     enterprise: "Switch Dreams",
     enterpriseUrl: "https://www.linkedin.com/company/switch-dreams/home/",
     summary: [
-      "Development of websites and mobile applications, legacy codebase refactoring, AI API integrations, MCP, GitHub Actions, test profiling, and SaaS maintenance."
-    ]
+      "Development of websites and mobile applications, legacy codebase refactoring, AI API integrations, MCP, GitHub Actions, test profiling, and SaaS maintenance.",
+    ],
   },
   {
     startDate: "2024",
@@ -142,8 +152,8 @@ export const experiencesEn: ExperienceItem[] = [
     enterprise: "Empresa Júnior Struct",
     enterpriseUrl: "https://www.linkedin.com/company/struct-ej/home/",
     summary: [
-      "Leadership of the <u>commercial</u> and <u>internal software</u> teams, coordinating activities and defining strategic goals."
-    ]
+      "Leadership of the <u>commercial</u> and <u>internal software</u> teams, coordinating activities and defining strategic goals.",
+    ],
   },
   {
     startDate: "2023",
@@ -152,17 +162,18 @@ export const experiencesEn: ExperienceItem[] = [
     enterprise: "Empresa Júnior Struct",
     enterpriseUrl: "https://www.linkedin.com/company/struct-ej/home/",
     summary: [
-      "Development of websites and applications using <u>Next.js</u> and <u>React Native</u>."
-    ]
+      "Development of websites and applications using <u>Next.js</u> and <u>React Native</u>.",
+    ],
   },
   {
     startDate: "2023",
     endDate: "2023",
     position: "IT Technical Support",
     enterprise: "Escola Técnica de Brasília",
-    enterpriseUrl: "https://www.linkedin.com/company/etb-escola-t-cnica-de-brasilia/posts/",
+    enterpriseUrl:
+      "https://www.linkedin.com/company/etb-escola-t-cnica-de-brasilia/posts/",
     summary: [
-      "Completed mandatory internship for IT Technical degree, learning technical support for computers and servers."
-    ]
-  }
+      "Completed mandatory internship for IT Technical degree, learning technical support for computers and servers.",
+    ],
+  },
 ];

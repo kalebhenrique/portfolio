@@ -63,10 +63,10 @@ const portfolioHref = `${prefix}/#projetos`;
     const navbar = document.getElementById("navbar");
     const handleScroll = () => {
       if (window.scrollY >= 140) {
-        navbar?.classList.add("bg-cinza-overlay-navbar", "bg-opacity-90");
+        navbar?.classList.add("bg-cinza-overlay-navbar/90");
         navbar?.classList.remove("bg-transparent");
       } else {
-        navbar?.classList.remove("bg-cinza-overlay-navbar", "bg-opacity-90");
+        navbar?.classList.remove("bg-cinza-overlay-navbar/90");
         navbar?.classList.add("bg-transparent");
       }
     };

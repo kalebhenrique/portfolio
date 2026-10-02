@@ -112,7 +112,7 @@ const pageBgClass = DARK_BG_MAP[project.data.bgColor] || "bg-[#181129]";
         <!-- Imagens do Projeto (1 imagem centralizada ou 2 imagens lado a lado / empilhadas no mobile) -->
         {project.data.src2 ? (
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 py-2">
-            <div class="w-full aspect-[16/9] overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
+            <div class="w-full aspect-video overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
               <img
                 src={project.data.src}
                 alt={project.data.alt || project.data.nome}
@@ -124,7 +124,7 @@ const pageBgClass = DARK_BG_MAP[project.data.bgColor] || "bg-[#181129]";
                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
               />
             </div>
-            <div class="w-full aspect-[16/9] overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
+            <div class="w-full aspect-video overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
               <img
                 src={project.data.src2}
                 alt={project.data.alt2 || project.data.nome}
@@ -138,7 +138,7 @@ const pageBgClass = DARK_BG_MAP[project.data.bgColor] || "bg-[#181129]";
           </div>
         ) : (
           <div class="w-full flex justify-center py-2">
-            <div class="w-full aspect-[16/9] overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
+            <div class="w-full aspect-video overflow-hidden rounded-2xl border border-[#E5D7BE] shadow-md bg-[#EDE5D3]">
               <img
                 src={project.data.src}
                 alt={project.data.alt || project.data.nome}
@@ -169,7 +169,7 @@ const pageBgClass = DARK_BG_MAP[project.data.bgColor] || "bg-[#181129]";
             {otherProjects.map((p) => (
               <a
                 href={`/projetos/${p.id}`}
-                class="block focus:outline-none focus:ring-2 focus:ring-[#7FC8E3] rounded-3xl group shadow-lg transition-transform duration-300 hover:scale-[1.02]"
+                class="block focus:outline-hidden focus:ring-2 focus:ring-[#7FC8E3] rounded-3xl group shadow-lg transition-transform duration-300 hover:scale-[1.02]"
               >
                 <ProjectCard
                   tipo={p.data.tipo}
@@ -193,7 +193,7 @@ const pageBgClass = DARK_BG_MAP[project.data.bgColor] || "bg-[#181129]";
     id="scroll-to-top"
     type="button"
     aria-label={t("project.scroll_top")}
-    class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-40 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#181129] border border-[#3B234B] flex items-center justify-center shadow-2xl opacity-0 pointer-events-none translate-y-4 transition-all duration-300 hover:scale-110 hover:border-violeta-base focus:outline-none focus:ring-2 focus:ring-violeta-base cursor-pointer"
+    class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-40 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#181129] border border-[#3B234B] flex items-center justify-center shadow-2xl opacity-0 pointer-events-none translate-y-4 transition-all duration-300 hover:scale-110 hover:border-violeta-base focus:outline-hidden focus:ring-2 focus:ring-violeta-base cursor-pointer"
   >
     <ArrowUp class="w-6 h-6 text-violeta-base" />
   </button>

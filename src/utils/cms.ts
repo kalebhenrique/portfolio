@@ -109,7 +109,10 @@ export function serializeProjectMarkdown(project: ProjectPayload): string {
 }
 
 /** Analisa o conteúdo de um arquivo Markdown separando frontmatter e corpo */
-export function parseProjectMarkdown(raw: string, slug: string): ProjectPayload {
+export function parseProjectMarkdown(
+  raw: string,
+  slug: string,
+): ProjectPayload {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
 
   if (!match) {
@@ -259,7 +262,9 @@ function getLocalProjects(): ProjectPayload[] {
 }
 
 /** Obtém um projeto pelo slug */
-export async function getProjectBySlug(slug: string): Promise<ProjectPayload | null> {
+export async function getProjectBySlug(
+  slug: string,
+): Promise<ProjectPayload | null> {
   const all = await getAllProjects();
   return all.find((p) => p.slug === slug) || null;
 }
@@ -613,7 +618,9 @@ export async function getExperiences(): Promise<ExperienceItem[]> {
       );
       if (res.ok) {
         const fileData = await res.json();
-        const content = Buffer.from(fileData.content, "base64").toString("utf-8");
+        const content = Buffer.from(fileData.content, "base64").toString(
+          "utf-8",
+        );
         return parseExperiencesMarkdown(content);
       }
     } catch {
@@ -730,7 +737,10 @@ export async function saveExperiencesRaw(
     fs.writeFileSync(fullPath, rawContent, "utf-8");
     return { success: true };
   } catch (e: any) {
-    return { success: false, message: e?.message || "Erro ao salvar arquivo local" };
+    return {
+      success: false,
+      message: e?.message || "Erro ao salvar arquivo local",
+    };
   }
 }
 
@@ -742,4 +752,3 @@ export async function saveExperiences(
   const raw = serializeExperiencesMarkdown(items);
   return saveExperiencesRaw(raw, authorName);
 }
-
